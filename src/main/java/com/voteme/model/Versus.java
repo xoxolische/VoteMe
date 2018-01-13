@@ -1,4 +1,4 @@
-package com.votes.model;
+package com.voteme.model;
 
 import java.util.Set;
 
