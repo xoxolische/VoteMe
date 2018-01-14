@@ -1,5 +1,7 @@
 package com.voteme.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "versus")
@@ -31,6 +35,10 @@ public class Versus {
 	@OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
 	private Opinion opinion2;
+	
+	@Column(name = "created_at")
+	@CreationTimestamp
+	private Timestamp createdAt;
 
 	public long getId() {
 		return id;
