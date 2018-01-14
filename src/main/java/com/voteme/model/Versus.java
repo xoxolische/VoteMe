@@ -1,15 +1,35 @@
 package com.voteme.model;
 
-public class Versus {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "versus")
+public class Versus {
+	@Id
+	@Column(name = "id", insertable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@Column(name = "title")
 	private String title;
 
+	@Column(name = "description")
 	private String description;
 
+	@OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
 	private Opinion opinion1;
 
+	@OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
 	private Opinion opinion2;
 
 	public long getId() {
