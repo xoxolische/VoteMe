@@ -15,11 +15,18 @@ public class MainController {
 	@Autowired
 	MarkDao m;
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test() {
-		HibernateUtil.getSessionFactory();
-		m.get(1);
+//	@RequestMapping(value = "/test", method = RequestMethod.GET)
+//	public String test() {
+//		HibernateUtil.getSessionFactory();
+//		m.get(1);
+//		return "test";
+//	}
+	
+	@RequestMapping(value = "/test1", method = RequestMethod.GET)
+	public String test1() {
+		
 		return "test";
 	}
+
 
 }
