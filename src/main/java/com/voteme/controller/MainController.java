@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.voteme.dao.MarkDao;
 
@@ -13,7 +12,7 @@ import com.voteme.dao.MarkDao;
 public class MainController {
 	
 	@Autowired
-	MarkDao m;
+	private MarkDao m;
 	
 //	@RequestMapping(value = "/test", method = RequestMethod.GET)
 //	public String test() {
@@ -22,9 +21,9 @@ public class MainController {
 //		return "test";
 //	}
 	
-	@RequestMapping(value = "/test1", method = RequestMethod.GET)
+	@RequestMapping(value = "/test1")
 	//@ResponseBody
-	public String test1(Model model) {
+	public String test1() {
 		
 		return "test";
 	}
