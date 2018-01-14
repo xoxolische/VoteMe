@@ -22,7 +22,7 @@ public class MainController {
 //		return "test";
 //	}
 	
-	@RequestMapping(value = {"/test1", "/", ""}, method = RequestMethod.GET)
+	@RequestMapping(value = "/test1", method = RequestMethod.GET)
 	//@ResponseBody
 	public String test1(Model model) {
 		
