@@ -35,7 +35,7 @@ public class HibernateUtil {
 				settings.put(Environment.PASS, "");
 				settings.put(Environment.POOL_SIZE, "1");//
 				settings.put(Environment.AUTOCOMMIT, "true");
-				settings.put(Environment.USE_SECOND_LEVEL_CACHE, "false");
+				//settings.put(Environment.USE_SECOND_LEVEL_CACHE, "false");
 				// .setProperty("hibernate.cache.provider_class",
 				// "org.hibernate.cache.NoCacheProvider")
 				// .setProperty("hibernate.cache.use_query_cache", "false")

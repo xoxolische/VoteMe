@@ -2,12 +2,12 @@ package com.voteme.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.voteme.dao.MarkDao;
-import com.voteme.hibernate.HibernateUtil;
-import com.voteme.model.Mark;
 
 @Controller
 public class MainController {
@@ -22,8 +22,9 @@ public class MainController {
 //		return "test";
 //	}
 	
-	@RequestMapping(value = "/test1", method = RequestMethod.GET)
-	public String test1() {
+	@RequestMapping(value = {"/test1", "/", ""}, method = RequestMethod.GET)
+	//@ResponseBody
+	public String test1(Model model) {
 		
 		return "test";
 	}
