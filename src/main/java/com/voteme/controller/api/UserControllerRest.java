@@ -22,31 +22,26 @@ public class UserControllerRest {
 	private UserService userService;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	@ResponseBody
 	public void create(@RequestBody User User) {
 		userService.create(User);
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")
-	@ResponseBody
 	public void update(@RequestBody User User) {
 		userService.update(User);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	@ResponseBody
 	public void delete(@PathVariable long id) {
 		userService.delete(id);
 	}
 
 	@PostMapping(value = "/get/{id}", produces = "application/json")
-	@ResponseBody
 	public User get(@PathVariable long id) {
 		return userService.get(id);
 	}
 
 	@PostMapping(value = "/getAll", produces = "application/json")
-	@ResponseBody
 	public List<User> getAll() {
 		return userService.getAll();
 	}

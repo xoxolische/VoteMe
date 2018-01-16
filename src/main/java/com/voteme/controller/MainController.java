@@ -24,7 +24,8 @@ public class MainController {
 	@RequestMapping(value = "/test1")
 	//@ResponseBody
 	public String test1() {
-		
+		//model.addAttribute("mark", m.get(1));
+		//m.get(1);
 		return "test";
 	}
 

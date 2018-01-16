@@ -4,29 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.voteme.dao.MarkDao;
+import com.voteme.service.MarkService;
 
 @Controller
 public class VersusController {
 	
 	@Autowired
-	MarkDao m;
+	private MarkService m;
 	
-//	@RequestMapping(value = "/test", method = RequestMethod.GET)
-//	public String test() {
-//		HibernateUtil.getSessionFactory();
-//		m.get(1);
-//		return "test";
-//	}
-	
-	@RequestMapping(value = {"/test1", "/", ""}, method = RequestMethod.GET)
-	//@ResponseBody
+	@RequestMapping(value = "/hib")
 	public String test1(Model model) {
-		
+		model.addAttribute("mark", m.get(1));
 		return "test";
 	}
-
-
 }
