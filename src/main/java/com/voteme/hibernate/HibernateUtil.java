@@ -8,12 +8,13 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.voteme.model.Mark;
 import com.voteme.model.Opinion;
+import com.voteme.model.Role;
 import com.voteme.model.User;
 import com.voteme.model.Versus;
+
 /**
  * 
- * @author Nikita Pavlov
- * TODO add hibernate.cfg.xml to gitignore 
+ * @author Nikita Pavlov TODO add hibernate.cfg.xml to gitignore
  */
 public class HibernateUtil {
 
@@ -35,7 +36,7 @@ public class HibernateUtil {
 				// Create MetadataSources
 				MetadataSources sources = new MetadataSources(registry);
 				sources.addAnnotatedClass(Mark.class).addAnnotatedClass(Opinion.class).addAnnotatedClass(User.class)
-						.addAnnotatedClass(Versus.class);
+						.addAnnotatedClass(Versus.class).addAnnotatedClass(Role.class);
 
 				// Create Metadata
 				Metadata metadata = sources.getMetadataBuilder().build();
