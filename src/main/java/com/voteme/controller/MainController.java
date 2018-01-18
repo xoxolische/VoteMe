@@ -21,11 +21,22 @@ public class MainController {
 //		return "test";
 //	}
 	
-	@RequestMapping(value = "/test1")
+	@RequestMapping(value = "/test")
 	//@ResponseBody
 	public String test1() {
-		
+		//model.addAttribute("mark", m.get(1));
+		//m.get(1);
 		return "test";
+	}
+	
+	@RequestMapping(value = {"/", "home"})
+	public String homePage() {
+		return "home";
+	}
+	
+	@RequestMapping(value = "/login")
+	public String loginPage() {
+		return "login";
 	}
 
 	@GetMapping(value = "/registration")

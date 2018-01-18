@@ -21,31 +21,26 @@ public class VersusControllerRest {
 	private VersusService VersusService;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	@ResponseBody
 	public void create(@RequestBody Versus Versus) {
 		VersusService.create(Versus);
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")
-	@ResponseBody
 	public void update(@RequestBody Versus Versus) {
 		VersusService.update(Versus);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	@ResponseBody
 	public void delete(@PathVariable long id) {
 		VersusService.delete(id);
 	}
 
 	@PostMapping(value = "/get/{id}", produces = "application/json")
-	@ResponseBody
 	public Versus get(@PathVariable long id) {
 		return VersusService.get(id);
 	}
 
 	@PostMapping(value = "/getAll", produces = "application/json")
-	@ResponseBody
 	public List<Versus> getAll() {
 		return VersusService.getAll();
 	}

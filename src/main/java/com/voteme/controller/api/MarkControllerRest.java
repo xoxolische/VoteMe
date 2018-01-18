@@ -22,31 +22,26 @@ public class MarkControllerRest {
 	private MarkService markService;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	@ResponseBody
 	public void create(@RequestBody Mark mark) {
 		markService.create(mark);
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")
-	@ResponseBody
 	public void update(@RequestBody Mark mark) {
 		markService.update(mark);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	@ResponseBody
 	public void delete(@PathVariable long id) {
 		markService.delete(id);
 	}
 
 	@PostMapping(value = "/get/{id}", produces = "application/json")
-	@ResponseBody
 	public Mark get(@PathVariable long id) {
 		return markService.get(id);
 	}
 
 	@PostMapping(value = "/getAll", produces = "application/json")
-	@ResponseBody
 	public List<Mark> getAll() {
 		return markService.getAll();
 	}

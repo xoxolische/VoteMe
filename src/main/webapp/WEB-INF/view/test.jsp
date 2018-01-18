@@ -64,6 +64,7 @@
    			</ul>
   		</div>
 	</nav>
+<<<<<<< HEAD
 	-->
 
 
@@ -128,6 +129,9 @@
 	</div>
 	
 	
+=======
+	<div id="test1">${ mark }</div>
+>>>>>>> branch 'master' of https://github.com/xoxolische/VoteMe.git
 
 </body>
 </html>
