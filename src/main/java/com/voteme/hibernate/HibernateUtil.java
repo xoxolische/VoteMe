@@ -14,7 +14,8 @@ import com.voteme.model.Versus;
 
 /**
  * 
- * @author Nikita Pavlov TODO add hibernate.cfg.xml to gitignore
+ * @author Nikita Pavlov 
+ * TODO add hibernate.cfg.xml to gitignore
  */
 public class HibernateUtil {
 

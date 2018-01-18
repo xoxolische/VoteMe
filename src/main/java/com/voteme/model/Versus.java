@@ -22,21 +22,21 @@ public class Versus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "title")
+	@Column(name = "title", nullable = false)
 	private String title;
 
-	@Column(name = "description")
+	@Column(name = "description", nullable = false)
 	private String description;
 
-	@OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@PrimaryKeyJoinColumn
 	private Opinion opinion1;
 
-	@OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@PrimaryKeyJoinColumn
 	private Opinion opinion2;
-	
-	@Column(name = "created_at")
+
+	@Column(name = "created_at", nullable = false)
 	@CreationTimestamp
 	private Timestamp createdAt;
 

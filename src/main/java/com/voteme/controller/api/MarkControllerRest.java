@@ -15,7 +15,7 @@ import com.voteme.model.Mark;
 import com.voteme.service.MarkService;
 
 @RestController
-@RequestMapping(value = "/mark")
+@RequestMapping(value = "/api/mark")
 public class MarkControllerRest {
 
 	@Autowired

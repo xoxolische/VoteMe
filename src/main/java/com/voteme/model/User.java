@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "users")
@@ -24,24 +25,25 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "email")
+	@Column(name = "email", nullable = false)
 	private String email;
 
-	@Column(name = "nick_name")
+	@Column(name = "nick_name", nullable = false)
 	private String nickName;
 
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String password;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 
-	@Column(name = "registered_at")
+	@Column(name = "registered_at", nullable = false)
 	@CreationTimestamp
 	private Timestamp registeredAt;
 
 	@Column(name = "last_edited_at")
+	@UpdateTimestamp
 	private Timestamp lastEditedAt;
 
 	@OneToMany(mappedBy = "author")

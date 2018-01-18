@@ -18,7 +18,7 @@ public class Mark {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "mark")
+	@Column(name = "mark", nullable = false)
 	private boolean mark;
 	
 	@ManyToOne
