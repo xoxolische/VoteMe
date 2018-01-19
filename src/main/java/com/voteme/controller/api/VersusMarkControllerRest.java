@@ -4,30 +4,31 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.Mark;
-import com.voteme.service.MarkService;
+import com.voteme.model.VersusMark;
+import com.voteme.service.VersusMarkService;
 
 @RestController
-@RequestMapping(value = "/api/mark")
-public class MarkControllerRest {
+@RequestMapping(value = "/api/versusMark")
+public class VersusMarkControllerRest {
 
 	@Autowired
-	private MarkService markService;
+	private VersusMarkService markService;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public void create(@RequestBody Mark mark) {
+	public void create(@RequestBody VersusMark mark) {
 		markService.create(mark);
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")
-	public void update(@RequestBody Mark mark) {
+	public void update(@RequestBody VersusMark mark) {
 		markService.update(mark);
 	}
 
@@ -36,13 +37,13 @@ public class MarkControllerRest {
 		markService.delete(id);
 	}
 
-	@PostMapping(value = "/get/{id}", produces = "application/json")
+	@GetMapping(value = "/get/{id}", produces = "application/json")
 	public Mark get(@PathVariable long id) {
 		return markService.get(id);
 	}
 
-	@PostMapping(value = "/getAll", produces = "application/json")
-	public List<Mark> getAll() {
+	@GetMapping(value = "/getAll", produces = "application/json")
+	public List<VersusMark> getAll() {
 		return markService.getAll();
 	}
 

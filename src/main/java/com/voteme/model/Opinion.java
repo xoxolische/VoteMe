@@ -42,7 +42,7 @@ public class Opinion {
 	private Versus versus;
 	
 	@OneToMany(mappedBy = "opinion")
-	private Set<Mark> marks;
+	private Set<OpinionMark> marks;
 
 	public long getId() {
 		return id;
@@ -90,6 +90,14 @@ public class Opinion {
 
 	public void setVersus(Versus versus) {
 		this.versus = versus;
+	}
+
+	public Set<OpinionMark> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(Set<OpinionMark> marks) {
+		this.marks = marks;
 	}
 
 }

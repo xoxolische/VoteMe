@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.voteme.service.MarkService;
+import com.voteme.service.VersusMarkService;
 
 @Controller
 public class VersusController {
 	
 	@Autowired
-	private MarkService m;
+	private VersusMarkService m;
 	
 	@RequestMapping(value = "/hib")
 	public String test1(Model model) {

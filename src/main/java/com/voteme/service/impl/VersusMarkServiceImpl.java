@@ -6,34 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.voteme.dao.MarkDao;
-import com.voteme.model.Mark;
-import com.voteme.service.MarkService;
+import com.voteme.dao.VersusMarkDao;
+import com.voteme.model.VersusMark;
+import com.voteme.service.VersusMarkService;
 
 @Service
 @Transactional
-public class MarkServiceImpl implements MarkService {
+public class VersusMarkServiceImpl implements VersusMarkService {
 
 	@Autowired
-	private MarkDao markDao;
+	private VersusMarkDao markDao;
 
 	@Override
-	public void create(Mark entity) {
+	public void create(VersusMark entity) {
 		markDao.create(entity);
 	}
 
 	@Override
-	public void update(Mark entity) {
+	public void update(VersusMark entity) {
 		markDao.update(entity);
 	}
 
 	@Override
-	public Mark get(long id) {
+	public VersusMark get(long id) {
 		return markDao.get(id);
 	}
 
 	@Override
-	public List<Mark> getAll() {
+	public List<VersusMark> getAll() {
 		return markDao.getAll();
 	}
 
@@ -43,7 +43,7 @@ public class MarkServiceImpl implements MarkService {
 	}
 
 	@Override
-	public void delete(Mark entity) {
+	public void delete(VersusMark entity) {
 		markDao.delete(entity);
 	}
 
