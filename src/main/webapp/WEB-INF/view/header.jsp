@@ -29,6 +29,7 @@
 	crossorigin="anonymous"></script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark page-nav">
+
 	<a class="navbar-brand" href="#" style="font-size: 20pt;">VoteMe</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
