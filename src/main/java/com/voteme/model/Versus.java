@@ -1,6 +1,7 @@
 package com.voteme.model;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,37 +9,47 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "versus")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Versus.class)
+//@JsonIdentityReference(alwaysAsId = true)
 public class Versus {
 	@Id
 	@Column(name = "id", insertable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "title")
+	@Column(name = "title", nullable = false)
 	private String title;
 
-	@Column(name = "description")
+	@Column(name = "description", nullable = false)
 	private String description;
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn
 	private Opinion opinion1;
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn
 	private Opinion opinion2;
-	
-	@Column(name = "created_at")
+
+	@Column(name = "created_at", nullable = false, updatable = false)
 	@CreationTimestamp
 	private Timestamp createdAt;
+
+	@OneToMany(mappedBy = "versus")
+	private Set<VersusMark> marks;
 
 	public long getId() {
 		return id;
@@ -78,6 +89,22 @@ public class Versus {
 
 	public void setOpinion2(Opinion opinion2) {
 		this.opinion2 = opinion2;
+	}
+
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Set<VersusMark> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(Set<VersusMark> marks) {
+		this.marks = marks;
 	}
 
 }

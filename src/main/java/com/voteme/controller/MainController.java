@@ -6,13 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.voteme.dao.MarkDao;
+import com.voteme.dao.VersusMarkDao;
 
 @Controller
 public class MainController {
 	
 	@Autowired
-	private MarkDao m;
+	private VersusMarkDao m;
 	
 //	@RequestMapping(value = "/test", method = RequestMethod.GET)
 //	public String test() {
@@ -37,11 +37,6 @@ public class MainController {
 	@RequestMapping(value = "/login")
 	public String loginPage() {
 		return "login";
-	}
-
-	@GetMapping(value = "/registration")
-	public String userRegisrationPage(Model model) {	
-		return "userRegistrationPage";
 	}
 
 }

@@ -24,25 +24,25 @@ public class Opinion {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "title")
+	@Column(name = "title", nullable = false)
 	private String title;
 
-	@Column(name = "text")
+	@Column(name = "text", nullable = false)
 	private String text;
 
-	@Column(name = "created_at")
+	@Column(name = "created_at", nullable = false)
 	private Timestamp createdAt;
 
 	@ManyToOne
 	@JoinColumn(name = "author_id", nullable = false)
 	private User author;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "versus_id")
 	private Versus versus;
 	
 	@OneToMany(mappedBy = "opinion")
-	private Set<Mark> marks;
+	private Set<OpinionMark> marks;
 
 	public long getId() {
 		return id;
@@ -90,6 +90,14 @@ public class Opinion {
 
 	public void setVersus(Versus versus) {
 		this.versus = versus;
+	}
+
+	public Set<OpinionMark> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(Set<OpinionMark> marks) {
+		this.marks = marks;
 	}
 
 }

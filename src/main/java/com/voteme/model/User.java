@@ -15,22 +15,29 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "users")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = User.class)
+//@JsonIdentityReference(alwaysAsId = true)
 public class User {
 	@Id
 	@Column(name = "id", insertable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "email")
+	@Column(name = "email", nullable = false)
 	private String email;
 
-	@Column(name = "nick_name")
+	@Column(name = "nick_name", nullable = false)
 	private String nickName;
 
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String password;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -42,6 +49,7 @@ public class User {
 	private Timestamp registeredAt;
 
 	@Column(name = "last_edited_at")
+	@UpdateTimestamp
 	private Timestamp lastEditedAt;
 
 	@OneToMany(mappedBy = "author")
