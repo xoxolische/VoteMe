@@ -39,9 +39,4 @@ public class MainController {
 		return "login";
 	}
 
-	@GetMapping(value = "/registration")
-	public String userRegisrationPage(Model model) {	
-		return "userRegistrationPage";
-	}
-
 }

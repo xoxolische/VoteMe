@@ -38,7 +38,7 @@ public class User {
 	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 
-	@Column(name = "registered_at", nullable = false)
+	@Column(name = "registered_at")
 	@CreationTimestamp
 	private Timestamp registeredAt;
 
