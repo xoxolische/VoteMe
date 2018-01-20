@@ -1,25 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans|Roboto');
-
-.main {
-	background-color: #f2f2f2;
-	font-family: 'Roboto';
-	font-weight: 300;
-	font-size: 16px;
-	color: #1f1e1e;
-}
-
-.hs{
-	font-family: 'Alegreya Sans';
-	font-weight: 500;
-}
-
-.page-nav {
-	font-family: 'Alegreya Sans';
-	font-size: 18pt;
-	font-weight: 400;
-	color: #1f1e1e;
-}
-
 .count {
 	position: absolute;
 	width: 10px;
@@ -58,6 +36,8 @@
 }
 
 .description {
+	position: relative;
+	left: 10px;
 	top: 5px;
 	bottom: 5px;
 	text-align: justify;
@@ -67,6 +47,10 @@
 	top: 25%;
 }
 
-#desc{
-	font-weight: 100;
+.description-overflow {
+
+}
+
+.overflow-button {
+	display: none;
 }
