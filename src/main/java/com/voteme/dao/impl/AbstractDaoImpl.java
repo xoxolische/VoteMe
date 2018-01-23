@@ -20,42 +20,63 @@ public abstract class AbstractDaoImpl<E, K> implements CrudDao<E> {
 	public void create(E entity) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		session.save(entity);
-		session.getTransaction().commit();
+		try {
+			session.save(entity);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		}
 	}
 
 	@Override
 	public void update(E entity) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		session.update(entity);
-		session.getTransaction().commit();
+		try {
+			session.update(entity);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		}
 	}
 
 	@Override
 	public E get(long id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		E e = (E) session.get(entityClass, id);
-		session.getTransaction().commit();
-		return e;
+		try {
+			E e = (E) session.get(entityClass, id);
+			session.getTransaction().commit();
+			return e;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return null;
+		}
 	}
 
 	@Override
 	public void delete(long id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		E e = (E) session.load(entityClass, id);
-		session.delete(e);
-		session.getTransaction().commit();
+		try {
+			E e = (E) session.load(entityClass, id);
+			session.delete(e);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		}
 	}
 
 	@Override
 	public void delete(E entity) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		session.delete(entity);
-		session.getTransaction().commit();
+		try {
+			session.delete(entity);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		}
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
@@ -63,11 +84,16 @@ public abstract class AbstractDaoImpl<E, K> implements CrudDao<E> {
 	public List<E> getAll() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Criteria criteria = session.createCriteria(entityClass);
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		List<E> l = (List<E>) criteria.list();
-		session.getTransaction().commit();
-		return l;
+		try {
+			Criteria criteria = session.createCriteria(entityClass);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+			List<E> l = (List<E>) criteria.list();
+			session.getTransaction().commit();
+			return l;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return null;
+		}
 	}
 
 }
