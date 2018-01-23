@@ -13,9 +13,8 @@ public class VersusController {
 	@Autowired
 	private VersusMarkService m;
 	
-	@RequestMapping(value = "/hib")
-	public String test1(Model model) {
-		model.addAttribute("mark", m.get(1));
-		return "test";
+	@RequestMapping(value = "/createVersus")
+	public String createVersusPage() {
+		return "createVersus";
 	}
 }

@@ -2,7 +2,7 @@
 	position: absolute;
 	width: 10px;
 	left: 15%;
-	top: 40%;
+	top: 35px;
 }
 
 .list-item {
@@ -16,6 +16,7 @@
 	background-color: #343a40;
 	color: #ffffff;
 	font-weight: 100;
+	transition: 0.5s;
 }
 
 .arrow-up {
@@ -43,30 +44,32 @@
 	left: 10px;
 	text-align: justify;
 	min-width: 120px;
+	transition: 0.5s;
 	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 94px;
+	white-space: normal;
 }
 
 .author {
-	top: 25%;
-}
-
-.description-overflow {
-	color: red;
+	top: 25px;
 }
 
 .overflow-button {
 	display: none;
-	position: relative;
+	position: absolute;
 	height: 23px;
-	left: 10px;
+	margin-left: 10px;
 	border-radius: 7px 7px 0 0;
 	background-color: #343a40;
 	border: 1px solid #f2f2f2;
-	border-bottom: 1px solid #000000;
-	bottom: -1px;
+	border-bottom: 1px solid #343a40;
+	cursor: pointer;
 }
 
 .chevron {
 	height: 20px;
 	width: 20px;
+	display: inline-block;
+	margin-bottom: 5px;
 }
