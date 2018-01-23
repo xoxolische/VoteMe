@@ -16,10 +16,11 @@
 		</c:forEach>
 	</select>
 	<button onclick="createAction()">create</button>
+	<button onclick="createVersus()">create v</button>
 
 	<script>
-	function createAction() {
-		var item = {
+		function createAction() {
+			var item = {
 				"email" : $("#email").val(),
 				"nickName" : $("#nickName").val(),
 				"password" : $("#password").val(),
@@ -38,7 +39,38 @@
 			}).fail(function(data) {
 
 			});
-	}		
+		}
+	</script>
+	<script>
+		function createVersus() {
+			var item = {
+				"title" : "title1",
+				"description" : "desc1",
+				"opinion1" : {
+					"text" : "op text1",
+					"author" : {
+						"id" : 1
+					}
+				},
+				"opinion2" : {
+					"text" : "op text2",
+					"author" : {
+						"id" : 1
+					}
+				}
+			}
+			$.ajax({
+				url : '/VoteMe/api/versus/create',
+				type : 'POST',
+				data : JSON.stringify(item),
+				contentType : "application/json",
+				dataType : 'json'
+			}).done(function(data) {
+				console.log("good");
+			}).fail(function(data) {
+				console.log("bad");
+			});
+		}
 	</script>
 </body>
 </html>

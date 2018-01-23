@@ -25,6 +25,7 @@ public abstract class AbstractDaoImpl<E, K> implements CrudDao<E> {
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
+			e.printStackTrace();
 		}
 	}
 
