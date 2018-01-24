@@ -6,10 +6,12 @@
 <html>
 <head>
 <title>VoteMe</title>
+
 </head>
 
 <body class="main">
 
+  
 	<div class="container-fluid">
 		
 		<div class="container">

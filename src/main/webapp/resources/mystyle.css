@@ -6,7 +6,10 @@
 	font-weight: 300;
 	font-size: 16px;
 	color: #1f1e1e;
+	background-image: url("images/grad2.jpg");
+	background-repeat: repeat-x;
 }
+
 
 .hs{
 	font-family: 'Alegreya Sans';
