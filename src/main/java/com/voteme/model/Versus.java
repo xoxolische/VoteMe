@@ -23,7 +23,7 @@ import org.hibernate.annotations.CreationTimestamp;
 public class Versus {
 	@Id
 	@Column(name = "id", insertable = false, updatable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(name = "title", nullable = false)

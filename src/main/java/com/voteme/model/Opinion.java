@@ -23,7 +23,7 @@ public class Opinion {
 
 	@Id
 	@Column(name = "id", insertable = false, updatable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(name = "title", nullable = true)

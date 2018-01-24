@@ -46,16 +46,10 @@
 				"title" : "title1",
 				"description" : "desc1",
 				"opinion1" : {
-					"text" : "op text1",
-					"author" : {
-						"id" : 1
-					}
+					"text" : "op text1"
 				},
 				"opinion2" : {
-					"text" : "op text2",
-					"author" : {
-						"id" : 1
-					}
+					"text" : "op text2"
 				}
 			}
 			$.ajax({
