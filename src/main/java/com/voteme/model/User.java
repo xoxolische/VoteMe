@@ -2,6 +2,7 @@ package com.voteme.model;
 
 import java.sql.Timestamp;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,8 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "users")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = User.class)
-//@JsonIdentityReference(alwaysAsId = true)
 public class User {
 	@Id
 	@Column(name = "id", insertable = false, updatable = false)
@@ -56,6 +55,17 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private Set<Mark> marks;
+	
+	@Column(name = "is_verified")
+	private boolean is_verified;
+	
+	@Column(name = "code")
+	private UUID code;
+	
+	public User() {
+		this.is_verified = false;
+		this.code = UUID.randomUUID();
+	}
 
 	public long getId() {
 		return id;
@@ -127,6 +137,30 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public Set<Versus> getVersuses() {
+		return versuses;
+	}
+
+	public void setVersuses(Set<Versus> versuses) {
+		this.versuses = versuses;
+	}
+
+	public boolean isIs_verified() {
+		return is_verified;
+	}
+
+	public void setIs_verified(boolean is_verified) {
+		this.is_verified = is_verified;
+	}
+
+	public UUID getCode() {
+		return code;
+	}
+
+	public void setCode(UUID code) {
+		this.code = code;
 	}
 
 }
