@@ -10,12 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "opinion")
@@ -26,9 +28,6 @@ public class Opinion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "title", nullable = true)
-	private String title;
-
 	@Column(name = "text", nullable = true)
 	private String text;
 
@@ -36,15 +35,13 @@ public class Opinion {
 	@CreationTimestamp
 	private Timestamp createdAt;
 
-	@ManyToOne
-	@JoinColumn(name = "author_id")
-	private User author;
-
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "versus_id")
+	@JsonIgnore
 	private Versus versus;
 	
 	@OneToMany(mappedBy = "opinion")
+	@JsonIgnoreProperties(value = "opinion")
 	private Set<OpinionMark> marks;
 
 	public long getId() {
@@ -53,14 +50,6 @@ public class Opinion {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getText() {
@@ -77,14 +66,6 @@ public class Opinion {
 
 	public void setCreatedAt(Timestamp createdAt) {
 		this.createdAt = createdAt;
-	}
-
-	public User getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(User author) {
-		this.author = author;
 	}
 
 	public Versus getVersus() {

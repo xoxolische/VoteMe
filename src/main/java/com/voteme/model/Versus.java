@@ -9,12 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "versus")
@@ -46,6 +50,11 @@ public class Versus {
 
 	@OneToMany(mappedBy = "versus")
 	private Set<VersusMark> marks;
+	
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	@JsonIgnoreProperties(value = {"versuses", "marks"})
+	private User author;
 
 	public long getId() {
 		return id;
@@ -103,6 +112,14 @@ public class Versus {
 
 	public void setMarks(Set<VersusMark> marks) {
 		this.marks = marks;
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 }

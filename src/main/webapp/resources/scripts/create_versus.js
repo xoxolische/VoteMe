@@ -5,6 +5,9 @@ function createVersus() {
 	var item = {
 			"title" : jQuery('#versus-tittle').val(),
 			"description" : jQuery('#description').val(),
+			"author" : {
+				"id" : 1
+			},
 			"opinion1" : {
 				"text" : jQuery('#opinion-1').val()
 			},
@@ -21,8 +24,9 @@ function createVersus() {
 			dataType : 'json'
 		}).done(function(data) {
 			console.log("good");
+			console.log(data);
 		}).fail(function(data) {
-			console.log("bad");
+			console.log(data);
 		});
 }
 

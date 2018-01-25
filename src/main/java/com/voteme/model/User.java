@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "users")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = User.class)
@@ -38,6 +40,7 @@ public class User {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id", nullable = false)
+	@JsonIgnoreProperties(value = "users")
 	private Role role;
 
 	@Column(name = "registered_at")
@@ -49,7 +52,7 @@ public class User {
 	private Timestamp lastEditedAt;
 
 	@OneToMany(mappedBy = "author")
-	private Set<Opinion> opinions;
+	private Set<Versus> versuses;
 	
 	@OneToMany(mappedBy = "user")
 	private Set<Mark> marks;
@@ -102,12 +105,12 @@ public class User {
 		this.lastEditedAt = lastEditedAt;
 	}
 
-	public Set<Opinion> getOpinions() {
-		return opinions;
+	public Set<Versus> getOpinions() {
+		return versuses;
 	}
 
-	public void setOpinions(Set<Opinion> opinions) {
-		this.opinions = opinions;
+	public void setOpinions(Set<Versus> versuses) {
+		this.versuses = versuses;
 	}
 
 	public Set<Mark> getMarks() {

@@ -3,6 +3,8 @@ package com.voteme.controller.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +22,14 @@ public class VersusControllerRest {
 	private VersusService versusService;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public void create(@RequestBody Versus versus) {
-		versusService.create(versus);
+	public ResponseEntity<Versus> create(@RequestBody Versus versus) {
+		try {
+			versusService.create(versus);			
+			return new ResponseEntity<>(versus, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(versus, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")
