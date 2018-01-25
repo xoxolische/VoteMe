@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,17 +39,19 @@ public class Versus {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
+	//@JsonIgnoreProperties(value = "marks")
 	private Opinion opinion1;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
+	//@JsonIgnoreProperties(value = "marks")
 	private Opinion opinion2;
 
 	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp
 	private Timestamp createdAt;
 
-	@OneToMany(mappedBy = "versus")
+	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER)
 	private Set<VersusMark> marks;
 	
 	@ManyToOne

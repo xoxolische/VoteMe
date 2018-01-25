@@ -28,11 +28,7 @@
 
 
 		<div class="container">
-			<c:forEach items="${versuses}" var="v">
-				<p>${v.title}</p>
-			</c:forEach>
-
-
+			
 			<div class="row bg-dark text-light list-item">
 
 				<div
