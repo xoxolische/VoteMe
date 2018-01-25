@@ -21,9 +21,9 @@
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
-		
+
 		<!-- Spring Security -->
-        <spring-security.version>5.0.0.RELEASE</spring-security.version>
+		<spring-security.version>5.0.0.RELEASE</spring-security.version>
 
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
@@ -161,6 +161,21 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.0.3.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
+
 
 	</dependencies>
 </project>

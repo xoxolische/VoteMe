@@ -1,3 +1,7 @@
+# Config files
+
+*.cfg.xml
+
 # Compiled class file
 *.class
 

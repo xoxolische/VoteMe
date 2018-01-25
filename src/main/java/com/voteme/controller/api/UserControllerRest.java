@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.User;
+import com.voteme.model.mail.ConfirmationEmail;
+import com.voteme.service.EmailService;
 import com.voteme.service.UserService;
 
 @RestController
@@ -20,14 +22,18 @@ public class UserControllerRest {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private EmailService emailService;
+
 	@PostMapping(value = "/create", produces = "application/json")
-	public void create(@RequestBody User User) {
-		userService.create(User);
+	public void create(@RequestBody User user) {
+		userService.create(user);
+		emailService.send(new ConfirmationEmail(user));
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")
-	public void update(@RequestBody User User) {
-		userService.update(User);
+	public void update(@RequestBody User user) {
+		userService.update(user);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
@@ -44,5 +50,5 @@ public class UserControllerRest {
 	public List<User> getAll() {
 		return userService.getAll();
 	}
-	
+
 }
