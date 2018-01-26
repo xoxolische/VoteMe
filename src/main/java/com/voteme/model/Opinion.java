@@ -3,7 +3,6 @@ package com.voteme.model;
 import java.sql.Timestamp;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,13 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -36,13 +34,12 @@ public class Opinion {
 	@CreationTimestamp
 	private Timestamp createdAt;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "versus_id")
-	@JsonIgnore
 	private Versus versus;
-	
+
 	@OneToMany(mappedBy = "opinion", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties(value = "opinion")
+	@JsonIgnoreProperties(value = {"opinion", "user"})
 	private Set<OpinionMark> marks;
 
 	public long getId() {
@@ -69,20 +66,20 @@ public class Opinion {
 		this.createdAt = createdAt;
 	}
 
-	public Versus getVersus() {
-		return versus;
-	}
-
-	public void setVersus(Versus versus) {
-		this.versus = versus;
-	}
-
 	public Set<OpinionMark> getMarks() {
 		return marks;
 	}
 
 	public void setMarks(Set<OpinionMark> marks) {
 		this.marks = marks;
+	}
+
+	public Versus getVersus() {
+		return versus;
+	}
+
+	public void setVersus(Versus versus) {
+		this.versus = versus;
 	}
 
 }
