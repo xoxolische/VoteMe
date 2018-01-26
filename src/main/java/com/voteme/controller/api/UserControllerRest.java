@@ -28,7 +28,7 @@ public class UserControllerRest {
 	@PostMapping(value = "/create", produces = "application/json")
 	public void create(@RequestBody User user) {
 		userService.create(user);
-		emailService.send(new ConfirmationEmail(user));
+		//emailService.send(new ConfirmationEmail(user));
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")

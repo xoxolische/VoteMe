@@ -46,7 +46,6 @@ public class User {
 	@UpdateTimestamp
 	private Timestamp lastEditedAt;
 
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id", nullable = false)
 	@JsonIgnoreProperties(value = "users")
