@@ -1,10 +1,13 @@
 package com.voteme.controller.api;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.Versus;
 import com.voteme.service.VersusService;
+import com.voteme.validation.VersusValidator;
 
 @RestController
 @RequestMapping(value = "/api/versus")
@@ -23,13 +27,18 @@ public class VersusControllerRest {
 	private VersusService versusService;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public ResponseEntity<Versus> create(@RequestBody Versus versus) {
-		try {
-			versusService.create(versus);			
-			return new ResponseEntity<>(versus, HttpStatus.OK);
-		}catch(Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(versus, HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<?> create(@RequestBody Versus versus, BindingResult result) {
+		new VersusValidator().validate(versus, result);
+
+		if (result.hasErrors()) {
+			List<String> errorList = new LinkedList<>();
+			for (ObjectError e : result.getAllErrors()) {
+				errorList.add(e.getCode());
+			}
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorList);
+		} else {
+			versusService.create(versus);
+			return new ResponseEntity<Versus>(versus, HttpStatus.OK);
 		}
 	}
 

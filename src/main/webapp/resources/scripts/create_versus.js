@@ -31,6 +31,6 @@ function createVersus() {
 		console.log("good");
 		console.log(data);
 	}).fail(function(data) {
-		console.log(data);
+		console.log(data.responseText);
 	});
 }
