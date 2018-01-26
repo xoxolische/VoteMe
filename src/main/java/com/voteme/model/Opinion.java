@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class Opinion {
 	@JsonIgnore
 	private Versus versus;
 	
-	@OneToMany(mappedBy = "opinion")
+	@OneToMany(mappedBy = "opinion", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = "opinion")
 	private Set<OpinionMark> marks;
 
