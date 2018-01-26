@@ -13,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,8 +21,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "versus")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Versus.class)
-//@JsonIdentityReference(alwaysAsId = true)
 public class Versus {
 	@Id
 	@Column(name = "id", insertable = false, updatable = false)
@@ -37,26 +33,21 @@ public class Versus {
 	@Column(name = "description", nullable = false)
 	private String description;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	//@JsonIgnoreProperties(value = "marks")
-	private Opinion opinion1;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	//@JsonIgnoreProperties(value = "marks")
-	private Opinion opinion2;
-
 	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp
 	private Timestamp createdAt;
 
-	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnoreProperties(value = { "versus", "marks" })
+	private Set<Opinion> opinions;
+
+	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnoreProperties(value = { "versus", "user" })
 	private Set<VersusMark> marks;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "author_id")
-	@JsonIgnoreProperties(value = {"versuses", "marks"})
+	@JsonIgnoreProperties(value = { "marks", "versuses", "role" })
 	private User author;
 
 	public long getId() {
@@ -83,24 +74,6 @@ public class Versus {
 		this.description = description;
 	}
 
-	public Opinion getOpinion1() {
-		return opinion1;
-	}
-
-	public void setOpinion1(Opinion opinion1) {
-		opinion1.setVersus(this);
-		this.opinion1 = opinion1;
-	}
-
-	public Opinion getOpinion2() {
-		return opinion2;
-	}
-
-	public void setOpinion2(Opinion opinion2) {
-		opinion2.setVersus(this);
-		this.opinion2 = opinion2;
-	}
-
 	public Timestamp getCreatedAt() {
 		return createdAt;
 	}
@@ -123,6 +96,17 @@ public class Versus {
 
 	public void setAuthor(User author) {
 		this.author = author;
+	}
+
+	public Set<Opinion> getOpinions() {
+		return opinions;
+	}
+
+	public void setOpinions(Set<Opinion> opinions) {
+		for (Opinion o : opinions) {
+			o.setVersus(this);
+		}
+		this.opinions = opinions;
 	}
 
 }

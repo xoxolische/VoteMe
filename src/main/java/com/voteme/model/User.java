@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -36,11 +37,6 @@ public class User {
 
 	@Column(name = "password", nullable = false)
 	private String password;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "role_id", nullable = false)
-	@JsonIgnoreProperties(value = "users")
-	private Role role;
 
 	@Column(name = "registered_at")
 	@CreationTimestamp
@@ -50,18 +46,28 @@ public class User {
 	@UpdateTimestamp
 	private Timestamp lastEditedAt;
 
-	@OneToMany(mappedBy = "author")
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "role_id", nullable = false)
+	@JsonIgnoreProperties(value = "users")
+	private Role role;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = { "opinions", "marks", "author" })
 	private Set<Versus> versuses;
-	
-	@OneToMany(mappedBy = "user")
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = "user")
 	private Set<Mark> marks;
-	
+
 	@Column(name = "is_verified")
 	private boolean is_verified;
-	
+
 	@Column(name = "code")
 	private UUID code;
-	
+
 	public User() {
 		this.is_verified = false;
 		this.code = UUID.randomUUID();
@@ -115,22 +121,6 @@ public class User {
 		this.lastEditedAt = lastEditedAt;
 	}
 
-	public Set<Versus> getOpinions() {
-		return versuses;
-	}
-
-	public void setOpinions(Set<Versus> versuses) {
-		this.versuses = versuses;
-	}
-
-	public Set<Mark> getMarks() {
-		return marks;
-	}
-
-	public void setMarks(Set<Mark> marks) {
-		this.marks = marks;
-	}
-
 	public Role getRole() {
 		return role;
 	}
@@ -145,6 +135,14 @@ public class User {
 
 	public void setVersuses(Set<Versus> versuses) {
 		this.versuses = versuses;
+	}
+
+	public Set<Mark> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(Set<Mark> marks) {
+		this.marks = marks;
 	}
 
 	public boolean isIs_verified() {
