@@ -1,0 +1,18 @@
+.page-titles {
+	margin-top: 10px;
+}
+
+#opinion-1, #opinion-2 {
+	padding: 10px;
+}
+
+.mark-up, .mark-down {
+	height: 40px;
+	width: 40px;
+	border-radius: 50% 50% 50% 50%;
+	cursor: pointer;
+}
+
+.description-author-block {
+	margin-top: 10px;
+}

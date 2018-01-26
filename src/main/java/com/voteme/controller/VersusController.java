@@ -10,5 +10,10 @@ public class VersusController {
 	public String createVersusPage() {
 		return "createVersus";
 	}
+	
+	@RequestMapping(value = "/showVersus")
+	public String showVersusPage() {
+		return "showVersus";
+	}
 
 }
