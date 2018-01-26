@@ -161,4 +161,71 @@ public class User {
 		this.code = code;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (is_verified ? 1231 : 1237);
+		result = prime * result + ((lastEditedAt == null) ? 0 : lastEditedAt.hashCode());
+		result = prime * result + ((nickName == null) ? 0 : nickName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((registeredAt == null) ? 0 : registeredAt.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (id != other.id)
+			return false;
+		if (is_verified != other.is_verified)
+			return false;
+		if (lastEditedAt == null) {
+			if (other.lastEditedAt != null)
+				return false;
+		} else if (!lastEditedAt.equals(other.lastEditedAt))
+			return false;
+		if (nickName == null) {
+			if (other.nickName != null)
+				return false;
+		} else if (!nickName.equals(other.nickName))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (registeredAt == null) {
+			if (other.registeredAt != null)
+				return false;
+		} else if (!registeredAt.equals(other.registeredAt))
+			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
+		return true;
+	}
+
 }
