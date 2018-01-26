@@ -20,7 +20,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-2">
-					<h4 class="page-title">Votes</h4>
+					<h4 class="page-title">Votings</h4>
 				</div>
 				<div class="col-10"></div>
 			</div>
@@ -145,3 +145,4 @@
 		src="<c:url value="/resources/scripts/home.js"/>"></script>
 </body>
 </html>
+
