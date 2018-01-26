@@ -1,6 +1,5 @@
 package com.voteme.model;
 
-import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,16 +27,12 @@ public class Opinion {
 	@Column(name = "text", nullable = true)
 	private String text;
 
-	@Column(name = "created_at")
-	@CreationTimestamp
-	private Timestamp createdAt;
-
 	@ManyToOne
 	@JoinColumn(name = "versus_id")
 	private Versus versus;
 
 	@OneToMany(mappedBy = "opinion", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties(value = {"opinion", "user"})
+	@JsonIgnoreProperties(value = { "opinion", "user" })
 	private Set<OpinionMark> marks;
 
 	public long getId() {
@@ -58,14 +51,6 @@ public class Opinion {
 		this.text = text;
 	}
 
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
-	}
-
 	public Set<OpinionMark> getMarks() {
 		return marks;
 	}
@@ -80,6 +65,45 @@ public class Opinion {
 
 	public void setVersus(Versus versus) {
 		this.versus = versus;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((text == null) ? 0 : text.hashCode());
+		result = prime * result + ((versus == null) ? 0 : versus.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Opinion other = (Opinion) obj;
+		if (id != other.id)
+			return false;
+		if (marks == null) {
+			if (other.marks != null)
+				return false;
+		} else if (!marks.equals(other.marks))
+			return false;
+		if (text == null) {
+			if (other.text != null)
+				return false;
+		} else if (!text.equals(other.text))
+			return false;
+		if (versus == null) {
+			if (other.versus != null)
+				return false;
+		} else if (!versus.equals(other.versus))
+			return false;
+		return true;
 	}
 
 }

@@ -29,7 +29,6 @@ public class VersusControllerRest {
 	@PostMapping(value = "/create", produces = "application/json")
 	public ResponseEntity<?> create(@RequestBody Versus versus, BindingResult result) {
 		new VersusValidator().validate(versus, result);
-
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();
 			for (ObjectError e : result.getAllErrors()) {
