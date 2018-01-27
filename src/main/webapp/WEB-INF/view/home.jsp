@@ -81,6 +81,9 @@
 
 	</div>
 
+	<script type="text/javascript">
+		var imagePath = "<c:url value='/resources/images/arrow_up.png'/>";
+	</script>
 
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/home.js"/>"></script>
