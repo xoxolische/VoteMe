@@ -24,12 +24,7 @@
 	margin-bottom: 10px;
 	height: 100px;
 	border-radius: 5px 5px 5px 5px;
-	cursor: pointer;
 	z-index: 4;
-}
-
-.list-item:hover{
-	background-color: red;
 }
 
 .rating-counter {
@@ -43,6 +38,8 @@
 
 .versus-title {
 	margin-top: 5px;
+	cursor: pointer;
+	z-index: 5;
 }
 
 .versus-author {

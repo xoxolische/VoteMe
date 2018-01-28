@@ -11,7 +11,7 @@ public class VersusController {
 		return "createVersus";
 	}
 	
-	@RequestMapping(value = "/showVersus")
+	@RequestMapping(value = "/showVersus/{id}")
 	public String showVersusPage() {
 		return "showVersus";
 	}

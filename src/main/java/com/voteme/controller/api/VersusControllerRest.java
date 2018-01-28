@@ -51,7 +51,7 @@ public class VersusControllerRest {
 		versusService.delete(id);
 	}
 
-	@PostMapping(value = "/get/{id}", produces = "application/json")
+	@GetMapping(value = "/get/{id}", produces = "application/json")
 	public Versus get(@PathVariable long id) {
 		return versusService.get(id);
 	}

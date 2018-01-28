@@ -25,7 +25,7 @@
 				<div class="col-10"></div>
 			</div>
 		</div>
-
+<!--
 		<c:forEach items="${versuses}" var="versus">
 			<div class="card">
 				<div class="card-header">${versus.description}</div>
@@ -38,52 +38,47 @@
 				</div>
 			</div>
 		</c:forEach>
-
+-->
 
 
 		<div class="container" id="versus-list">
 
-			<div class="row bg-dark text-light list-item">
+			<c:forEach items="${versuses}" var="versus">
+				<div class="row bg-dark text-light list-item">
 
-				<div
-					class="col-1 d-flex justify-content-end align-items-center rating-counter-wrap">
-					<label class="rating-counter">9999</label>
-				</div>
+					<div
+						class="col-1 d-flex justify-content-end align-items-center rating-counter-wrap">
+						<label class="rating-counter">mark</label>
+					</div>
 
-				<div class="col-1 d-flex align-items-center">
-					<div>
-						<img class="arrow-up"
-							src="<c:url value="/resources/images/arrow_up.png"/>"> <img
-							class="arrow-down"
-							src="<c:url value="/resources/images/arrow_down.png"/>">
+					<div class="col-1 d-flex align-items-center">
+						<div>
+							<img 
+								class="arrow-up"
+								src="<c:url value='/resources/images/arrow_up.png'/>"> 
+							<img
+								class="arrow-down"
+								src="<c:url value="/resources/images/arrow_down.png"/>">
+						</div>
+					</div>
+
+					<div class="col-8">
+						<div>
+							<h5 class="versus-title" id="${versus.id}">${versus.title}</h5>
+						</div>
+						<div class="versus-description">${versus.description}</div>
+					</div>
+
+					<div class="col-2 versus-author-wrap">
+						<div class="versus-author">
+							<h5>author</h5>
+							<p class="author-nickname">${versus.author.nickName}</p>
+						</div>
 					</div>
 				</div>
-
-				<div class="col-8">
-					<div>
-						<h5 class="versus-title">title</h5>
-					</div>
-					<div class="versus-description">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-				</div>
-
-				<div class="col-2 versus-author-wrap">
-					<div class="versus-author">
-						<h5>author</h5>
-						<p class="author-nickname">nickname</p>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
-
-		</div>
-
-
 	</div>
-
-	<script type="text/javascript">
-		var imagePath = "<c:url value='/resources/images/arrow_up.png'/>";
-	</script>
 
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/home.js"/>"></script>

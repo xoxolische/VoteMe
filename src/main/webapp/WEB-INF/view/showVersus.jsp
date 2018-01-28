@@ -14,11 +14,11 @@
 	<div class="container-fluid">
 
 		<div class="container">
-
+			
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 					<h4 class="page-titles">title</h4>
-					<h5 id="versus-title">test versus</h5>
+					<h5 id="versus-title">${versus.title}</h5>
 				</div>
 				<div class="col-0 col-sm-0 col-md-6 col-lg-6 col-xl-6"></div>
 			</div>
@@ -89,8 +89,11 @@
 					<p id="nick-name">nickname</p>
 				</div>
 			</div>
+			
 		</div>
 	</div>
+
+	<script type="text/javascript" src="<c:url value="/resources/scripts/show_versus.js"/>"></script>
 
 </body>
 </html>
