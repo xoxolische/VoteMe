@@ -13,7 +13,7 @@
 
 	<div class="container-fluid">
 
-		<div class="container">
+		<div class="container" id="versus-container">
 
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -73,10 +73,15 @@
 					<h5>description</h5>
 					<p id="description"></p>
 					<h5>author</h5>
-					<p id="nick-name">nickname</p>
+					<p id="nick-name"></p>
 				</div>
 			</div>
+		</div>
 
+		<div class="container">
+			<div class="alert alert-warning" id="error-warning">
+				<h4>Something went wrong</h4>
+			</div>
 		</div>
 	</div>
 

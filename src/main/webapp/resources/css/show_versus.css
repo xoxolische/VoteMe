@@ -16,3 +16,12 @@
 .description-author-block {
 	margin-top: 10px;
 }
+
+#versus-container {
+	display: none;
+}
+
+#error-warning {
+	display: none;
+	margin-top: 10px;
+}
