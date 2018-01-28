@@ -14,11 +14,11 @@
 	<div class="container-fluid">
 
 		<div class="container">
-			
+
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 					<h4 class="page-titles">title</h4>
-					<h5 id="versus-title">${versus.title}</h5>
+					<h5 id="versus-title"></h5>
 				</div>
 				<div class="col-0 col-sm-0 col-md-6 col-lg-6 col-xl-6"></div>
 			</div>
@@ -31,16 +31,12 @@
 								text-justify bg-dark text-light rounded"
 					id="opinion-1">
 					<h5>opinion 1</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-						reprehenderit in voluptate velit esse</p>
+					<p id="opinion1"></p>
 
 					<div class="d-flex justify-content-around">
 						<img class="mark-up"
 							src="<c:url value="/resources/images/arrow_up.png"/>"> <label
-							class="mark-counter align-self-center">9999</label> <img
+							class="mark-counter align-self-center" id="op1-mark"></label> <img
 							class="mark-down"
 							src="<c:url value="/resources/images/arrow_down.png"/>">
 					</div>
@@ -58,16 +54,12 @@
 								text-justify bg-dark text-light rounded"
 					id="opinion-2">
 					<h5>opinion 2</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-						reprehenderit in voluptate velit esse</p>
+					<p id="opinion2"></p>
 
 					<div class="d-flex justify-content-around">
 						<img class="mark-up"
 							src="<c:url value="/resources/images/arrow_up.png"/>"> <label
-							class="mark-counter align-self-center">9999</label> <img
+							class="mark-counter align-self-center" id="op2-mark"></label> <img
 							class="mark-down"
 							src="<c:url value="/resources/images/arrow_down.png"/>">
 					</div>
@@ -79,21 +71,17 @@
 					class="col-12 d-flex flex-column justify-content-center
 								text-justify bg-dark text-light rounded">
 					<h5>description</h5>
-					<p id="description">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-						dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-						exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate
-						velit esse</p>
+					<p id="description"></p>
 					<h5>author</h5>
 					<p id="nick-name">nickname</p>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 
-	<script type="text/javascript" src="<c:url value="/resources/scripts/show_versus.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/scripts/show_versus.js"/>"></script>
 
 </body>
 </html>
