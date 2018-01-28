@@ -16,7 +16,7 @@ public class MainController {
 	
 	@RequestMapping(value = {"/", "home"})
 	public String homePage(Model model) {
-		//model.addAttribute("versuses", versusService.getAll());
+		model.addAttribute("versuses", versusService.getAll());
 		return "home";
 	}
 	

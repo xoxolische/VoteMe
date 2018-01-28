@@ -64,7 +64,7 @@ function appendArrows(){
 
 	var arrow_up = jQuery('<img/>', {
 		class: 'arrow-up',
-		src : '<c:url value="/resources/images/arrow_down.png"/>'
+		src : imagePath
 	});
 
 	return arrow_up;

@@ -26,9 +26,23 @@
 			</div>
 		</div>
 
+		<c:forEach items="${versuses}" var="versus">
+			<div class="card">
+				<div class="card-header">${versus.description}</div>
+				<div class="card-block">
+					<h4 class="card-title">${versus.description}</h4>
+					<p class="card-text"></p>
+					<c:forEach items="${versus.opinions}" var="opinion">
+						<a href="#" class="btn btn-primary">${opinion.text}</a>
+					</c:forEach>
+				</div>
+			</div>
+		</c:forEach>
+
+
 
 		<div class="container" id="versus-list">
-			
+
 			<div class="row bg-dark text-light list-item">
 
 				<div
@@ -67,6 +81,9 @@
 
 	</div>
 
+	<script type="text/javascript">
+		var imagePath = "<c:url value='/resources/images/arrow_up.png'/>";
+	</script>
 
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/home.js"/>"></script>
