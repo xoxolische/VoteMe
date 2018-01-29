@@ -14,7 +14,7 @@
     <property name="hibernate.autocommit">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
     <property name="javax.persistence.sql-load-script-source">data.sql</property>
     
   </session-factory>

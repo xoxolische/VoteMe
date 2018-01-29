@@ -31,6 +31,9 @@ public class VersusValidator implements Validator {
 		if (v.getDescription().length() > 255) {
 			errors.rejectValue("description", "Description length must be less or equals 255 symbols.");
 		}
+		if (v.getOpinions().size() != 2) {
+			errors.rejectValue("opinions", "Versus must have 2 opinions!");
+		}
 
 		int i = 0;
 		for (Opinion o : v.getOpinions()) {
