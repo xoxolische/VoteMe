@@ -65,11 +65,11 @@ public class User {
 	private boolean is_verified;
 
 	@Column(name = "code")
-	private UUID code;
+	private String code;
 
 	public User() {
 		this.is_verified = false;
-		this.code = UUID.randomUUID();
+		this.code = UUID.randomUUID().toString();
 	}
 
 	public long getId() {
@@ -152,11 +152,11 @@ public class User {
 		this.is_verified = is_verified;
 	}
 
-	public UUID getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(UUID code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 
