@@ -49,4 +49,9 @@ public class UserServiceImpl implements UserService {
 		userDao.delete(entity);
 	}
 
+	@Override
+	public User getByCode(String token) {
+		return userDao.getByCode(token);
+	}
+
 }

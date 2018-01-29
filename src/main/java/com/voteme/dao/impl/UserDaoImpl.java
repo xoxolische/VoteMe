@@ -28,4 +28,15 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao{
 		return new UserAuth(u);
 	}
 
+	@SuppressWarnings("deprecation")
+	@Override
+	public User getByCode(String token) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(User.class);
+		User u = (User) criteria.add(Restrictions.eq("code", token)).uniqueResult();
+		session.getTransaction().commit();
+		return u;
+	}
+
 }

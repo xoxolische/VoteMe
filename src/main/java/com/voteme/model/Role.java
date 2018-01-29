@@ -75,11 +75,6 @@ public class Role {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (users == null) {
-			if (other.users != null)
-				return false;
-		} else if (!users.equals(other.users))
-			return false;
 		return true;
 	}
 
