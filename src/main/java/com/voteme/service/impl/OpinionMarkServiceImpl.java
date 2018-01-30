@@ -47,4 +47,14 @@ public class OpinionMarkServiceImpl implements OpinionMarkService {
 		markDao.delete(entity);
 	}
 
+	@Override
+	public OpinionMark getCouple(long userId, long opinionId) {
+		return markDao.getCouple(userId, opinionId);
+	}
+
+	@Override
+	public OpinionMark getBy(long userId, long opinionId) {
+		return markDao.getBy(userId, opinionId);
+	}
+
 }
