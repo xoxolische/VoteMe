@@ -1,12 +1,4 @@
-// jquery.parallax.js
-// 2.0
-// Stephen Band
-//
-// Project and documentation site:
-// webdev.stephband.info/jparallax/
-//
-// Repository:
-// github.com/stephband/jparallax
+
 
 (function(jQuery, undefined) {
 	// VAR
