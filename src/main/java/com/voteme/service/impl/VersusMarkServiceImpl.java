@@ -47,4 +47,9 @@ public class VersusMarkServiceImpl implements VersusMarkService {
 		markDao.delete(entity);
 	}
 
+	@Override
+	public List<VersusMark> getByUser(long id) {
+		return markDao.getByUser(id);
+	}
+
 }

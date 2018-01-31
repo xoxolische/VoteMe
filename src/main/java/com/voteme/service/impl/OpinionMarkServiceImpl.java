@@ -57,4 +57,9 @@ public class OpinionMarkServiceImpl implements OpinionMarkService {
 		return markDao.getBy(userId, opinionId);
 	}
 
+	@Override
+	public List<OpinionMark> getByUser(long id) {
+		return markDao.getByUser(id);
+	}
+
 }

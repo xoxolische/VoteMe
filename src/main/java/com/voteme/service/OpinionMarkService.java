@@ -1,5 +1,7 @@
 package com.voteme.service;
 
+import java.util.List;
+
 import com.voteme.model.OpinionMark;
 
 public interface OpinionMarkService extends CrudInterface<OpinionMark> {
@@ -19,5 +21,7 @@ public interface OpinionMarkService extends CrudInterface<OpinionMark> {
 	 * @return OpinionMark from user for concrete opinion
 	 */
 	OpinionMark getBy(long userId, long opinionId);
+	
+	List<OpinionMark> getByUser(long id);
 
 }
