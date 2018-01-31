@@ -10,6 +10,16 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/home.css"/>">
 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+	<script src="resources/scripts/jquery.parallax.js"></script>
+	<script>
+  jQuery(document).ready(function(){
+    jQuery('#parallax .parallax-layer')
+    .parallax({
+      mouseport: jQuery('#parallax')
+    });
+  });
+</script>
 </head>
 
 
