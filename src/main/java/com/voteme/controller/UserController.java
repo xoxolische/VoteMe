@@ -38,7 +38,12 @@ public class UserController {
 	@GetMapping(value = "/create")
 	public String createPage(Model model) {
 		model.addAttribute("roles", roleService.getAll());
-		return "registration";
+		return "createUser";
+	}
+	
+	@GetMapping(value = "/register")
+	public String registerPage(Model model) {
+		return "registerUser";
 	}
 
 	@GetMapping(value = "/{id}")

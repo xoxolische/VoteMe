@@ -4,4 +4,6 @@ import com.voteme.model.Role;
 
 public interface RoleDao extends CrudDao<Role>{
 
+	Role getByName(String name);
+
 }

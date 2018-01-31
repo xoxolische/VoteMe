@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.voteme.model.User;
 import com.voteme.model.mail.ConfirmationEmail;
 import com.voteme.service.EmailService;
+import com.voteme.service.RoleService;
 import com.voteme.service.UserService;
 import com.voteme.validation.UserValidator;
 
@@ -30,10 +31,33 @@ public class UserControllerRest {
 
 	@Autowired
 	private EmailService emailService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private UserValidator userValidator;
 
 	@PostMapping(value = "/create", produces = "application/json")
 	public ResponseEntity<?> create(@RequestBody User user, BindingResult result) {
-		new UserValidator().validate(user, result);
+		userValidator.validate(user, result);
+		if (result.hasErrors()) {
+			List<String> errorList = new LinkedList<>();
+			for (ObjectError e : result.getAllErrors()) {
+				errorList.add(e.getCode());
+			}
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorList);
+		} else {
+			userService.create(user);
+			emailService.send(new ConfirmationEmail(user));
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		}
+	}
+	
+	@PostMapping(value = "/register", produces = "application/json")
+	public ResponseEntity<?> createCommonUser(@RequestBody User user, BindingResult result) {
+		user.setRole(roleService.getByName("USER"));
+		userValidator.validate(user, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();
 			for (ObjectError e : result.getAllErrors()) {

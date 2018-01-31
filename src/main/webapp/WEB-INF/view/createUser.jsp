@@ -2,20 +2,20 @@
 <%@include file="header.jsp"%>
 <html>
 <head>
-<title>Registration</title>
+<title>Create User</title>
 </head>
 <body>
-	<h3>This is Registration page</h3>
-	<input type="text" id="email">
-	<input type="text" id="nickName">
-	<input type="text" id="password">
+	
+	<h3>This is User Creation page for admin (can choose role)</h3>
+	<input type="text" id="email" placeholder="email">
+	<input type="text" id="nickName" placeholder="nickName">
+	<input type="text" id="password" placeholder="password">
 	<select id="roleSelect">
 		<c:forEach items="${roles}" var="role">
 			<option value="${role.id}">${role.name}</option>
 		</c:forEach>
 	</select>
 	<button onclick="createAction()">create</button>
-	<button onclick="createVersus()">create v</button>
 
 	<script>
 		function createAction() {
@@ -34,34 +34,10 @@
 				contentType : "application/json",
 				dataType : 'json'
 			}).done(function(data) {
-
-			}).fail(function(data) {
-
-			});
-		}
-	</script>
-	<script>
-		function createVersus() {
-			var item = {
-				"title" : "title1",
-				"description" : "desc1",
-				"opinion1" : {
-					"text" : "op text1"
-				},
-				"opinion2" : {
-					"text" : "op text2"
-				}
-			}
-			$.ajax({
-				url : '/VoteMe/api/versus/create',
-				type : 'POST',
-				data : JSON.stringify(item),
-				contentType : "application/json",
-				dataType : 'json'
-			}).done(function(data) {
 				console.log("good");
+				console.log(data);
 			}).fail(function(data) {
-				console.log("bad");
+				console.log(data.responseText);
 			});
 		}
 	</script>

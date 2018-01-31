@@ -10,21 +10,32 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/home.css"/>">
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-	<script src="resources/scripts/jquery.parallax.js"></script>
-	<script>
-  jQuery(document).ready(function(){
-    jQuery('#parallax .parallax-layer')
-    .parallax({
-      mouseport: jQuery('#parallax')
-    });
-  });
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+<script src="resources/scripts/jquery.parallax.js"></script>
+<script>
+	jQuery(document).ready(function() {
+		jQuery('#parallax .parallax-layer').parallax({
+			mouseport : jQuery('#parallax')
+		});
+	});
 </script>
 </head>
 
 
 <body class="main">
+	<div class="site_wrap">
+		<div class="parallax-viewport" id="parallax">
 
+			<div class="parallax-layer" style="width: 50%; height: 80%;">
+				<img src="/VoteMe/resources/images/midground.png" alt="" />
+			</div>
+			<div class="parallax-layer" style="width: 40%; height: 60%;">
+				<img src="/VoteMe/resources/images/foreground.png" alt=""
+					style="position: absolute; top: 5px; left: -10;" />
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid">
 
 		<div class="container">
@@ -35,7 +46,7 @@
 				<div class="col-10"></div>
 			</div>
 		</div>
-<!--
+		<!--
 		<c:forEach items="${versuses}" var="versus">
 			<div class="card">
 				<div class="card-header">${versus.description}</div>
@@ -63,10 +74,8 @@
 
 					<div class="col-1 d-flex align-items-center">
 						<div>
-							<img 
-								class="arrow-up"
-								src="<c:url value='/resources/images/arrow_up.png'/>"> 
-							<img
+							<img class="arrow-up"
+								src="<c:url value='/resources/images/arrow_up.png'/>"> <img
 								class="arrow-down"
 								src="<c:url value="/resources/images/arrow_down.png"/>">
 						</div>

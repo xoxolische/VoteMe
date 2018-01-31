@@ -46,7 +46,10 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a href="/VoteMe/createVersus" class="nav-link">Create versus</a></li>
+			<security:authorize access="hasAuthority('ADMIN') or hasAuthority('USER')">
+				<li class="nav-item"><a href="/VoteMe/versus/create"
+					class="nav-link">Create versus</a></li>
+			</security:authorize>
 			<li class="nav-item"><a href="#" class="nav-link">About</a></li>
 			<security:authorize access="hasAuthority('ADMIN')">
 				<li class="nav-item"><a class="nav-link"
