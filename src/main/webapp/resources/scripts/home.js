@@ -9,6 +9,9 @@ function getAllVersus() {
 	}).done(function(data) {
 		console.log("good");
 		console.log(data);
+		if (data.length == 0) {
+			jQuery('.empty-list-alert').css('display', 'block');
+		}
 	}).fail(function(data) {
 		console.log(data);
 	});

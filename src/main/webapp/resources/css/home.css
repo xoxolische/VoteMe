@@ -50,16 +50,6 @@
 	padding: 0;
 }
 
-
-.red {
-	background-color: red;
+.empty-list-alert {
+	display: none;
 }
-
-.green {
-	background-color: green;
-}
-
-.blue {
-	background-color: blue;
-}
-

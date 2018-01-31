@@ -76,8 +76,16 @@
 						</div>
 					</div>
 				</div>
-				</c:forEach>
+			</c:forEach>
+
+			<div class="container">
+				<div class="alert alert-info empty-list-alert" role="alert">
+					<h4>Nothing to show :c</h4>
+				</div>
 			</div>
+
+
+		</div>
 	</div>
 
 	<script type="text/javascript"
