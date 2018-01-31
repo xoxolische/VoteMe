@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "opinion")
 public class Opinion {
@@ -24,20 +26,21 @@ public class Opinion {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "title", nullable = false)
+	@Column(name = "title", nullable = true)
 	private String title;
 
-	@Column(name = "text", nullable = false)
+	@Column(name = "text", nullable = true)
 	private String text;
 
-	@Column(name = "created_at", nullable = false)
+	@Column(name = "created_at")
+	@CreationTimestamp
 	private Timestamp createdAt;
 
 	@ManyToOne
-	@JoinColumn(name = "author_id", nullable = false)
+	@JoinColumn(name = "author_id")
 	private User author;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "versus_id")
 	private Versus versus;
 	

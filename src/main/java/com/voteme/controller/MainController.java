@@ -14,20 +14,6 @@ public class MainController {
 	@Autowired
 	private VersusMarkDao m;
 	
-//	@RequestMapping(value = "/test", method = RequestMethod.GET)
-//	public String test() {
-//		HibernateUtil.getSessionFactory();
-//		m.get(1);
-//		return "test";
-//	}
-	
-	@RequestMapping(value = "/test")
-	//@ResponseBody
-	public String test1() {
-		//model.addAttribute("mark", m.get(1));
-		//m.get(1);
-		return "test";
-	}
 	
 	@RequestMapping(value = {"/", "home"})
 	public String homePage() {

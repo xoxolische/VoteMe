@@ -16,10 +16,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Entity
 @Table(name = "versus")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Versus.class)
@@ -44,7 +40,7 @@ public class Versus {
 	@PrimaryKeyJoinColumn
 	private Opinion opinion2;
 
-	@Column(name = "created_at", nullable = false, updatable = false)
+	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp
 	private Timestamp createdAt;
 
@@ -80,6 +76,7 @@ public class Versus {
 	}
 
 	public void setOpinion1(Opinion opinion1) {
+		opinion1.setVersus(this);
 		this.opinion1 = opinion1;
 	}
 
@@ -88,6 +85,7 @@ public class Versus {
 	}
 
 	public void setOpinion2(Opinion opinion2) {
+		opinion2.setVersus(this);
 		this.opinion2 = opinion2;
 	}
 

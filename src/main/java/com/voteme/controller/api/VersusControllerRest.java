@@ -8,40 +8,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.Versus;
 import com.voteme.service.VersusService;
 
 @RestController
-@RequestMapping(value = "/versus")
+@RequestMapping(value = "/api/versus")
 public class VersusControllerRest {
 	@Autowired
-	private VersusService VersusService;
+	private VersusService versusService;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public void create(@RequestBody Versus Versus) {
-		VersusService.create(Versus);
+	public void create(@RequestBody Versus versus) {
+		versusService.create(versus);
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")
-	public void update(@RequestBody Versus Versus) {
-		VersusService.update(Versus);
+	public void update(@RequestBody Versus versus) {
+		versusService.update(versus);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
 	public void delete(@PathVariable long id) {
-		VersusService.delete(id);
+		versusService.delete(id);
 	}
 
 	@PostMapping(value = "/get/{id}", produces = "application/json")
 	public Versus get(@PathVariable long id) {
-		return VersusService.get(id);
+		return versusService.get(id);
 	}
 
 	@PostMapping(value = "/getAll", produces = "application/json")
 	public List<Versus> getAll() {
-		return VersusService.getAll();
+		return versusService.getAll();
 	}
 }
