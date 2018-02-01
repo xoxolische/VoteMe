@@ -15,6 +15,10 @@
 
 		<intercept-url pattern="/users/create" access="hasAuthority('ADMIN')" />
 		<intercept-url pattern="/versus/**" access="hasAuthority('ADMIN') or hasAuthority('USER')" />
+		
+		<!-- Confirmation -->
+		<intercept-url pattern="/users/confirmation**" access="isAuthenticated()" />
+		
 		<!-- Versus API -->
 		<intercept-url pattern="/api/versus/create" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR') or hasAuthority('USER')" />
 		<intercept-url pattern="/api/versus/delete/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR')" />

@@ -1,7 +1,10 @@
 package com.voteme.controller.api;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.User;
-import com.voteme.model.mail.ConfirmationEmail;
+import com.voteme.model.mail.ConfirmationMail;
 import com.voteme.service.EmailService;
 import com.voteme.service.RoleService;
 import com.voteme.service.UserService;
 import com.voteme.validation.UserValidator;
+
+import freemarker.template.TemplateException;
 
 @RestController
 @RequestMapping(value = "/api/user")
@@ -49,7 +54,12 @@ public class UserControllerRest {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorList);
 		} else {
 			userService.create(user);
-			emailService.send(new ConfirmationEmail(user));
+			try {
+				emailService.send(new ConfirmationMail(user));
+			} catch (MessagingException | IOException | TemplateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 	}
@@ -66,7 +76,12 @@ public class UserControllerRest {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorList);
 		} else {
 			userService.create(user);
-			emailService.send(new ConfirmationEmail(user));
+			try {
+				emailService.send(new ConfirmationMail(user));
+			} catch (MessagingException | IOException | TemplateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 	}

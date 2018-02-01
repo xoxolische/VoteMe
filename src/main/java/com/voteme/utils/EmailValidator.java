@@ -1,6 +1,5 @@
 package com.voteme.utils;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailValidator {
@@ -10,10 +9,11 @@ public class EmailValidator {
 	private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
 	public static boolean validate(String email) {
-		if (email == null)
-			return false;
-
-		Matcher matcher = EMAIL_PATTERN.matcher(email);
-		return matcher.matches();
+		return true;
+//		if (email == null)
+//			return false;
+//
+//		Matcher matcher = EMAIL_PATTERN.matcher(email);
+//		return matcher.matches();
 	}
 }
