@@ -33,7 +33,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		session.setAttribute("currentUserId", userAuth.getId());
 		session.setAttribute("currentUserVersusMarks", versusMarkService.getByUser(userAuth.getId()));
 		session.setAttribute("currentUserOpinionMarks", opMarkService.getByUser(userAuth.getId()));
-		response.sendRedirect("/VoteMe/");
+		response.sendRedirect(request.getContextPath()+"/home");
 		// switch (userAuth.getRole().getName()) {
 		// case "ADMIN":
 		// response.sendRedirect("/VoteMe/home");

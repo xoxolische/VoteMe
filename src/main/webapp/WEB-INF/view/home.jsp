@@ -7,19 +7,17 @@
 <head>
 <title>VoteMe</title>
 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/css/home.css"/>">
 
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
 <script src="resources/scripts/jquery.parallax.js"></script>
-<script>
-	jQuery(document).ready(function() {
-		jQuery('#parallax .parallax-layer').parallax({
-			mouseport : jQuery('#parallax')
-		});
-	});
+	<script>
+  jQuery(document).ready(function(){
+    jQuery('#parallax .parallax-layer')
+    .parallax({
+      mouseport: jQuery('#parallax')
+    });
+  });
 </script>
+
 </head>
 
 
@@ -28,10 +26,10 @@
 		<div class="parallax-viewport" id="parallax">
 
 			<div class="parallax-layer" style="width: 50%; height: 80%;">
-				<img src="/VoteMe/resources/images/midground.png" alt="" />
+				<img src="${contextPath}/resources/images/midground.png" alt="" />
 			</div>
 			<div class="parallax-layer" style="width: 40%; height: 60%;">
-				<img src="/VoteMe/resources/images/foreground.png" alt=""
+				<img src="${contextPath}/resources/images/foreground.png" alt=""
 					style="position: absolute; top: 5px; left: -10;" />
 			</div>
 		</div>
