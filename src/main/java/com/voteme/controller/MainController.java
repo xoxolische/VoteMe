@@ -34,5 +34,11 @@ public class MainController {
 	public String loginPage() {
 		return "login";
 	}
+	
+	@RequestMapping(value = "/404")
+	public String page404() {
+		return "404";
+	}
+	
 
 }

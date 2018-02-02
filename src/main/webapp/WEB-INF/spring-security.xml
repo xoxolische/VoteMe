@@ -13,7 +13,29 @@
 	<context:component-scan base-package="com.voteme.security" />
 	<http auto-config="true" use-expressions="true">
 
-		<intercept-url pattern="/" access="isAnonymous()" />
+		<intercept-url pattern="/users/create" access="hasAuthority('ADMIN')" />
+		<intercept-url pattern="/versus/**" access="hasAuthority('ADMIN') or hasAuthority('USER')" />
+		
+		<!-- Confirmation -->
+		<intercept-url pattern="/users/confirmation**" access="isAuthenticated()" />
+		
+		<!-- Versus API -->
+		<intercept-url pattern="/api/versus/create" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR') or hasAuthority('USER')" />
+		<intercept-url pattern="/api/versus/delete/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR')" />
+		<intercept-url pattern="/api/versus/update/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR')" />
+		<intercept-url pattern="/api/versus/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR') or hasAuthority('USER')" />
+		<!-- User API -->
+		<intercept-url pattern="/api/user/register" access="isAnonymous()" />
+		<intercept-url pattern="/api/user/get/**" access="isAuthenticated()" />
+		<intercept-url pattern="/api/user/getAll" access="isAuthenticated()" />
+		<intercept-url pattern="/api/user/**" access="hasAuthority('ADMIN')" />
+		<!-- OpinionMark API -->
+		<intercept-url pattern="/api/opinionMark/create" access="isAuthenticated()" />
+		<intercept-url pattern="/api/opinionMark/**" access="hasAuthority('ADMIN')" />
+		<!-- VersusMark API -->
+		<intercept-url pattern="/api/versusMark/create" access="isAuthenticated()" />
+		<intercept-url pattern="/api/versusMark/**" access="hasAuthority('ADMIN')" />
+	
 
 		<form-login login-page='/login' login-processing-url="/j_spring_security_check"
 			default-target-url="/" always-use-default-target="false"
@@ -21,7 +43,7 @@
 			authentication-failure-url="/login?error=true" username-parameter="email"
 			password-parameter="password" />
 
-		<logout logout-url="/logout" logout-success-url="/login?logout"
+		<logout logout-url="/logout" logout-success-url="/"
 			delete-cookies="JSESSIONID" invalidate-session="true" />
 		<csrf disabled="true" />
 	</http>

@@ -11,7 +11,7 @@ import com.voteme.model.User;
 import com.voteme.model.UserAuth;
 
 @Repository
-public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao{
+public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao {
 
 	public UserDaoImpl() {
 		super(User.class);
@@ -23,9 +23,14 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(User.class);
-		User u = (User) criteria.add(Restrictions.eq("nickName", email)).uniqueResult();
-		session.getTransaction().commit();
-		return new UserAuth(u);
+		try {
+			User u = (User) criteria.add(Restrictions.eq("email", email)).uniqueResult();
+			session.getTransaction().commit();
+			return new UserAuth(u);
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return null;
+		}
 	}
 
 	@SuppressWarnings("deprecation")

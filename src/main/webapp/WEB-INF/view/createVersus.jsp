@@ -83,7 +83,15 @@
 			</div>
 
 		</div>
+		
+		<button type="button" class="btn btn-success" onclick="deleteVersus()">delete</button>
 	</div>
-	<script type="text/javascript" src="<c:url value="/resources/scripts/create_versus.js"/>"></script>
+	<script type="text/javascript">
+		var curId = <c:out value="${sessionScope.currentUserId}"/>;
+	</script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/scripts/create_versus.js"/>">
+		
+	</script>
 </body>
 </html>

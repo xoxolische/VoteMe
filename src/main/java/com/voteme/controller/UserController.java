@@ -1,5 +1,9 @@
 package com.voteme.controller;
 
+import java.io.IOException;
+
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -11,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.voteme.model.User;
 import com.voteme.model.UserAuth;
-import com.voteme.model.mail.SuccessActivationEmail;
+import com.voteme.model.mail.SuccessActivationMail;
 import com.voteme.service.EmailService;
 import com.voteme.service.RoleService;
 import com.voteme.service.UserService;
+
+import freemarker.template.TemplateException;
 
 @Controller
 @RequestMapping(value = "/users")
@@ -38,7 +44,12 @@ public class UserController {
 	@GetMapping(value = "/create")
 	public String createPage(Model model) {
 		model.addAttribute("roles", roleService.getAll());
-		return "registration";
+		return "createUser";
+	}
+	
+	@GetMapping(value = "/register")
+	public String registerPage(Model model) {
+		return "registerUser";
 	}
 
 	@GetMapping(value = "/{id}")
@@ -62,7 +73,12 @@ public class UserController {
 		if(originUser != null && originUser.equals(currentUser)) {
 			u.setIs_verified(true);
 			userService.update(u);
-			emailService.send(new SuccessActivationEmail(u));
+			try {
+				emailService.send(new SuccessActivationMail(u));
+			} catch (MessagingException | IOException | TemplateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return "home";

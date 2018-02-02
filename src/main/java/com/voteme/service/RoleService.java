@@ -4,4 +4,6 @@ import com.voteme.model.Role;
 
 public interface RoleService extends CrudInterface<Role>{
 
+	Role getByName(String name);
+	
 }

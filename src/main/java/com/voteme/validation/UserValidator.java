@@ -1,12 +1,20 @@
 package com.voteme.validation;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.voteme.model.User;
+import com.voteme.service.UserService;
+import com.voteme.utils.EmailValidator;
 
+@Component
 public class UserValidator implements Validator {
+	
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -29,6 +37,14 @@ public class UserValidator implements Validator {
 		if (u.getEmail().length() > 255) {
 			errors.rejectValue("email", "Email length must be less or equals 255 symbols.");
 		}
+//		if (EmailValidator.validate(u.getEmail())) {
+//			errors.rejectValue("email", "Email is invalid!");
+//		}
+		
+//		if (u.getEmail()) { email problem here
+//			errors.rejectValue("email", "Email is invalid!");
+//		}
+		
 		if (u.getPassword().length() > 255) {
 			errors.rejectValue("password", "Password length must be less or equals 255 symbols.");
 		}

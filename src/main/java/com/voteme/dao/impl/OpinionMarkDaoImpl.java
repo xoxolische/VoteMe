@@ -63,11 +63,9 @@ public class OpinionMarkDaoImpl extends AbstractDaoImpl<OpinionMark, Long> imple
 			Criteria criteria = session.createCriteria(OpinionMark.class);
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			criteria.createAlias("user", "u");
-			criteria.add(Restrictions.eq("u", id));
+			criteria.add(Restrictions.eq("u.id", id));
 			List<OpinionMark> l = (List<OpinionMark>) criteria.list();
 			session.getTransaction().commit();
-			for(OpinionMark o : l)
-				System.out.println("Op mark with id = " + o.getId());
 			return l;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
