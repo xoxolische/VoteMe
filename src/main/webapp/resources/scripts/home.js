@@ -2,7 +2,7 @@ jQuery(window).on('load', getAllVersus);
 
 function getAllVersus() {			
 	jQuery.ajax({
-		url : '/VoteMe/api/versus/getAll',
+		url : $('#path').val() + '/api/versus/getAll',
 		type : 'GET',
 		contentType : "application/json",
 		dataType : 'json'
@@ -13,12 +13,12 @@ function getAllVersus() {
 			jQuery('.empty-list-alert').css('display', 'block');
 		}
 	}).fail(function(data) {
-		console.log(data);
+		console.log(data.statusText + " -> "+data.status);
 	});
 }
 
 jQuery('.versus-title').on('click', function() {
-	var route = "/VoteMe/showVersus/" + this.id;
+	var route = $('#path').val() + "/showVersus/" + this.id;
 	location.href = route;
 });
 

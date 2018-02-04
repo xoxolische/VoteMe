@@ -22,7 +22,7 @@ function createVersus() {
 	};
 
 	$.ajax({
-		url : '/VoteMe/api/versus/create',
+		url : $('#path').val() +'/api/versus/create',
 		type : 'POST',
 		data : JSON.stringify(item),
 		contentType : "application/json",
@@ -37,7 +37,7 @@ function createVersus() {
 
 function deleteVersus() {
 	$.ajax({
-		url : '/VoteMe/api/versus/delete/1',
+		url : $('#path').val() +'/api/versus/delete/1',
 		type : 'DELETE'
 	}).done(function(data) {
 		console.log("good");

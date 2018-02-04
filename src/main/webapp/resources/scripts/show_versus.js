@@ -15,7 +15,7 @@ jQuery(window).on('load', getOneVersus);
 			i++;
 		}
 
-		var route = '/VoteMe/api/versus/get/' + versus_id;
+		var route = $('#path').val() +'/api/versus/get/' + versus_id;
 
 		jQuery.ajax({
 			url : route,

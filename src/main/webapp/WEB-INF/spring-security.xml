@@ -19,23 +19,27 @@
 		<!-- Confirmation -->
 		<intercept-url pattern="/users/confirmation**" access="isAuthenticated()" />
 		
-		<!-- Versus API -->
+		<!-- Versus API 
 		<intercept-url pattern="/api/versus/create" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR') or hasAuthority('USER')" />
 		<intercept-url pattern="/api/versus/delete/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR')" />
 		<intercept-url pattern="/api/versus/update/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR')" />
 		<intercept-url pattern="/api/versus/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR') or hasAuthority('USER')" />
-		<!-- User API -->
+		-->
+		<!-- User API
 		<intercept-url pattern="/api/user/register" access="isAnonymous()" />
-		<intercept-url pattern="/api/user/get/**" access="isAuthenticated()" />
-		<intercept-url pattern="/api/user/getAll" access="isAuthenticated()" />
+		<intercept-url pattern="/api/user/get/**" access="isAnonymous()" />
+		<intercept-url pattern="/api/user/getAll" access="isAnonymous()" />
 		<intercept-url pattern="/api/user/**" access="hasAuthority('ADMIN')" />
-		<!-- OpinionMark API -->
+		 -->
+		
+		<!-- OpinionMark API
 		<intercept-url pattern="/api/opinionMark/create" access="isAuthenticated()" />
 		<intercept-url pattern="/api/opinionMark/**" access="hasAuthority('ADMIN')" />
-		<!-- VersusMark API -->
+		 -->
+		<!-- VersusMark API 
 		<intercept-url pattern="/api/versusMark/create" access="isAuthenticated()" />
 		<intercept-url pattern="/api/versusMark/**" access="hasAuthority('ADMIN')" />
-	
+	-->
 
 		<form-login login-page='/login' login-processing-url="/j_spring_security_check"
 			default-target-url="/" always-use-default-target="false"
