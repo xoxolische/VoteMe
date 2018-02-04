@@ -7,43 +7,57 @@
 <head>
 <title>VoteMe</title>
 
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/home.css"/>">
+
+
 
 <script src="resources/scripts/jquery.parallax.js"></script>
 	<script>
+
   jQuery(document).ready(function(){
     jQuery('#parallax .parallax-layer')
     .parallax({
       mouseport: jQuery('#parallax')
     });
   });
+ 
 </script>
+
+
 
 </head>
 
 
 <body class="main">
+
+
 	<div class="site_wrap">
 		<div class="parallax-viewport" id="parallax">
 
 			<div class="parallax-layer" style="width: 50%; height: 80%;">
-				<img src="${contextPath}/resources/images/midground.png" alt="" />
+				<img src="${contextPath}/resources/images/midground.png"/>
 			</div>
 			<div class="parallax-layer" style="width: 40%; height: 60%;">
-				<img src="${contextPath}/resources/images/foreground.png" alt=""
+				<img src="${contextPath}/resources/images/foreground.png"
 					style="position: absolute; top: 5px; left: -10;" />
 			</div>
 		</div>
 	</div>
+
+
 	<div class="container-fluid">
 
 		<div class="container">
 			<div class="row">
 				<div class="col-2">
-					<h4 class="page-title">Votings</h4>
+					<h4 class="page-title text-light">Votings</h4>
 				</div>
 				<div class="col-10"></div>
 			</div>
 		</div>
+	
+
 		<!--
 		<c:forEach items="${versuses}" var="versus">
 			<div class="card">

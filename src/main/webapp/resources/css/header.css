@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans|Roboto');
 
 .main {
-	background-color: #f2f2f2;
 	font-family: 'Roboto';
 	font-weight: 300;
 	font-size: 16px;
-	color: #1f1e1e;
 }
 
 .hs{
