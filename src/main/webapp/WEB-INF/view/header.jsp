@@ -100,6 +100,17 @@
 			</div>
 			<div class="modal-body">
 				<div class="input-group flex-column">
+    	<div class="modal-content">
+      		<div class="modal-header bg-dark">
+        		<h5 class="modal-title text-light" id="exampleModal3Label">Log in</h5>
+       			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          			<span aria-hidden="true" class="text-light">&times;</span>
+        		</button>
+      		</div>
+      		<div class="modal-body">
+      			<form name='login' action="j_spring_security_check" method='POST'>
+
+	      			<div class="input-group flex-column">
 
 					<div class="d-flex m-2">
 						<div class="input-group-prepend">
@@ -107,6 +118,12 @@
 						</div>
 						<input type="text" class="form-control">
 					</div>
+	      				<div class="d-flex m-2">
+		  					<div class="input-group-prepend">
+		    					<span class="input-group-text">Your email</span>
+		 	 				</div>
+		  					<input type="text" class="form-control" id="email" name="email">
+		  				</div>
 
 					<div class="d-flex m-2">
 						<div class="input-group-prepend">
@@ -115,6 +132,23 @@
 						<input type="password" class="form-control">
 					</div>
 				</div>
+		  				<div class="d-flex m-2">
+		  					<div class="input-group-prepend">
+		    					<span class="input-group-text">Your password</span>
+		 	 				</div>
+		  					<input id="password"
+							type="password" class="form-control" name="password">
+	  					</div>
+	  					<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+						<c:if test="${not empty error}">
+							<div class="error">${error}</div>
+						</c:if>
+						<c:if test="${not empty logout}">
+							<div class="msg">${logout}</div>
+						</c:if>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-secondary"
@@ -124,4 +158,12 @@
 			</div>
 		</div>
 	</div>
+     		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        		<button type="Submit" class="btn btn-outline-primary"
+						name="Submit" value="Login">Log in</button>
+      		</div>
+    	</div>
+  	</div>
 </div>
