@@ -13,9 +13,10 @@
 	<context:component-scan base-package="com.voteme.security" />
 	<http auto-config="true" use-expressions="true">
 
+<!--
 		<intercept-url pattern="/users/create" access="hasAuthority('ADMIN')" />
 		<intercept-url pattern="/versus/**" access="hasAuthority('ADMIN') or hasAuthority('USER')" />
-		
+		-->
 		<!-- Confirmation -->
 		<intercept-url pattern="/users/confirmation**" access="isAuthenticated()" />
 		

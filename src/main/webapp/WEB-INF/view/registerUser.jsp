@@ -5,13 +5,43 @@
 <title>Registration</title>
 </head>
 <body>
-	
-	<h3>This is User Registration page for common user (no role choose)</h3>
-	<input type="text" id="email" placeholder="email">
-	<input type="text" id="nickName" placeholder="nickName">
-	<input type="text" id="password" placeholder="password">
-	
-	<button onclick="createAction()">create</button>
+	<div class="container">
+		<div class="card col col-md-6 offset-md-3">
+			<div class="card-block">
+
+				<div class="form-group">
+					<h3>User Registration page</h3>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fa fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" placeholder="Nick Name"
+							id="nickName">
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fa fa-lock"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="Password"
+							id="password">
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+						</div>
+						<input type="email" class="form-control" placeholder="Email"
+							id="email">
+					</div>
+				
+
+					<button onclick="createAction()"
+						class="btn btn-outline-success col-12">Register</button>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
 
 	<script>
 		function createAction() {
