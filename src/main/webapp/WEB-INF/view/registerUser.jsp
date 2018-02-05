@@ -3,31 +3,34 @@
 <html>
 <head>
 <title>Registration</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/create_user.css"/>">
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid main-wrap">
+
 		<div class="card col col-md-6 offset-md-3">
 			<div class="card-block">
 
 				<div class="form-group">
-					<h3>User Registration page</h3>
+					<h4 class="page-title">Registration</h4>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-user"></i></span>
+							<span class="input-group-text same-width"><i class="fa fa-user"></i></span>
 						</div>
 						<input type="text" class="form-control" placeholder="Nick Name"
 							id="nickName">
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-lock"></i></span>
+							<span class="input-group-text same-width"><i class="fa fa-lock"></i></span>
 						</div>
 						<input type="password" class="form-control" placeholder="Password"
 							id="userPassword">
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+							<span class="input-group-text same-width"><i class="fa fa-envelope"></i></span>
 						</div>
 						<input type="email" class="form-control" placeholder="Email"
 							id="userEmail">

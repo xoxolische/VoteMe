@@ -1,6 +1,6 @@
-jQuery(window).on('load', getAllVersus);
+//jQuery(window).on('load', getAllVersus);
 
-function getAllVersus() {			
+function getAllVersus() {
 	jQuery.ajax({
 		url : $('#path').val() + '/api/versus/getAll',
 		type : 'GET',
@@ -13,7 +13,7 @@ function getAllVersus() {
 			jQuery('.empty-list-alert').css('display', 'block');
 		}
 	}).fail(function(data) {
-		console.log(data.statusText + " -> "+data.status);
+		console.log(data.statusText + " -> " + data.status);
 	});
 }
 
@@ -22,10 +22,16 @@ jQuery('.versus-title').on('click', function() {
 	location.href = route;
 });
 
+function getMark(marks) {
+	var counter = 0;
+	for (var i = 0; i < marks.length; i++) {
+		console.log(marks[i]);
+		// ещё какие-то выражения
+	}
+}
 
 /*
-jQuery('.list-item').mouseenter(function (){
-	jQuery('.list-item').addClass('inverted');
-});
-*/
+ * jQuery('.list-item').mouseenter(function (){
+ * jQuery('.list-item').addClass('inverted'); });
+ */
 
