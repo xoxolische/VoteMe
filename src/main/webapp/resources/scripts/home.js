@@ -23,3 +23,9 @@ jQuery('.versus-title').on('click', function() {
 });
 
 
+/*
+jQuery('.list-item').mouseenter(function (){
+	jQuery('.list-item').addClass('inverted');
+});
+*/
+

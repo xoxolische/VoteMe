@@ -63,7 +63,7 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<security:authorize access="isAnonymous()">
-				<li class="nav-item"><a href="${contextPath}/login"
+				<li class="nav-item"><a data-toggle="modal" data-target="#exampleModal3"
 					class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i>
 						Login</a></li>
 			</security:authorize>
@@ -71,7 +71,7 @@
 				<li><a href="#" class="nav-link"><i
 						class="fa fa-user-circle" aria-hidden="true"></i> Profile</a></li>
 				<li><a class="nav-link" href="javascript:formSubmit()"><i
-						class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+						class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
 			</security:authorize>
 		</ul>
 	</div>
@@ -86,3 +86,44 @@
 		}
 	</script>
 </nav>
+
+
+<div 	class="modal fade" 
+		id="exampleModal3" 
+		tabindex="-1" 
+		role="dialog" 
+		aria-labelledby="exampleModal3Label" 
+		aria-hidden="true">
+	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h5 class="modal-title" id="exampleModal3Label">Login</h5>
+       			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          			<span aria-hidden="true">&times;</span>
+        		</button>
+      		</div>
+      		<div class="modal-body">
+      			<div class="input-group flex-column">
+
+      				<div class="d-flex m-2">
+	  					<div class="input-group-prepend">
+	    					<span class="input-group-text">Your login</span>
+	 	 				</div>
+	  					<input type="text" class="form-control">
+	  				</div>
+
+	  				<div class="d-flex m-2">
+	  					<div class="input-group-prepend">
+	    					<span class="input-group-text">Your password</span>
+	 	 				</div>
+	  					<input type="password" class="form-control">
+  					</div>
+				</div>
+     		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        		<button type="button" class="btn btn-outline-primary">Save changes</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
