@@ -25,10 +25,6 @@
 	crossorigin="anonymous"></script>
 
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
@@ -62,9 +58,9 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<security:authorize access="isAnonymous()">
-				<li class="nav-item"><a data-toggle="modal"
-					data-target="#exampleModal3" class="nav-link"><i
-						class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+				<li class="nav-item"><a data-toggle="modal" data-target="#exampleModal3"
+					class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i>
+						Login</a></li>
 			</security:authorize>
 			<security:authorize access="isAuthenticated()">
 				<li><a href="#" class="nav-link"><i
@@ -87,19 +83,13 @@
 </nav>
 
 
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModal3Label" aria-hidden="true">
+<div 	class="modal fade" 
+		id="exampleModal3" 
+		tabindex="-1" 
+		role="dialog" 
+		aria-labelledby="exampleModal3Label" 
+		aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModal3Label">Login</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="input-group flex-column">
     	<div class="modal-content">
       		<div class="modal-header bg-dark">
         		<h5 class="modal-title text-light" id="exampleModal3Label">Log in</h5>
@@ -112,12 +102,6 @@
 
 	      			<div class="input-group flex-column">
 
-					<div class="d-flex m-2">
-						<div class="input-group-prepend">
-							<span class="input-group-text">Your login</span>
-						</div>
-						<input type="text" class="form-control">
-					</div>
 	      				<div class="d-flex m-2">
 		  					<div class="input-group-prepend">
 		    					<span class="input-group-text">Your email</span>
@@ -125,13 +109,6 @@
 		  					<input type="text" class="form-control" id="email" name="email">
 		  				</div>
 
-					<div class="d-flex m-2">
-						<div class="input-group-prepend">
-							<span class="input-group-text">Your password</span>
-						</div>
-						<input type="password" class="form-control">
-					</div>
-				</div>
 		  				<div class="d-flex m-2">
 		  					<div class="input-group-prepend">
 		    					<span class="input-group-text">Your password</span>
@@ -149,15 +126,6 @@
 						</c:if>
 					</div>
 				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-secondary"
-					data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-outline-primary">Save
-					changes</button>
-			</div>
-		</div>
-	</div>
      		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
