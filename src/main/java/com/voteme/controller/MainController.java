@@ -20,7 +20,7 @@ public class MainController {
 	
 	@RequestMapping(value = {"/", "home"})
 	public String homePage(Model model) {
-//		//model.addAttribute("versuses", versusService.getAll());
+		model.addAttribute("versuses", versusService.getAll());
 //		OpinionMark op = opMarkService.getCouple(1, 3);
 //		if(op != null) {
 //			System.out.println("error, user already voted for another opinion; id="+op.getOpinion().getId());
