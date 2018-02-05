@@ -23,14 +23,14 @@
 							<span class="input-group-text"><i class="fa fa-lock"></i></span>
 						</div>
 						<input type="password" class="form-control" placeholder="Password"
-							id="password">
+							id="userPassword">
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 						</div>
 						<input type="email" class="form-control" placeholder="Email"
-							id="email">
+							id="userEmail">
 					</div>
 				
 
@@ -46,12 +46,12 @@
 	<script>
 		function createAction() {
 			var item = {
-				"email" : $("#email").val(),
+				"email" : $("#userEmail").val(),
 				"nickName" : $("#nickName").val(),
-				"password" : $("#password").val()
+				"password" : $("#userPassword").val()
 			}
 			$.ajax({
-				url : '/VoteMe/api/user/register',
+				url : $('#path').val() +'/api/user/register',
 				type : 'POST',
 				data : JSON.stringify(item),
 				contentType : "application/json",
