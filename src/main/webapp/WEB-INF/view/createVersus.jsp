@@ -1,8 +1,8 @@
+<%@include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@include file="header.jsp"%>
-
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,40 @@
 
 <body>
 	<div class="container-fluid">
+
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">@</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Username"
+				aria-label="Username" aria-describedby="basic-addon1">
+		</div>
+
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">With textarea</span>
+			</div>
+			<textarea class="form-control" aria-label="With textarea"></textarea>
+		</div>
+		<div class="col-2 d-flex justify-content-center align-items-center">
+					<div>
+						<h1 class="hs">VS</h1>
+					</div>
+				</div>
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">With textarea</span>
+			</div>
+			<textarea class="form-control" aria-label="With textarea"></textarea>
+		</div>
+		
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">With textarea</span>
+			</div>
+			<textarea class="form-control" aria-label="With textarea"></textarea>
+		</div>
+
 		<div class="container-fluid">
 
 			<div class="row">
@@ -83,11 +117,10 @@
 			</div>
 
 		</div>
-		
-		<button type="button" class="btn btn-success" onclick="deleteVersus()">delete</button>
+
 	</div>
 	<script type="text/javascript">
-		var curId = <c:out value="${sessionScope.currentUserId}"/>;
+		var curId = "${sessionScope.currentUserId}";
 	</script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/create_versus.js"/>">
