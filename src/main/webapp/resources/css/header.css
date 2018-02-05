@@ -4,6 +4,7 @@
 	font-family: 'Roboto';
 	font-weight: 300;
 	font-size: 16px;
+	z-index: 2;
 }
 
 .hs{

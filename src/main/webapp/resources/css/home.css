@@ -8,7 +8,23 @@
 }
 
 .parallax-layer {
+	position: absolute;
+	z-index: 1;
+}
+
+.mid-layer {
     position: absolute;
+    background-image: url("/VoteMe/resources/images/midground.png");
+    width: 60%; 
+    height: 90%;
+    z-index: 1;
+}
+
+.fore-layer {
+    background-image: url("/VoteMe/resources/images/foreground.png");
+    width: 50%;
+    height: 60%;
+    z-index: 1;
 }
 
 .site_wrap {
@@ -19,14 +35,13 @@
 	z-index: 1;
 }
 
-.main{
-	z-index: 2;
-}
-
 .page-title {
 	margin-top: 20px;
 	margin-bottom: 20px;
-	color: white;
+	z-index: 2;
+}
+
+.arrows-wrap {
 	z-index: 2;
 }
 
@@ -51,6 +66,7 @@
 	margin-bottom: 10px;
 	height: 100px;
 	border-radius: 5px 5px 5px 5px;
+	border: 2px solid #ffffff;
 	z-index: 2;
 }
 
@@ -62,6 +78,10 @@
 
 .rating-counter-wrap {
 	padding: 0;
+	z-index: 2;
+}
+
+.versus-title-wrap{
 	z-index: 2;
 }
 
@@ -85,3 +105,9 @@
 	display: none;
 	z-index: 2;
 }
+
+
+.inverted{
+	filter: invert(100%);
+}
+
