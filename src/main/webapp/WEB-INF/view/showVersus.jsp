@@ -34,11 +34,9 @@
 					<p id="opinion1"></p>
 
 					<div class="d-flex justify-content-around">
-						<img class="mark-up"
-							src="<c:url value="/resources/images/arrow_up.png"/>"> <label
-							class="mark-counter align-self-center" id="op1-mark"></label> <img
-							class="mark-down"
-							src="<c:url value="/resources/images/arrow_down.png"/>">
+						<a onclick="createMark(1)" id="upVoteOp-1"><img class="mark-up"
+							src="<c:url value="/resources/images/arrow_up.png"/>"></a> <label
+							class="mark-counter align-self-center" id="op1-mark"></label>
 					</div>
 				</div>
 
@@ -57,11 +55,10 @@
 					<p id="opinion2"></p>
 
 					<div class="d-flex justify-content-around">
-						<img class="mark-up"
-							src="<c:url value="/resources/images/arrow_up.png"/>"> <label
-							class="mark-counter align-self-center" id="op2-mark"></label> <img
-							class="mark-down"
-							src="<c:url value="/resources/images/arrow_down.png"/>">
+						<a onclick="createMark(2)" id="upVoteOp-2"><img
+							class="mark-up"
+							src="<c:url value="/resources/images/arrow_up.png"/>"></a> <label
+							class="mark-counter align-self-center" id="op2-mark"></label>
 					</div>
 				</div>
 			</div>
@@ -84,7 +81,8 @@
 			</div>
 		</div>
 	</div>
-
+	<input type="hidden" id="currentId"
+		value="${sessionScope.currentUserId}" />
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/show_versus.js"/>"></script>
 
