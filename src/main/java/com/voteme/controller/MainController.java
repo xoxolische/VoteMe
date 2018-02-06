@@ -39,5 +39,15 @@ public class MainController {
 		return "404";
 	}
 	
+	@RequestMapping(value = "/403")
+	public String page403() {
+		return "403";
+	}
+	
+	@RequestMapping(value = "/500")
+	public String page500() {
+		return "500";
+	}
+	
 
 }
