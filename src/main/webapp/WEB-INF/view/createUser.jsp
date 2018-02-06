@@ -8,8 +8,6 @@
 </head>
 <body>
 	<div class="container-fluid main-wrap">
-
-
 		<div class="card col col-md-6 offset-md-3">
 			<div class="card-block">
 
