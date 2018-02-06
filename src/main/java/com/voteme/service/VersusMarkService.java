@@ -8,4 +8,6 @@ public interface VersusMarkService extends CrudInterface<VersusMark>{
 
 	List<VersusMark> getByUser(long id);
 
+	boolean userHasVote(long userId, long versusId);
+
 }

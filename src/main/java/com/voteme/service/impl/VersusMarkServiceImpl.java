@@ -52,4 +52,9 @@ public class VersusMarkServiceImpl implements VersusMarkService {
 		return markDao.getByUser(id);
 	}
 
+	@Override
+	public boolean userHasVote(long userId, long versusId) {
+		return markDao.userHasVote(userId, versusId);
+	}
+
 }
