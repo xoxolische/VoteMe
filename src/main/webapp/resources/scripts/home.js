@@ -47,8 +47,8 @@ function dataFinallyDone(data, curId, marks) {
 		var $ratingWrapper = $("<div>")
 				.attr("class",
 						"col-1 d-flex justify-content-end align-items-center rating-counter-wrap");
-		var $ratingLabel = $("<label>").attr("class", "rating-counter").append(
-				getMark(data[i].marks));
+		var $ratingLabel = $("<label>").attr("id", "rating-" + data[i].id)
+				.attr("class", "rating-counter").append(getMark(data[i].marks));
 		var $voteContainer = $("<div>").attr("class",
 				"col-1 d-flex align-items-center");
 		var $arrows = $("<div>").attr("class", "arrow");
@@ -164,6 +164,17 @@ function createMarkForVersus(mark, userId, versusId) {
 	}).done(function(data) {
 		console.log("good -> change counter on interface for current versus");
 		console.log(data);
+		var id = "#rating-" + versusId;
+		if (mark) {
+			$(id).text($(id).val()+1);
+			$("#downVote-"+versusId).hide();
+			$("#upVote-"+versusId).hide();
+		} else {
+			$(id).text($(id).val()-1);
+			$("#downVote-"+versusId).hide();
+			$("#upVote-"+versusId).hide();
+		}
+
 	}).fail(function(data) {
 		console.log(data.responseText);
 	});
