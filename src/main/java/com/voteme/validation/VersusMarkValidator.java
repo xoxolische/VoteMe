@@ -1,11 +1,13 @@
 package com.voteme.validation;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.voteme.model.VersusMark;
 
+@Component
 public class VersusMarkValidator implements Validator {
 
 	@Override
@@ -20,7 +22,7 @@ public class VersusMarkValidator implements Validator {
 
 		VersusMark m = (VersusMark) target;
 
-		ValidationUtils.invokeValidator(new MarkValidator(), m, errors);
+		//ValidationUtils.invokeValidator(new MarkValidator(), m, errors);
 	}
 
 }

@@ -108,7 +108,6 @@
 			</c:forEach>
 
 -->
-
 		<div class="container" id="versus-list" style="z-index: 2;"></div>
 		<div class="row text-light list-item">
 
@@ -119,8 +118,8 @@
 
 			<div class="col-1 d-flex align-items-center">
 				<div class="arrows-wrap">
-					<img class="arrow-up"
-						src="<c:url value='/resources/images/arrow_up.png'/>"> <img
+					<a onclick="check()"><img class="arrow-up"
+						src="<c:url value='/resources/images/arrow_up.png'/>"></a> <img
 						class="arrow-down"
 						src="<c:url value="/resources/images/arrow_down.png"/>">
 				</div>
@@ -154,9 +153,8 @@
 			<h4>Nothing to show :c</h4>
 		</div>
 	</div>
+	<input type="hidden" id="currentId" value="${sessionScope.currentUserId}" />
 
-
-	</div>
 </body>
 </html>
 

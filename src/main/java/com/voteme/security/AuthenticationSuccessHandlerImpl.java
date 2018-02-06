@@ -37,8 +37,8 @@ public class AuthenticationSuccessHandlerImpl extends SavedRequestAwareAuthentic
 		UserAuth userAuth = (UserAuth) auth.getPrincipal();
 		HttpSession session = request.getSession();
 		session.setAttribute("currentUserId", userAuth.getId());
-		session.setAttribute("currentUserVersusMarks", versusMarkService.getByUser(userAuth.getId()));
-		session.setAttribute("currentUserOpinionMarks", opMarkService.getByUser(userAuth.getId()));
+//		session.setAttribute("currentUserVersusMarks", versusMarkService.getByUser(userAuth.getId()));
+//		session.setAttribute("currentUserOpinionMarks", opMarkService.getByUser(userAuth.getId()));
 		if(savedRequest != null && savedRequest.getRedirectUrl() != null) {
 			response.sendRedirect(savedRequest.getRedirectUrl());
 		}else {			
