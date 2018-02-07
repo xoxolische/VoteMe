@@ -14,111 +14,80 @@
 
 <body>
 	<div class="container-fluid">
-
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">@</span>
-			</div>
-			<input type="text" class="form-control" placeholder="Username"
-				aria-label="Username" aria-describedby="basic-addon1">
-		</div>
-
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<span class="input-group-text">With textarea</span>
-			</div>
-			<textarea class="form-control" aria-label="With textarea"></textarea>
-		</div>
-		<div class="col-2 d-flex justify-content-center align-items-center">
-					<div>
-						<h1 class="hs">VS</h1>
-					</div>
-				</div>
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<span class="input-group-text">With textarea</span>
-			</div>
-			<textarea class="form-control" aria-label="With textarea"></textarea>
-		</div>
-		
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<span class="input-group-text">With textarea</span>
-			</div>
-			<textarea class="form-control" aria-label="With textarea"></textarea>
-		</div>
-
-		<div class="container-fluid">
+		<div class="container">
 
 			<div class="row">
-				<div class="col-5"></div>
-				<div class="col-2 d-flex justify-content-center">
-					<input type="text" id="versus-tittle" class="text-input"
-						placeholder="enter versus tittle">
-				</div>
-				<div class="col-5"></div>
-			</div>
-
-			<div class="row">
-				<div class="col-5 d-flex flex-column">
-					<div class="d-flex justify-content-center">
-						<h5 class="picture-input-label hs">select first picture</h5>
-					</div>
-
-					<div class="d-flex justify-content-center">
-						<input type="file" id="picture-1" class="picture-input">
-					</div>
-
-					<div class="d-flex justify-content-center">
-						<textarea id="opinion-1" class="opinion-input"
-							placeholder="your opinion"></textarea>
-					</div>
-				</div>
-
-				<div class="col-2 d-flex justify-content-center align-items-center">
-					<div>
-						<h1 class="hs">VS</h1>
-					</div>
-				</div>
-
-				<div class="col-5 d-flex flex-column">
-					<div class="d-flex justify-content-center">
-						<h5 class="picture-input-label hs">select second picture</h5>
-					</div>
-
-					<div class="d-flex justify-content-center">
-						<input type="file" id="picture-2" class="picture-input">
-					</div>
-
-					<div class="d-flex justify-content-center">
-						<textarea id="opinion-2" class="opinion-input"
-							placeholder="your opinion"></textarea>
+				<div class="col-12">
+					<div class="input-group mt-3 mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text d-flex justify-content-center"
+								id="basic-addon1"> <i class="fas fa-edit"></i>
+							</span>
+						</div>
+						<input type="text" class="form-control"
+							placeholder="enter versus title" aria-label="Username"
+							aria-describedby="basic-addon1">
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-3"></div>
-				<div class="col-6">
-					<textarea id="description" class="description-input"
-						placeholder="enter some description"></textarea>
+				<div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+					<div class="input-group mt-3 mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text d-flex justify-content-center">
+								<i class="fas fa-edit"></i>
+							</span>
+						</div>
+						<textarea class="form-control fixed-height"
+							aria-label="With textarea" placeholder="enter 1st opinion"></textarea>
+					</div>
 				</div>
-				<div class="col-3"></div>
+
+				<div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-center">
+					<div class="d-flex align-self-center">
+						<h1 class="hs" style="margin: 0;">VS</h1>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+					<div class="input-group mt-3 mb-3">
+						<textarea class="form-control fixed-height border-right-0"
+							aria-label="With textarea" placeholder="enter 2nd opinion"></textarea>
+						<div class="input-group-prepend">
+							<span class="input-group-text d-flex justify-content-center rounded-right">
+								<i class="fas fa-edit"></i>
+							</span>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-4"></div>
-				<div class="col-4">
-					<div class="d-flex justify-content-center">
-						<button type="button" class="btn btn-success" id="submit-button">submit</button>
+				<div class="col-12">
+					<div class="input-group mt-3 mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text d-flex justify-content-center">
+								<i class="fas fa-edit"></i>
+							</span>
+						</div>
+						<textarea class="form-control fixed-height"
+							aria-label="With textarea" placeholder="enter some description"></textarea>
 					</div>
 				</div>
-				<div class="col-4"></div>
 			</div>
 
+			<div class="row">
+				
+				<div class="col-12">
+					<button type="button" class="btn btn-outline-success btn-block" id="submit-button">submit</button>
+				</div>
+			
+			</div>
 		</div>
-
 	</div>
+
+
 	<script type="text/javascript">
 		var curId = "${sessionScope.currentUserId}";
 	</script>
