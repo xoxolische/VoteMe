@@ -87,9 +87,4 @@
 		}
 	</script>
 </body>
-<script>
-	$(window).on("load", function() {
-		$("#preloader").hide();
-	});
-</script>
 </html>

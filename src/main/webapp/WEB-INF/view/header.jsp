@@ -145,16 +145,3 @@
 		</div>
 	</div>
 </div>
-<div class='loader loader2' id="preloader">
-	<div>
-		<div>
-			<div>
-				<div>
-					<div>
-						<div></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>

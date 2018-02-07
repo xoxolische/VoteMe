@@ -87,9 +87,4 @@
 		src="<c:url value="/resources/scripts/show_versus.js"/>"></script>
 
 </body>
-<script>
-	$(window).on("load", function() {
-		$("#preloader").hide();
-	});
-</script>
 </html>

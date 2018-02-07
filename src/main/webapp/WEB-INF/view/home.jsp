@@ -22,13 +22,21 @@
 		});
 	});
 </script>
-
-
-
 </head>
-
-
 <body>
+	<div class='loader loader2' id="preloader">
+		<div>
+			<div>
+				<div>
+					<div>
+						<div>
+							<div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!--
 	<div class="site_wrap">
