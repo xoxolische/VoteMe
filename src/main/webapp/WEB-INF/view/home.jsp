@@ -5,12 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
 
-=======
-<script type="text/javascript"
-	src="<c:url value="/resources/scripts/home.js"/>"></script>
->>>>>>> refs/remotes/origin/xoxolische
 <title>VoteMe</title>
 
 <link rel="stylesheet" type="text/css"
@@ -26,13 +21,21 @@
 		});
 	});
 </script>
-
-
-
 </head>
-
-
 <body>
+	<div class='loader loader2' id="preloader">
+		<div>
+			<div>
+				<div>
+					<div>
+						<div>
+							<div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!--
 	<div class="site_wrap">
@@ -148,10 +151,7 @@
 
 	</div>
 
-<<<<<<< HEAD
-	<script type="text/javascript"
-		src="<c:url value="/resources/scripts/home.js"/>"></script>
-=======
+
 
 
 
@@ -161,9 +161,12 @@
 			<h4>Nothing to show :c</h4>
 		</div>
 	</div>
-	<input type="hidden" id="currentId" value="${sessionScope.currentUserId}" />
+	<input type="hidden" id="currentId"
+		value="${sessionScope.currentUserId}" />
 
->>>>>>> refs/remotes/origin/xoxolische
+	<script type="text/javascript"
+		src="<c:url value="/resources/scripts/home.js"/>"></script>
+
 </body>
 </html>
 

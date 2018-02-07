@@ -30,18 +30,18 @@
 								d-flex justify-content-center 
 								text-justify bg-dark text-light rounded"
 					id="opinion-1">
-					
+
 					<div class="d-flex align-self-start">
 						<p id="opinion1"></p>
 					</div>
 
-					<div class="d-flex justify-content-around align-self-end">
-						<label
-							class="mark-counter" id="op1-mark"></label>
 
-						<span id="rating-up-1">
-							<i class="fa fa-thumbs-up fa-2x"></i>
-						</span> 
+					<div class="d-flex justify-content-around">
+						<a onclick="createMark(1)" id="upVoteOp-1"><img
+							class="mark-up"
+							src="<c:url value="/resources/images/arrow_up.png"/>"></a> <label
+							class="mark-counter align-self-center" id="op1-mark"></label>
+
 					</div>
 				</div>
 
@@ -62,20 +62,18 @@
 					id="opinion-2">
 
 					<p id="opinion2">fdsds sdffff fsddd fsdddddddddddddddddddddd
-					fsdddddd ddddddd ddddddd ddddddddd dddddddd ddddddddddddddddd
-				fsdddd dddddddd dddddddddddd dddddddddddddd dddddddd dddddddddd
-			fsdddd ddddddddddd ddddddddddd dddddddddd ddddddd ddddddddd
-		fsddd dddddddd dddddddddd ddddddd dddddd</p>
+						fsdddddd ddddddd ddddddd ddddddddd dddddddd ddddddddddddddddd
+						fsdddd dddddddd dddddddddddd dddddddddddddd dddddddd dddddddddd
+						fsdddd ddddddddddd ddddddddddd dddddddddd ddddddd ddddddddd fsddd
+						dddddddd dddddddddd ddddddd dddddd</p>
 
 					<div class="d-flex justify-content-around">
-							
-						<label
-							class="mark-counter" id="op2-mark">
-						</label>
 
-						<span id="rating-up-2">
-							<i class="fa fa-thumbs-up fa-2x"></i>
-						</span> 
+						<a onclick="createMark(2)" id="upVoteOp-2"><img
+							class="mark-up"
+							src="<c:url value="/resources/images/arrow_up.png"/>"></a> <label
+							class="mark-counter align-self-center" id="op2-mark"></label>
+
 					</div>
 				</div>
 			</div>
@@ -100,7 +98,8 @@
 			</div>
 		</div>
 	</div>
-
+	<input type="hidden" id="currentId"
+		value="${sessionScope.currentUserId}" />
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/show_versus.js"/>"></script>
 

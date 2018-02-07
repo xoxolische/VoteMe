@@ -123,9 +123,11 @@ function dataFinallyDone(data, curId, marks) {
 		$($row).append($authorContainer);
 
 		$("#versus-list").append($row);
+		$("#preloader").hide();
 	}
 }
-refs/remotes/origin/xoxolische
+
+
 function getMark(marks) {
 	var counter = 0;
 	for (var i = 0; i < marks.length; i++) {
@@ -137,7 +139,11 @@ function getMark(marks) {
 	}
 
 	return counter;
+
 }
+
+
+
 
 function getUserMarks(id) {
 	return $.ajax({

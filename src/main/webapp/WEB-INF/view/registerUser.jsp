@@ -16,26 +16,29 @@
 					<h4 class="page-title">Registration</h4>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text justify-content-center same-width"><i class="fa fa-user"></i></span>
+							<span class="input-group-text justify-content-center same-width"><i
+								class="fa fa-user"></i></span>
 						</div>
 						<input type="text" class="form-control" placeholder="Nick Name"
 							id="nickName">
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text justify-content-center same-width"><i class="fa fa-lock"></i></span>
+							<span class="input-group-text justify-content-center same-width"><i
+								class="fa fa-lock"></i></span>
 						</div>
 						<input type="password" class="form-control" placeholder="Password"
 							id="userPassword">
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text justify-content-center same-width"><i class="fa fa-envelope"></i></span>
+							<span class="input-group-text justify-content-center same-width"><i
+								class="fa fa-envelope"></i></span>
 						</div>
 						<input type="email" class="form-control" placeholder="Email"
 							id="userEmail">
 					</div>
-				
+
 
 					<button onclick="createAction()"
 						class="btn btn-outline-success col-12">Register</button>
@@ -54,7 +57,7 @@
 				"password" : $("#userPassword").val()
 			}
 			$.ajax({
-				url : $('#path').val() +'/api/user/register',
+				url : $('#path').val() + '/api/user/register',
 				type : 'POST',
 				data : JSON.stringify(item),
 				contentType : "application/json",
