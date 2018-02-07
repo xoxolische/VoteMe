@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.voteme.service.OpinionMarkService;
 import com.voteme.service.VersusService;
 
 @Controller
@@ -14,8 +13,8 @@ public class MainController {
 	@Autowired
 	private VersusService versusService;
 	
-	@Autowired
-	private OpinionMarkService opMarkService;
+//	@Autowired
+//	private OpinionMarkService opMarkService;
 	
 	
 	@RequestMapping(value = {"/", "home"})
@@ -38,6 +37,16 @@ public class MainController {
 	@RequestMapping(value = "/404")
 	public String page404() {
 		return "404";
+	}
+	
+	@RequestMapping(value = "/403")
+	public String page403() {
+		return "403";
+	}
+	
+	@RequestMapping(value = "/500")
+	public String page500() {
+		return "500";
 	}
 	
 

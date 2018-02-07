@@ -8,4 +8,6 @@ public interface VersusMarkDao extends CrudDao<VersusMark>{
 
 	List<VersusMark> getByUser(long id);
 
+	boolean userHasVote(long userId, long versusId);
+
 }

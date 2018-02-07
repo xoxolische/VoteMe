@@ -13,12 +13,18 @@
 	<context:component-scan base-package="com.voteme.security" />
 	<http auto-config="true" use-expressions="true">
 
-<!--
+<!---->
 		<intercept-url pattern="/users/create" access="hasAuthority('ADMIN')" />
-		<intercept-url pattern="/versus/**" access="hasAuthority('ADMIN') or hasAuthority('USER')" />
-		-->
+		<intercept-url pattern="/users/" access="hasAuthority('ADMIN')" />
+		<intercept-url pattern="/users/register" access="isAnonymous()" />
 		<!-- Confirmation -->
 		<intercept-url pattern="/users/confirmation**" access="isAuthenticated()" />
+		<intercept-url pattern="/versus/show**" access="isAuthenticated() or isAnonymous()" />
+		
+		<!-- 
+		<intercept-url pattern="/versus/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR') or hasAuthority('USER')" />
+		 -->
+		
 		
 		<!-- Versus API 
 		<intercept-url pattern="/api/versus/create" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR') or hasAuthority('USER')" />

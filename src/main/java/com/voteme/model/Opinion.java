@@ -32,7 +32,7 @@ public class Opinion {
 	private Versus versus;
 
 	@OneToMany(mappedBy = "opinion", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties(value = { "opinion", "user" })
+	@JsonIgnoreProperties(value = { "opinion" })
 	private Set<OpinionMark> marks;
 
 	public long getId() {

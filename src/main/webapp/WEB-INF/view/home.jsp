@@ -5,7 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 
+=======
+<script type="text/javascript"
+	src="<c:url value="/resources/scripts/home.js"/>"></script>
+>>>>>>> refs/remotes/origin/xoxolische
 <title>VoteMe</title>
 
 <link rel="stylesheet" type="text/css"
@@ -68,7 +73,7 @@
 				</div>
 			</div>
 		</c:forEach>
--->
+
 
 
 		<div class="container" id="versus-list" style="z-index: 2;">
@@ -78,7 +83,7 @@
 
 					<div
 						class="col-1 d-flex justify-content-end align-items-center rating-counter-wrap">
-						<label class="rating-counter">mark</label>
+						<label class="rating-counter"></label>
 					</div>
 
 					<div class="col-1 d-flex align-items-center">
@@ -100,66 +105,65 @@
 					<div class="col-2 versus-author-wrap">
 						<div class="versus-author">
 							<h5>author</h5>
-							<p class="author-nickname">-${versus.author.nickName}</p>
+							<p class="author-nickname">${versus.author.nickName}</p>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 
+-->
+		<div class="container" id="versus-list" style="z-index: 2;"></div>
+		<div class="row text-light list-item">
 
+			<div
+				class="col-1 d-flex justify-content-end align-items-center rating-counter-wrap">
+				<label class="rating-counter"></label>
+			</div>
 
-
-			<div class="row text-light list-item">
-
-				<div
-					class="col-1 d-flex justify-content-end align-items-center rating-counter-wrap">
-					<label class="rating-counter"><script>getMark(${versus.marks})</script></label>
+			<div class="col-1 d-flex align-items-center">
+				<div class="arrows-wrap">
+					<a onclick="check()"><img class="arrow-up"
+						src="<c:url value='/resources/images/arrow_up.png'/>"></a> <img
+						class="arrow-down"
+						src="<c:url value="/resources/images/arrow_down.png"/>">
 				</div>
+			</div>
 
-				<div class="col-1 d-flex align-items-center">
-					<div class="arrows-wrap">
-						<img class="arrow-up"
-							src="<c:url value='/resources/images/arrow_up.png'/>"> <img
-							class="arrow-down"
-							src="<c:url value="/resources/images/arrow_down.png"/>">
-					</div>
+			<div class="col-8" style="z-index: 2;">
+				<div class="versus-title-wrap">
+					<h5 class="versus-title text-light" id="${versus.id}">1
+						${versus.title}</h5>
 				</div>
+				<div class="versus-description">13323123 ${versus.description}</div>
+			</div>
 
-				<div class="col-8" style="z-index: 2;">
-					<div class="versus-title-wrap">
-						<h5 class="versus-title text-light" id="${versus.id}">1
-							${versus.title}</h5>
-					</div>
-					<div class="versus-description">13323123
-						${versus.description}</div>
+			<div class="col-2 versus-author-wrap">
+				<div class="versus-author">
+					<h5>author</h5>
+					<p class="author-nickname">111 ${versus.author.nickName}</p>
 				</div>
-
-				<div class="col-2 versus-author-wrap">
-					<div class="versus-author">
-						<h5>author</h5>
-						<p class="author-nickname">111 ${versus.author.nickName}</p>
-					</div>
-				</div>
-
 			</div>
 
 		</div>
-
-
-
-
-
-		<div class="container">
-			<div class="alert alert-info empty-list-alert" role="alert">
-				<h4>Nothing to show :c</h4>
-			</div>
-		</div>
-
 
 	</div>
 
+<<<<<<< HEAD
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/home.js"/>"></script>
+=======
+
+
+
+
+	<div class="container">
+		<div class="alert alert-info empty-list-alert" role="alert">
+			<h4>Nothing to show :c</h4>
+		</div>
+	</div>
+	<input type="hidden" id="currentId" value="${sessionScope.currentUserId}" />
+
+>>>>>>> refs/remotes/origin/xoxolische
 </body>
 </html>
 
