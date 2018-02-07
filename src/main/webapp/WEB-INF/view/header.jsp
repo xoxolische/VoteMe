@@ -25,6 +25,8 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
 	type="text/javascript"></script>
+	
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js" type="text/javascript"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -71,7 +73,7 @@
 			<security:authorize access="isAnonymous()">
 				<li class="nav-item"><a data-toggle="modal"
 					data-target="#exampleModal3" class="nav-link"><i
-						class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+						class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</a></li>
 			</security:authorize>
 			<security:authorize access="isAuthenticated()">
 				<li><a href="#" class="nav-link"><i
