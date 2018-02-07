@@ -9,4 +9,6 @@ public interface UserDao extends CrudDao<User>{
 
 	User getByCode(String token);
 
+	boolean userExists(String email);
+
 }

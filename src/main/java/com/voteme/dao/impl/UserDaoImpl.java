@@ -35,6 +35,26 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao 
 
 	@SuppressWarnings("deprecation")
 	@Override
+	public boolean userExists(String email) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(User.class);
+		try {
+			User u = (User) criteria.add(Restrictions.eq("email", email)).uniqueResult();
+			session.getTransaction().commit();
+			if (u != null) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return false;
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
 	public User getByCode(String token) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();

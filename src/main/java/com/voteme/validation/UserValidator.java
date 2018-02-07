@@ -44,7 +44,7 @@ public class UserValidator implements Validator {
 		} catch (Exception e) {
 			errors.rejectValue("email", "Email is invalid!");
 		}
-		if (userDao.getUserAuth(u.getEmail()) != null) {
+		if (userDao.userExists(u.getEmail())) {
 			errors.rejectValue("email", "User with such email already exists.");
 		}
 		// if (u.getEmail()) { email problem here
