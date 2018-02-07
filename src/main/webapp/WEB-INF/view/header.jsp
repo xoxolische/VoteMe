@@ -15,6 +15,17 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/preloader.css"/>">
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+	type="text/javascript"></script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
@@ -58,9 +69,9 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<security:authorize access="isAnonymous()">
-				<li class="nav-item"><a data-toggle="modal" data-target="#exampleModal3"
-					class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i>
-						Login</a></li>
+				<li class="nav-item"><a data-toggle="modal"
+					data-target="#exampleModal3" class="nav-link"><i
+						class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
 			</security:authorize>
 			<security:authorize access="isAuthenticated()">
 				<li><a href="#" class="nav-link"><i
@@ -83,40 +94,38 @@
 </nav>
 
 
-<div 	class="modal fade" 
-		id="exampleModal3" 
-		tabindex="-1" 
-		role="dialog" 
-		aria-labelledby="exampleModal3Label" 
-		aria-hidden="true">
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModal3Label" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-    	<div class="modal-content">
-      		<div class="modal-header bg-dark">
-        		<h5 class="modal-title text-light" id="exampleModal3Label">Log in</h5>
-       			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          			<span aria-hidden="true" class="text-light">&times;</span>
-        		</button>
-      		</div>
-      		<div class="modal-body">
-      			<form name='login' action="j_spring_security_check" method='POST'>
+		<div class="modal-content">
+			<div class="modal-header bg-dark">
+				<h5 class="modal-title text-light" id="exampleModal3Label">Log
+					in</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="text-light">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form name='login' action="j_spring_security_check" method='POST'>
 
-	      			<div class="input-group flex-column">
+					<div class="input-group flex-column">
 
-	      				<div class="d-flex m-2">
-		  					<div class="input-group-prepend">
-		    					<span class="input-group-text">Your email</span>
-		 	 				</div>
-		  					<input type="text" class="form-control" id="email" name="email">
-		  				</div>
+						<div class="d-flex m-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Your email</span>
+							</div>
+							<input type="text" class="form-control" id="email" name="email">
+						</div>
 
-		  				<div class="d-flex m-2">
-		  					<div class="input-group-prepend">
-		    					<span class="input-group-text">Your password</span>
-		 	 				</div>
-		  					<input id="password"
-							type="password" class="form-control" name="password">
-	  					</div>
-	  					<input type="hidden" name="${_csrf.parameterName}"
+						<div class="d-flex m-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Your password</span>
+							</div>
+							<input id="password" type="password" class="form-control"
+								name="password">
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" />
 						<c:if test="${not empty error}">
 							<div class="error">${error}</div>
@@ -126,12 +135,26 @@
 						</c:if>
 					</div>
 				</form>
-     		</div>
-      		<div class="modal-footer">
-        		<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-        		<button type="Submit" class="btn btn-outline-primary"
-						name="Submit" value="Login">Log in</button>
-      		</div>
-    	</div>
-  	</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-secondary"
+					data-dismiss="modal">Close</button>
+				<button type="Submit" class="btn btn-outline-primary" name="Submit"
+					value="Login">Log in</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class='loader loader2' id="preloader">
+	<div>
+		<div>
+			<div>
+				<div>
+					<div>
+						<div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

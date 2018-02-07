@@ -153,7 +153,8 @@
 			<h4>Nothing to show :c</h4>
 		</div>
 	</div>
-	<input type="hidden" id="currentId" value="${sessionScope.currentUserId}" />
+	<input type="hidden" id="currentId"
+		value="${sessionScope.currentUserId}" />
 
 </body>
 </html>

@@ -121,6 +121,7 @@ function dataFinallyDone(data, curId, marks) {
 		$($row).append($authorContainer);
 
 		$("#versus-list").append($row);
+		$("#preloader").hide();
 	}
 }
 function getMark(marks) {
