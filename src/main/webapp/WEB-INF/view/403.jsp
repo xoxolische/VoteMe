@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="col col-md-6 offset-md-3">
 				<div class="card">
-					<h1 class="card-header">Code: 403</h1>
+					<h5 class="card-header">Code: 403</h5>
 					<div class="card-body">
 						<h5 class="card-title">Access denied.</h5>
 						<p class="card-text">Page you are looking for is forbidden for
