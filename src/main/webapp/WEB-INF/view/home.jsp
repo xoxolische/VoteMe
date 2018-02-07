@@ -5,8 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript"
-		src="<c:url value="/resources/scripts/home.js"/>"></script>
+
 <title>VoteMe</title>
 
 <link rel="stylesheet" type="text/css"
@@ -158,6 +157,9 @@
 
 
 	</div>
+
+	<script type="text/javascript"
+		src="<c:url value="/resources/scripts/home.js"/>"></script>
 </body>
 </html>
 

@@ -18,10 +18,12 @@ function getAllVersus() {
 }
 
 jQuery('.versus-title').on('click', function() {
-	var route = $('#path').val() + "/showVersus/" + this.id;
+	var route = $('#path').val() + "/versus/show/" + this.id;
 	location.href = route;
 });
 
+
+/*
 function getMark(marks) {
 	var counter = 0;
 	for (var i = 0; i < marks.length; i++) {
@@ -29,6 +31,7 @@ function getMark(marks) {
 		// ещё какие-то выражения
 	}
 }
+*/
 
 /*
  * jQuery('.list-item').mouseenter(function (){

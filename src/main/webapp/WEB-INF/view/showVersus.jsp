@@ -27,20 +27,25 @@
 
 				<div
 					class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5
-								d-flex flex-column justify-content-center 
+								d-flex justify-content-center 
 								text-justify bg-dark text-light rounded"
 					id="opinion-1">
-					<h5>opinion 1</h5>
-					<p id="opinion1"></p>
+					
+					<div class="d-flex align-self-start">
+						<p id="opinion1"></p>
+					</div>
 
-					<div class="d-flex justify-content-around">
-						<img class="mark-up"
-							src="<c:url value="/resources/images/arrow_up.png"/>"> <label
-							class="mark-counter align-self-center" id="op1-mark"></label> <img
-							class="mark-down"
-							src="<c:url value="/resources/images/arrow_down.png"/>">
+					<div class="d-flex justify-content-around align-self-end">
+						<label
+							class="mark-counter" id="op1-mark"></label>
+
+						<span id="rating-up-1">
+							<i class="fa fa-thumbs-up fa-2x"></i>
+						</span> 
 					</div>
 				</div>
+
+
 
 				<div
 					class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2
@@ -48,20 +53,29 @@
 					<h4>VS</h4>
 				</div>
 
+
+
 				<div
 					class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5
 								d-flex flex-column justify-content-center
 								text-justify bg-dark text-light rounded"
 					id="opinion-2">
-					<h5>opinion 2</h5>
-					<p id="opinion2"></p>
+
+					<p id="opinion2">fdsds sdffff fsddd fsdddddddddddddddddddddd
+					fsdddddd ddddddd ddddddd ddddddddd dddddddd ddddddddddddddddd
+				fsdddd dddddddd dddddddddddd dddddddddddddd dddddddd dddddddddd
+			fsdddd ddddddddddd ddddddddddd dddddddddd ddddddd ddddddddd
+		fsddd dddddddd dddddddddd ddddddd dddddd</p>
 
 					<div class="d-flex justify-content-around">
-						<img class="mark-up"
-							src="<c:url value="/resources/images/arrow_up.png"/>"> <label
-							class="mark-counter align-self-center" id="op2-mark"></label> <img
-							class="mark-down"
-							src="<c:url value="/resources/images/arrow_down.png"/>">
+							
+						<label
+							class="mark-counter" id="op2-mark">
+						</label>
+
+						<span id="rating-up-2">
+							<i class="fa fa-thumbs-up fa-2x"></i>
+						</span> 
 					</div>
 				</div>
 			</div>
@@ -77,6 +91,8 @@
 				</div>
 			</div>
 		</div>
+
+
 
 		<div class="container">
 			<div class="alert alert-warning" id="error-warning">
