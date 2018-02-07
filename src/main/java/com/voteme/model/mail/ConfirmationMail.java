@@ -4,11 +4,14 @@ import com.voteme.model.User;
 
 public class ConfirmationMail extends Mail {
 
+	private static final String APP_NAME = "";
+	
 	private String subject;
 
-	public ConfirmationMail(User u) {
+	public ConfirmationMail(User u, String contextPath) {
 		super(u);
-		this.getModel().put("activationLink", "http://localhost:8080/VoteMe/users/confirmation?token="+u.getCode());
+		String link = contextPath + "/users/confirmation?token="+u.getCode();
+		this.getModel().put("activationLink", link);
 		this.subject = "no-reply confirmation email";
 	}
 

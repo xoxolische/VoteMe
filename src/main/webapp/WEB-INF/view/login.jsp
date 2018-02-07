@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@include file="header.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
+<%@include file="meta.jsp"%>
+<%@include file="header.jsp"%>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/create_user.css"/>">
 <title>Login</title>
@@ -52,5 +54,6 @@
 			</div>
 		</div>
 	</div>
+	<%@include file="footer.jsp"%>
 </body>
 </html>

@@ -1,17 +1,21 @@
 package com.voteme.validation;
 
+import javax.mail.internet.InternetAddress;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.voteme.dao.UserDao;
 import com.voteme.model.User;
 
 @Component
 public class UserValidator implements Validator {
-	
-//	@Autowired
-//	private UserService userService;
+
+	@Autowired
+	private UserDao userDao;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -34,14 +38,19 @@ public class UserValidator implements Validator {
 		if (u.getEmail().length() > 255) {
 			errors.rejectValue("email", "Email length must be less or equals 255 symbols.");
 		}
-//		if (EmailValidator.validate(u.getEmail())) {
-//			errors.rejectValue("email", "Email is invalid!");
-//		}
-		
-//		if (u.getEmail()) { email problem here
-//			errors.rejectValue("email", "Email is invalid!");
-//		}
-		
+		try {
+			InternetAddress emailAddr = new InternetAddress(u.getEmail());
+			emailAddr.validate();
+		} catch (Exception e) {
+			errors.rejectValue("email", "Email is invalid!");
+		}
+		if (userDao.userExists(u.getEmail())) {
+			errors.rejectValue("email", "User with such email already exists.");
+		}
+		// if (u.getEmail()) { email problem here
+		// errors.rejectValue("email", "Email is invalid!");
+		// }
+
 		if (u.getPassword().length() > 255) {
 			errors.rejectValue("password", "Password length must be less or equals 255 symbols.");
 		}

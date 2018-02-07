@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,15 +37,15 @@ public class UserControllerRest {
 
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Autowired
 	private RoleService roleService;
-	
+
 	@Autowired
 	private UserValidator userValidator;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public ResponseEntity<?> create(@RequestBody User user, BindingResult result) {
+	public ResponseEntity<?> create(@RequestBody User user, BindingResult result, HttpServletRequest request) {
 		userValidator.validate(user, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();
@@ -55,7 +56,7 @@ public class UserControllerRest {
 		} else {
 			userService.create(user);
 			try {
-				emailService.send(new ConfirmationMail(user));
+				emailService.send(new ConfirmationMail(user, request.getContextPath()));
 			} catch (MessagingException | IOException | TemplateException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -63,9 +64,10 @@ public class UserControllerRest {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 	}
-	
+
 	@PostMapping(value = "/register", produces = "application/json")
-	public ResponseEntity<?> createCommonUser(@RequestBody User user, BindingResult result) {
+	public ResponseEntity<?> createCommonUser(@RequestBody User user, BindingResult result,
+			HttpServletRequest request) {
 		user.setRole(roleService.getByName("USER"));
 		userValidator.validate(user, result);
 		if (result.hasErrors()) {
@@ -77,7 +79,7 @@ public class UserControllerRest {
 		} else {
 			userService.create(user);
 			try {
-				emailService.send(new ConfirmationMail(user));
+				emailService.send(new ConfirmationMail(user, request.getContextPath()));
 			} catch (MessagingException | IOException | TemplateException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
