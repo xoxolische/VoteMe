@@ -46,11 +46,6 @@ public class UserController {
 		model.addAttribute("roles", roleService.getAll());
 		return "createUser";
 	}
-	
-	@GetMapping(value = "/register")
-	public String registerPage(Model model) {
-		return "registerUser";
-	}
 
 	@GetMapping(value = "/{id}")
 	public String userInfoPage(Model model, @PathVariable long id) {

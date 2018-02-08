@@ -25,8 +25,6 @@ function getOneVersus() {
 		dataType : 'json'
 	}).done(
 			function(data) {
-				console.log("good");
-				console.log(data);
 				if (hasVoted(curId, data.opinions[0].marks)
 						|| hasVoted(curId, data.opinions[1].marks)) {
 					$("#upVoteOp-1").hide();
@@ -44,21 +42,16 @@ function getOneVersus() {
 				$("#upVoteOp-1").attr("name", data.opinions[0].id);
 				$("#upVoteOp-2").attr("name", data.opinions[1].id);
 			}).fail(function(data) {
-		console.log(data);
 		jQuery('#error-warning').css('display', 'block');
 	});
 }
 
 function hasVoted(userId, marks) {
-	console.log("check mark called");
-	console.log("Current id=" + userId)
 	for (var i = 0; i < marks.length; i++) {
 		if (marks[i].user.id == userId) {
-			console.log("found vote!");
 			return true;
 		}
 	}
-	console.log("not found!");
 	return false;
 }
 
@@ -101,15 +94,11 @@ function createMark(n) {
 			contentType : "application/json",
 			dataType : 'json'
 		}).done(function(data) {
-			console.log("good");
-			console.log(data);
 			$("#upVoteOp-1").hide();
 			$("#upVoteOp-2").hide();
 			if (n == 1) {
-				console.log("op1 mark");
 				$("#op1-mark").text($("#op1-mark").val()+1);
 			} else {
-				console.log("op2 mark");
 				$("#op2-mark").text($("#op2-mark").val()+1);
 			}
 

@@ -7,8 +7,6 @@ function getAllVersus() {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
-		console.log("good");
-		console.log(data);
 		outputData(data);
 		if (data.length == 0) {
 			jQuery('.empty-list-alert').css('display', 'block');
@@ -28,20 +26,14 @@ function outputData(data) {
 	var marks = null;
 	var curId = $("#currentId").val();
 	if (curId) {
-		console.log("ok" + curId);
 		marks = getUserMarks(curId);
 		$.when(marks).done(function() {
-			console.log("done");
-			console.log(marks.responseJSON);
 			dataFinallyDone(data, curId, marks.responseJSON);
 		})
 	} else {
-		console.log("not ok ");
 		dataFinallyDone(data, null, null);
 	}
 }
-
-
 
 function dataFinallyDone(data, curId, marks) {
 	var p = $("#path").val();
@@ -50,7 +42,7 @@ function dataFinallyDone(data, curId, marks) {
 		var $ratingWrapper = $("<div>")
 				.attr("class",
 						"col-1 d-flex justify-content-end align-items-center rating-counter-wrap");
-		var $ratingLabel = $("<label>").attr("id", "rating-" + data[i].id)
+		var $ratingLabel = $("<label>").attr("id", "rating" + data[i].id)
 				.attr("class", "rating-counter").append(getMark(data[i].marks));
 		var $voteContainer = $("<div>").attr("class",
 				"col-1 d-flex align-items-center");
@@ -129,7 +121,6 @@ function dataFinallyDone(data, curId, marks) {
 	}
 }
 
-
 function getMark(marks) {
 	var counter = 0;
 	for (var i = 0; i < marks.length; i++) {
@@ -143,9 +134,6 @@ function getMark(marks) {
 	return counter;
 
 }
-
-
-
 
 function getUserMarks(id) {
 	return $.ajax({
@@ -173,17 +161,17 @@ function createMarkForVersus(mark, userId, versusId) {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
-		console.log("good -> change counter on interface for current versus");
-		console.log(data);
-		var id = "#rating-" + versusId;
+		var id = "#rating" + versusId;
 		if (mark) {
-			$(id).text($(id).val()+1);
-			$("#downVote-"+versusId).hide();
-			$("#upVote-"+versusId).hide();
+			var m = +($(id).text());
+			$(id).text(m + 1);
+			$("#downVote-" + versusId).hide();
+			$("#upVote-" + versusId).hide();
 		} else {
-			$(id).text($(id).val()-1);
-			$("#downVote-"+versusId).hide();
-			$("#upVote-"+versusId).hide();
+			var m = +($(id).text());
+			$(id).text(m - 1);
+			$("#downVote-" + versusId).hide();
+			$("#upVote-" + versusId).hide();
 		}
 
 	}).fail(function(data) {
@@ -192,7 +180,6 @@ function createMarkForVersus(mark, userId, versusId) {
 }
 
 function notVoted(versusId, marks) {
-	console.log("check mark called");
 	for (var i = 0; i < marks.length; i++) {
 		if (marks[i].versus.id == versusId) {
 			return false;

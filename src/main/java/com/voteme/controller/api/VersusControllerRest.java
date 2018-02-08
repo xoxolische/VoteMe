@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,15 +43,15 @@ public class VersusControllerRest {
 		}
 	}
 
-	@PostMapping(value = "/update", produces = "application/json")
-	public void update(@RequestBody Versus versus) {
-		versusService.update(versus);
-	}
-
-	@DeleteMapping(value = "/delete/{id}")
-	public void delete(@PathVariable long id) {
-		versusService.delete(id);
-	}
+//	@PostMapping(value = "/update", produces = "application/json")
+//	public void update(@RequestBody Versus versus) {
+//		versusService.update(versus);
+//	}
+//
+//	@DeleteMapping(value = "/delete/{id}")
+//	public void delete(@PathVariable long id) {
+//		versusService.delete(id);
+//	}
 
 	@GetMapping(value = "/get/{id}", produces = "application/json")
 	public Versus get(@PathVariable long id) {

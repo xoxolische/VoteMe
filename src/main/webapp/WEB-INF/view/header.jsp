@@ -23,7 +23,7 @@
 	href="<c:url value="/resources/css/preloader.css"/>">
 
 
-
+<!-- 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
 	type="text/javascript"></script>
@@ -51,7 +51,7 @@
 	type="text/javascript"></script>
 
 
-
+ -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark page-nav">
 
 	<a class="navbar-brand" href="${contextPath}/home"
@@ -70,7 +70,7 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<security:authorize
-				access="hasAuthority('ADMIN') or hasAuthority('USER')">
+				access="isAuthenticated()">
 				<li class="nav-item"><a href="${contextPath}/versus/create"
 					class="nav-link">Create versus</a></li>
 			</security:authorize>
@@ -80,12 +80,9 @@
 
 			<security:authorize access="hasAuthority('ADMIN')">
 				<li class="nav-item"><a class="nav-link"
-					href="<c:url value="#"/>">Test</a></li>
+					href="${contextPath}/users/create">Register User</a></li>
 			</security:authorize>
-
-			<security:authorize access="isAuthenticated()">
-			</security:authorize>
-		</ul>
+	</ul>
 
 		<ul class="navbar-nav"> 
 			<security:authorize access="isAnonymous()">

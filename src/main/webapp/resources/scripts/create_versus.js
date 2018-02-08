@@ -28,21 +28,20 @@ function createVersus() {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
-		console.log("good");
-		console.log(data);
+		window.location.href = $('#path').val()+"/home";
 	}).fail(function(data) {
 		console.log(data.responseText);
 	});
 }
 
-function deleteVersus() {
-	$.ajax({
-		url : $('#path').val() +'/api/versus/delete/1',
-		type : 'DELETE'
-	}).done(function(data) {
-		console.log("good");
-		console.log(data);
-	}).fail(function(data) {
-		console.log(data.responseText);
-	});
-}
+//function deleteVersus() {
+//	$.ajax({
+//		url : $('#path').val() +'/api/versus/delete/1',
+//		type : 'DELETE'
+//	}).done(function(data) {
+//		console.log("good");
+//		console.log(data);
+//	}).fail(function(data) {
+//		console.log(data.responseText);
+//	});
+//}

@@ -8,9 +8,27 @@
 <title>Registration</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/create_user.css"/>">
+<style type="text/css">
+.hidden {
+	display: none
+}
+</style>
 </head>
 <body>
-	<div class="container-fluid main-wrap">
+	<div class='loader loader2 hidden' id="preloader">
+		<div>
+			<div>
+				<div>
+					<div>
+						<div>
+							<div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="form" class="container-fluid main-wrap">
 
 		<div class="card col col-md-6 offset-md-3">
 			<div class="card-block">
@@ -53,6 +71,11 @@
 	</div>
 	<%@include file="footer.jsp"%>
 	<script>
+		$(window).on('load', function() {
+			$("#preloader").hide();
+			$("#preloader").removeClass("hidden");			
+		});
+
 		function createAction() {
 			var item = {
 				"email" : $("#userEmail").val(),
@@ -64,10 +87,17 @@
 				type : 'POST',
 				data : JSON.stringify(item),
 				contentType : "application/json",
-				dataType : 'json'
+				dataType : 'json',
+				beforeSend : function() {
+					$("#form").hide();
+					$("#preloader").show();
+				},
+				complete : function() {
+					$("#preloader").hide();
+					$("#form").fadeIn();
+				}
 			}).done(function(data) {
-				console.log("good");
-				console.log(data);
+				window.location.href = $('#path').val() + "/login";
 			}).fail(function(data) {
 				console.log(data.responseText);
 			});

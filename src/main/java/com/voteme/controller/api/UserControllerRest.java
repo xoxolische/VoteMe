@@ -38,6 +38,9 @@ public class UserControllerRest {
 	@Autowired
 	private EmailService emailService;
 
+//	@Autowired
+//	private RoleService roleService;
+
 	@Autowired
 	private RoleService roleService;
 
@@ -87,7 +90,7 @@ public class UserControllerRest {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 	}
-
+	
 	@PostMapping(value = "/update", produces = "application/json")
 	public void update(@RequestBody User user) {
 		userService.update(user);
