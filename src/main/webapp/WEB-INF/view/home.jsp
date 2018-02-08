@@ -42,10 +42,10 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-2 page-title">
-					<h4 class="text-light">Votings</h4>
+				<div class="col-6 page-title">
+					<h4 class="text-dark">Active votings</h4>
 				</div>
-				<div class="col-10"></div>
+				<div class="col-6"></div>
 			</div>
 		</div>
 
@@ -102,8 +102,9 @@
 			</c:forEach>
 
 -->
+
 		<div class="container" id="versus-list" style="z-index: 2;"></div>
-		<div class="row text-light list-item">
+		<div class="row text-light list-item hidden">
 
 			<div
 				class="col-1 d-flex justify-content-end align-items-center rating-counter-wrap">
@@ -124,19 +125,21 @@
 					<h5 class="versus-title text-light" id="${versus.id}">1
 						${versus.title}</h5>
 				</div>
-				<div class="versus-description">13323123 ${versus.description}</div>
+				<div class="versus-description">${versus.description}</div>
 			</div>
 
 			<div class="col-2 versus-author-wrap">
 				<div class="versus-author">
 					<h5>author</h5>
-					<p class="author-nickname">111 ${versus.author.nickName}</p>
+					<p class="author-nickname">${versus.author.nickName}</p>
 				</div>
 			</div>
+
 
 		</div>
 
 	</div>
+
 	<div class="container">
 		<div class="alert alert-info empty-list-alert" role="alert">
 			<h4>Nothing to show :c</h4>
@@ -148,7 +151,10 @@
 	<%@ include file="footer.jsp"%>
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/home.js"/>"></script>
+
+
 	<script src="resources/scripts/jquery.parallax.js"></script>
+
 	<script>
 		jQuery(document).ready(function() {
 			jQuery('#parallax .parallax-layer').parallax({

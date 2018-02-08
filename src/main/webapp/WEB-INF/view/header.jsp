@@ -23,14 +23,47 @@
 	href="<c:url value="/resources/css/preloader.css"/>">
 
 
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+	type="text/javascript"></script>
+
+<script 
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"
+	type="text/javascript"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"
+	type="text/javascript"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"
+	type="text/javascript"></script>
+
+<script 
+	defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"
+	type="text/javascript"></script>
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark page-nav">
 
 	<a class="navbar-brand" href="${contextPath}/home"
 		style="font-size: 20pt;">VoteMe</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarSupportedContent"
-		aria-controls="navbarSupportedContent" aria-expanded="false"
-		aria-label="Toggle navigation">
+	<button class="navbar-toggler" 
+			type="button" 
+			data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" 
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+			id="toggler">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
@@ -41,29 +74,40 @@
 				<li class="nav-item"><a href="${contextPath}/versus/create"
 					class="nav-link">Create versus</a></li>
 			</security:authorize>
+
 			<li class="nav-item"><a href="${contextPath}/about"
 				class="nav-link">About</a></li>
+
 			<security:authorize access="hasAuthority('ADMIN')">
 				<li class="nav-item"><a class="nav-link"
 					href="<c:url value="#"/>">Test</a></li>
 			</security:authorize>
+
 			<security:authorize access="isAuthenticated()">
 			</security:authorize>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
+
+		<ul class="navbar-nav"> 
 			<security:authorize access="isAnonymous()">
 				<li class="nav-item"><a data-toggle="modal"
-					data-target="#exampleModal3" class="nav-link"><i
-						class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</a></li>
+					data-target="#exampleModal3" class="nav-link" style="cursor: pointer;"><i
+						class="fas fa-sign-in-alt" aria-hidden="false"></i> Login</a></li>
 			</security:authorize>
+
 			<security:authorize access="isAuthenticated()">
 				<li><a href="#" class="nav-link"><i
-						class="fa fa-user-circle" aria-hidden="true"></i> Profile</a></li>
-				<li><a class="nav-link" href="javascript:formSubmit()"><i
-						class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
+						class="fa fa-user-circle" aria-hidden="false"></i> Profile</a></li>
+				<li>
+					<a class="nav-link" href="javascript:formSubmit()" aria-hidden="false">
+						<i class="fas fa-sign-out-alt"></i>
+						Logout
+					</a>
+				</li>
 			</security:authorize>
+
 		</ul>
 	</div>
+
 	<input type="hidden" value="${contextPath}" id="path">
 	<form action="${contextPath}/logout" method="post" id="logoutForm">
 		<input type="hidden" name="${_csrf.parameterName}"

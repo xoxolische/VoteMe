@@ -17,8 +17,7 @@
 
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-					<h4 class="page-titles">title</h4>
-					<h5 id="versus-title"></h5>
+					<h4 id="versus-title"></h4>
 				</div>
 				<div class="col-0 col-sm-0 col-md-6 col-lg-6 col-xl-6"></div>
 			</div>
@@ -27,7 +26,7 @@
 
 				<div
 					class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5
-								d-flex justify-content-center 
+								d-flex flex-column justify-content-center 
 								text-justify bg-dark text-light rounded"
 					id="opinion-1">
 
@@ -37,9 +36,12 @@
 
 
 					<div class="d-flex justify-content-around">
-						<a onclick="createMark(1)" id="upVoteOp-1"><img
+						<a onclick="createMark(1)" id="upVoteOp-1">
+							<img
 							class="mark-up"
-							src="<c:url value="/resources/images/arrow_up.png"/>"></a> <label
+							src="<c:url value="/resources/images/arrow_up.png"/>">
+						</a> 
+							<label
 							class="mark-counter align-self-center" id="op1-mark"></label>
 
 					</div>
@@ -61,30 +63,28 @@
 								text-justify bg-dark text-light rounded"
 					id="opinion-2">
 
-					<p id="opinion2">fdsds sdffff fsddd fsdddddddddddddddddddddd
-						fsdddddd ddddddd ddddddd ddddddddd dddddddd ddddddddddddddddd
-						fsdddd dddddddd dddddddddddd dddddddddddddd dddddddd dddddddddd
-						fsdddd ddddddddddd ddddddddddd dddddddddd ddddddd ddddddddd fsddd
-						dddddddd dddddddddd ddddddd dddddd</p>
+					<p id="opinion2"></p>
 
 					<div class="d-flex justify-content-around">
 
-						<a onclick="createMark(2)" id="upVoteOp-2"><img
+						<a onclick="createMark(2)" id="upVoteOp-2">
+							<img
 							class="mark-up"
-							src="<c:url value="/resources/images/arrow_up.png"/>"></a> <label
+							src="<c:url value="/resources/images/arrow_up.png"/>">
+						</a> 
+							<label
 							class="mark-counter align-self-center" id="op2-mark"></label>
 
 					</div>
 				</div>
 			</div>
 
-			<div class="row description-author-block">
+			<div class="row">
 				<div
 					class="col-12 d-flex flex-column justify-content-center
-								text-justify bg-dark text-light rounded">
-					<h5>description</h5>
+								text-justify bg-dark text-light rounded description-author-block">
 					<p id="description"></p>
-					<h5>author</h5>
+					<h5>Author</h5>
 					<p id="nick-name"></p>
 				</div>
 			</div>
@@ -98,6 +98,7 @@
 			</div>
 		</div>
 	</div>
+
 	<input type="hidden" id="currentId"
 		value="${sessionScope.currentUserId}" />
 	<%@include file="footer.jsp"%>

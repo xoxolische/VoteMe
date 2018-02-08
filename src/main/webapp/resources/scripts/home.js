@@ -22,6 +22,7 @@ jQuery('.versus-title').on('click', function() {
 	var route = $('#path').val() + "/versus/show/" + this.id;
 	location.href = route;
 });
+
 function outputData(data) {
 	var p = $("#path").val();
 	var marks = null;
@@ -124,6 +125,7 @@ function dataFinallyDone(data, curId, marks) {
 
 		$("#versus-list").append($row);
 		$("#preloader").hide();
+		jQuery('.page-title').css('display', 'block');
 	}
 }
 
@@ -198,7 +200,6 @@ function notVoted(versusId, marks) {
 	}
 	return true;
 }
-
 
 /*
  * jQuery('.list-item').mouseenter(function (){

@@ -19,3 +19,8 @@
 	color: #1f1e1e;
 }
 
+#toggler {
+	position: absolute;
+	right: 13px;
+	top: 13px;
+}

@@ -1,5 +1,6 @@
-.page-titles {
+#versus-title {
 	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #opinion-1, #opinion-2 {
@@ -15,6 +16,7 @@
 
 .description-author-block {
 	margin-top: 10px;
+	padding: 10px;
 }
 
 #versus-container {
