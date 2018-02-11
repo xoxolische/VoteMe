@@ -55,7 +55,6 @@
 }
 
 .arrow-down {
-	margin-top: 10px;
 	width: 40px;
 	height: 40px;
 	border-radius: 50% 50% 50% 50%;
@@ -64,8 +63,9 @@
 }
 
 .list-item {
+	
 	margin-bottom: 10px;
-	height: 100px;
+	padding: 5px;
 	border-radius: 5px 5px 5px 5px;
 	border: 2px solid #ffffff;
 	z-index: 2;
@@ -93,7 +93,6 @@
 }
 
 .versus-author {
-	margin-top: 5px;
 	z-index: 2;
 }
 

@@ -42,10 +42,9 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-6 page-title">
+				<div class="col-12 page-title">
 					<h4 class="text-dark">Active votings</h4>
 				</div>
-				<div class="col-6"></div>
 			</div>
 		</div>
 
@@ -102,41 +101,78 @@
 			</c:forEach>
 
 -->
+	
+		<div class="container" id="versus-list">
 
-		<div class="container" id="versus-list" style="z-index: 2;"></div>
-		<div class="row text-light list-item hidden">
+			<div class="row bg-dark text-light flex-wrap flex-column list-item">
 
-			<div
-				class="col-1 d-flex justify-content-end align-items-center rating-counter-wrap">
-				<label class="rating-counter"></label>
-			</div>
+				<div class="row" style="height: 100px;">
+					<div
+						class="col-6 col-sm-6 col-md-1 col-lg-1 col-xl-1
+						d-flex justify-content-center align-items-center rating-counter-wrap">
+						<label class="rating-counter">mark</label>
+					</div>
 
-			<div class="col-1 d-flex align-items-center">
-				<div class="arrows-wrap">
-					<a onclick="check()"><img class="arrow-up"
-						src="<c:url value='/resources/images/arrow_up.png'/>"></a> <img
-						class="arrow-down"
-						src="<c:url value="/resources/images/arrow_down.png"/>">
+					<div 
+						class="col-6 col-sm-6 col-md-1 col-lg-1 col-xl-1 
+						d-flex align-items-center justify-content-center">
+						<div class="arrow">
+							<img 
+								class="arrow-up"
+								src="<c:url value='/resources/images/arrow_up.png'/>"> 
+							<img
+								class="arrow-down"
+								src="<c:url value="/resources/images/arrow_down.png"/>">
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+						<div>
+							<h5 class="versus-title" id="${versus.id}">Title</h5>
+						</div>
+						<div class="versus-description">Description</div>
+					</div>
+
+					<!--
+					<div class="col-2 versus-author-wrap">
+						<div class="versus-author">
+							<h5>Author</h5>
+							<p class="author-nickname">nickname</p>
+						</div>
+					</div>
+					-->
 				</div>
-			</div>
 
-			<div class="col-8" style="z-index: 2;">
-				<div class="versus-title-wrap">
-					<h5 class="versus-title text-light" id="${versus.id}">1
-						${versus.title}</h5>
+				<div class="dropdown-divider"></div>
+
+				<div class="row" style="padding: 10px;">
+					<div class="col-6 d-flex justify-content-center">
+						
+						<a href="#">
+							<div class="d-flex flex-column flex-sm-column flex-md-row">
+								<i class="far fa-comments fa-2x"></i>
+								<p>&nbspComments(<span>999</span>)</p>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-6 d-flex justify-content-center versus-author-wrap">
+						<div 
+							class="d-flex flex-column flex-sm-column 
+							flex-md-row versus-author">
+							<h5>Author:&nbsp</h5>
+							<p class="author-nickname">nickname</p>
+						</div>
+					</div>
+
 				</div>
-				<div class="versus-description">${versus.description}</div>
+
 			</div>
-
-			<div class="col-2 versus-author-wrap">
-				<div class="versus-author">
-					<h5>author</h5>
-					<p class="author-nickname">${versus.author.nickName}</p>
-				</div>
-			</div>
-
-
 		</div>
+
+
+
+	
 
 	</div>
 
