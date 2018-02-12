@@ -15,21 +15,21 @@
 
 		<!-- <intercept-url pattern="/users/create" access="hasAuthority('ADMIN')" 
 			/> -->
-		<intercept-url pattern="/users/**" access="hasAuthority('ADMIN')" />
+
 		<intercept-url pattern="/register" access="isAnonymous()" />
 		<intercept-url pattern="/api/opinionMark/**" access="isAuthenticated()" />
 		<intercept-url pattern="/api/user/register" access="isAnonymous()" />
 		<intercept-url pattern="/api/user/**" access="hasAuthority('ADMIN')" />
-		
+
 		<intercept-url pattern="/api/versus/create" access="isAuthenticated()" />
 		<intercept-url pattern="/api/versusMark/create" access="isAuthenticated()" />
 		<intercept-url pattern="/api/versusMark/get**" access="isAuthenticated()" />
-		
-		
-		
+
+
+
 		<!-- Confirmation -->
 		<intercept-url pattern="/users/confirmation**" access="isAuthenticated()" />
-
+		<intercept-url pattern="/users/**" access="hasAuthority('ADMIN')" />
 		<!-- <intercept-url pattern="/versus/**" access="hasAuthority('ADMIN') 
 			or hasAuthority('MODERATOR') or hasAuthority('USER')" /> -->
 

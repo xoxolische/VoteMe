@@ -6,6 +6,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import com.voteme.model.Comment;
+import com.voteme.model.CommentMark;
 import com.voteme.model.Mark;
 import com.voteme.model.Opinion;
 import com.voteme.model.OpinionMark;
@@ -39,7 +41,7 @@ public class HibernateUtil {
 				MetadataSources sources = new MetadataSources(registry);
 				sources.addAnnotatedClass(Mark.class).addAnnotatedClass(Opinion.class).addAnnotatedClass(User.class)
 						.addAnnotatedClass(Versus.class).addAnnotatedClass(Role.class)
-						.addAnnotatedClass(OpinionMark.class).addAnnotatedClass(VersusMark.class);
+						.addAnnotatedClass(OpinionMark.class).addAnnotatedClass(VersusMark.class).addAnnotatedClass(CommentMark.class).addAnnotatedClass(Comment.class);
 
 				// Create Metadata
 				Metadata metadata = sources.getMetadataBuilder().build();

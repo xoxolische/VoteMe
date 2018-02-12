@@ -60,6 +60,10 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = "user")
 	private Set<Mark> marks;
+	
+	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = "author")
+	private Set<Comment> comments;
 
 	@Column(name = "is_verified")
 	private boolean is_verified;
