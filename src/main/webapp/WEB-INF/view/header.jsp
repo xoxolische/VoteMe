@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
@@ -54,68 +54,60 @@
  -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark page-nav">
 
-	<a class="navbar-brand" href="${contextPath}/home"
-		style="font-size: 20pt;">VoteMe</a>
-	<button class="navbar-toggler" 
-			type="button" 
-			data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" 
-			aria-expanded="false"
-			aria-label="Toggle navigation"
-			id="toggler">
-		<span class="navbar-toggler-icon"></span>
-	</button>
+<a class="navbar-brand" href="${contextPath}/home"
+	style="font-size: 20pt;">VoteMe</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse"
+	data-target="#navbarSupportedContent"
+	aria-controls="navbarSupportedContent" aria-expanded="false"
+	aria-label="Toggle navigation" id="toggler">
+	<span class="navbar-toggler-icon"></span>
+</button>
 
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<security:authorize
-				access="isAuthenticated()">
-				<li class="nav-item"><a href="${contextPath}/versus/create"
-					class="nav-link">Create versus</a></li>
-			</security:authorize>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<ul class="navbar-nav mr-auto">
+		<security:authorize access="isAuthenticated()">
+			<li class="nav-item"><a href="${contextPath}/versus/create"
+				class="nav-link">Create versus</a></li>
+		</security:authorize>
 
-			<li class="nav-item"><a href="${contextPath}/about"
-				class="nav-link">About</a></li>
+		<li class="nav-item"><a href="${contextPath}/about"
+			class="nav-link">About</a></li>
 
-			<security:authorize access="hasAuthority('ADMIN')">
-				<li class="nav-item"><a class="nav-link"
-					href="${contextPath}/users/create">Register User</a></li>
-			</security:authorize>
+		<security:authorize access="hasAuthority('ADMIN')">
+			<li class="nav-item"><a class="nav-link"
+				href="${contextPath}/users/create">Register User</a></li>
+		</security:authorize>
 	</ul>
 
-		<ul class="navbar-nav"> 
-			<security:authorize access="isAnonymous()">
-				<li class="nav-item"><a data-toggle="modal"
-					data-target="#exampleModal3" class="nav-link" style="cursor: pointer;"><i
-						class="fas fa-sign-in-alt" aria-hidden="false"></i> Login</a></li>
-			</security:authorize>
+	<ul class="navbar-nav">
+		<security:authorize access="isAnonymous()">
+			<li class="nav-item"><a data-toggle="modal"
+				data-target="#exampleModal3" class="nav-link"
+				style="cursor: pointer;"><i class="fas fa-sign-in-alt"
+					aria-hidden="false"></i> Login</a></li>
+		</security:authorize>
 
-			<security:authorize access="isAuthenticated()">
-				<li><a href="#" class="nav-link"><i
-						class="fa fa-user-circle" aria-hidden="false"></i> Profile</a></li>
-				<li>
-					<a class="nav-link" href="javascript:formSubmit()" aria-hidden="false">
-						<i class="fas fa-sign-out-alt"></i>
-						Logout
-					</a>
-				</li>
-			</security:authorize>
+		<security:authorize access="isAuthenticated()">
+			<li><a href="#" class="nav-link"><i
+					class="fa fa-user-circle" aria-hidden="false"></i> Profile</a></li>
+			<li><a class="nav-link" href="javascript:formSubmit()"
+				aria-hidden="false"> <i class="fas fa-sign-out-alt"></i> Logout
+			</a></li>
+		</security:authorize>
 
-		</ul>
-	</div>
+	</ul>
+</div>
 
-	<input type="hidden" value="${contextPath}" id="path">
-	<form action="${contextPath}/logout" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-	</form>
-	<script>
-		function formSubmit() {
-			document.getElementById("logoutForm").submit();
-		}
-	</script>
-</nav>
+<input type="hidden" value="${contextPath}" id="path">
+<form action="${contextPath}/logout" method="post" id="logoutForm">
+	<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+</form>
+<script>
+	function formSubmit() {
+		document.getElementById("logoutForm").submit();
+	}
+</script> </nav>
 
 
 <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
@@ -131,43 +123,43 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form name='login' action="j_spring_security_check" method='POST'>
+				<form id="modal-form" action="j_spring_security_check" method='POST'>
 
-					<div class="input-group">	
+					<div class="input-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text d-flex justify-content-center" id="login-icon">
-								<i class="fas fa-at fa-1x"></i>
+							<span class="input-group-text d-flex justify-content-center"
+								id="login-icon"> <i class="fas fa-at fa-1x"></i>
 							</span>
 						</div>
-						<input type="text" class="form-control" id="email" name="email">
+						<input type="text" class="form-control" name="email" placeholder="Email">
 					</div>
-						
 
-					<div class="input-group mt-3">	
+
+					<div class="input-group mt-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text d-flex justify-content-center" id="password-icon">
-								<i class="fas fa-unlock-alt fa-1x"></i>
+							<span class="input-group-text d-flex justify-content-center"
+								id="password-icon"> <i class="fas fa-unlock-alt fa-1x"></i>
 							</span>
 						</div>
-						<input type="text" class="form-control" id="email" name="email">
+						<input type="text" class="form-control" name="password" placeholder="Password">
 					</div>
 
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-						<c:if test="${not empty error}">
-							<div class="error">${error}</div>
-						</c:if>
-						<c:if test="${not empty logout}">
-							<div class="msg">${logout}</div>
-						</c:if>
-					
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<c:if test="${not empty error}">
+						<div class="error">${error}</div>
+					</c:if>
+					<c:if test="${not empty logout}">
+						<div class="msg">${logout}</div>
+					</c:if>
+
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-secondary"
 					data-dismiss="modal">Close</button>
-				<button type="Submit" class="btn btn-outline-primary" name="Submit"
-					value="Login">Log in</button>
+				<button class="btn btn-outline-primary" value="Login" onclick="submitModalFrom()">Log
+					in</button>
 			</div>
 		</div>
 	</div>
