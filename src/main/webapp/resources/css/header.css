@@ -24,3 +24,7 @@
 	right: 13px;
 	top: 13px;
 }
+
+#login-icon, #password-icon {
+	width: 42px;
+}
