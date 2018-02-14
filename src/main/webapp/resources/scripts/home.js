@@ -7,6 +7,7 @@ function getAllVersus() {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
+		console.log(data);
 		outputData(data);
 		if (data.length == 0) {
 			jQuery('.empty-list-alert').css('display', 'block');
