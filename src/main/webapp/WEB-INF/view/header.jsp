@@ -133,22 +133,25 @@
 			<div class="modal-body">
 				<form name='login' action="j_spring_security_check" method='POST'>
 
-					<div class="input-group flex-column">
-
-						<div class="d-flex m-2">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Your email</span>
-							</div>
-							<input type="text" class="form-control" id="email" name="email">
+					<div class="input-group">	
+						<div class="input-group-prepend">
+							<span class="input-group-text d-flex justify-content-center" id="login-icon">
+								<i class="fas fa-at fa-1x"></i>
+							</span>
 						</div>
+						<input type="text" class="form-control" id="email" name="email">
+					</div>
+						
 
-						<div class="d-flex m-2">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Your password</span>
-							</div>
-							<input id="password" type="password" class="form-control"
-								name="password">
+					<div class="input-group mt-3">	
+						<div class="input-group-prepend">
+							<span class="input-group-text d-flex justify-content-center" id="password-icon">
+								<i class="fas fa-unlock-alt fa-1x"></i>
+							</span>
 						</div>
+						<input type="text" class="form-control" id="email" name="email">
+					</div>
+
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" />
 						<c:if test="${not empty error}">
@@ -157,7 +160,7 @@
 						<c:if test="${not empty logout}">
 							<div class="msg">${logout}</div>
 						</c:if>
-					</div>
+					
 				</form>
 			</div>
 			<div class="modal-footer">
