@@ -97,9 +97,11 @@ function createMark(n) {
 			$("#upVoteOp-1").hide();
 			$("#upVoteOp-2").hide();
 			if (n == 1) {
-				$("#op1-mark").text($("#op1-mark").val()+1);
+				var m = +($("#op1-mark").text());
+				$("#op1-mark").text(m++);
 			} else {
-				$("#op2-mark").text($("#op2-mark").val()+1);
+				var m = +($("#op2-mark").text());
+				$("#op2-mark").text(m++);
 			}
 
 		}).fail(function(data) {
