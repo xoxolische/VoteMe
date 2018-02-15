@@ -46,5 +46,10 @@ public class VersusServiceImpl implements VersusService {
 	public void delete(Versus entity) {
 		versusDao.delete(entity);
 	}
+	
+	@Override
+	public List<Versus> getAllOrderByDate() {
+		return versusDao.getAllOrderDate();
+	}
 
 }
