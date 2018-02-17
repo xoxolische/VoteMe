@@ -113,3 +113,8 @@
 .hidden {
 	display: none;
 }
+
+.enter-comment-fheight {
+	min-height: 60px;
+	max-height: 60px;
+}
