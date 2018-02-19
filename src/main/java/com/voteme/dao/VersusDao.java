@@ -6,5 +6,7 @@ import com.voteme.model.Versus;
 
 public interface VersusDao extends CrudDao<Versus>{
 
-	List<Versus> getAllOrderDate();
+	List<Versus> getAllOrderDate(int limit);
+	
+	List<Versus> getMore(long lastDate, int limit);
 }

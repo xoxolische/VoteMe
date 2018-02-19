@@ -36,7 +36,7 @@
 
 		<div class="container" id="versus-list">
 
-	<!--  	<div class="row bg-dark text-light flex-wrap flex-column list-item">
+			<!--  	<div class="row bg-dark text-light flex-wrap flex-column list-item">
 
 				<div class="row" style="height: 100px;">
 					<div
@@ -163,6 +163,15 @@
 			</div> -->
 		</div>
 
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+			<input type="hidden" id="lastDate" value="null">
+				<button class="btn btn-success col-md-4 offset-md-4" onclick="loadMore()">More...</button>
+			</div>
+		</div>
 	</div>
 
 	<div class="container">

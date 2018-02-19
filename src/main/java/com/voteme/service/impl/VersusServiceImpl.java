@@ -48,8 +48,13 @@ public class VersusServiceImpl implements VersusService {
 	}
 	
 	@Override
-	public List<Versus> getAllOrderByDate() {
-		return versusDao.getAllOrderDate();
+	public List<Versus> getAllOrderByDate(int limit) {
+		return versusDao.getAllOrderDate(limit);
+	}
+
+	@Override
+	public List<Versus> getMore(long lastDate, int limit) {
+		return versusDao.getMore(lastDate, limit);
 	}
 
 }

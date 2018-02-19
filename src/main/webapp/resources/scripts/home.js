@@ -7,7 +7,7 @@ function getAllVersus() {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		outputData(data);
 		if (data.length == 0) {
 			jQuery('.empty-list-alert').css('display', 'block');
@@ -132,7 +132,7 @@ function dataFinallyDone(data, curId, marks) {
 
 // this is gavno code here!!!
 function appendData(v, curId, marks) {
-	//console.log(v);
+	// console.log(v);
 	var vDateTime = v.createdAt;
 	var vAuthor = v.author;
 	var vMark = getMark(v.marks);
@@ -152,7 +152,8 @@ function appendData(v, curId, marks) {
 	html += '	<div ';
 	html += '		class="col-6 col-sm-6 col-md-1 col-lg-1 col-xl-1 ';
 	html += '		d-flex justify-content-center align-items-center rating-counter-wrap"> ';
-	html += '		<label class="rating-counter" id="rating'+v.id+'">' + vMark + '</label> ';
+	html += '		<label class="rating-counter" id="rating' + v.id + '">' + vMark
+			+ '</label> ';
 	html += '	</div> ';
 
 	html += '	<div ';
@@ -216,12 +217,13 @@ function appendData(v, curId, marks) {
 	html += '					<i class="far fa-comment"></i> ';
 	html += '				</span> ';
 	html += '			</div> ';
-	html += '			<textarea id="user-comment-'+v.id+'" ';
+	html += '			<textarea id="user-comment-' + v.id + '" ';
 	html += '				class="form-control enter-comment-fheight" ';
 	html += '				aria-label="With textarea" placeholder="enter your comment"></textarea> ';
 	html += '			</div> ';
 
-	html += '			<button id="c-button-'+v.id+'" name="'+v.id+'" class="btn btn-outline-primary btn-block mt-2">Send</button> ';
+	html += '			<button id="c-button-' + v.id + '" name="' + v.id
+			+ '" class="btn btn-outline-primary btn-block mt-2">Send</button> ';
 	html += '		</div> ';
 	html += '	</div> ';
 
@@ -230,59 +232,81 @@ function appendData(v, curId, marks) {
 	html += '	<div class="row"><div class="col-12"><h6>Comments(<span>'
 			+ vCommentsNumber + '</span>)</h6></div></div> ';
 
-	html += '	<div id="comment-container-'+v.id+'"></div>';
+	html += '	<div id="comment-container-' + v.id + '"></div>';
 
-	$(document).ready(function() {
-		$("#upVote-" + v.id).click(function() {
-			if (curId) {
-				createMarkForVersus(true, curId, $(this).attr("name"));
-			} else {
-				alert("U MUST BE LOGGED IN TO VOTE!");
-			}
-			;
-		});
-		$("#downVote-" + v.id).click(function() {
-			if (curId) {
-				createMarkForVersus(false, curId, $(this).attr("name"));
-			} else {
-				alert("U MUST BE LOGGED IN TO VOTE!");
-			}
-			;
-		});
-		$("#c-button-" + v.id).click(function() {
-			if (curId) {
-				var versus = $(this).attr("name");
-				createComment($("#user-comment-"+versus).val(), curId, versus);
-				//createMarkForVersus(false, curId, $(this).attr("name"));
-				//createComment($(this).attr("name"));
-			} else {
-				alert("U MUST BE LOGGED IN TO LEAVE A COMMENT!");
-			}
-			;
-		});
-		if (curId) {
-			if (notVoted(v.id, marks)) {
+	$(document)
+			.ready(
+					function() {
+						$("#upVote-" + v.id).click(
+								function() {
+									if (curId) {
+										createMarkForVersus(true, curId,
+												$(this).attr("name"));
+									} else {
+										alert("U MUST BE LOGGED IN TO VOTE!");
+									}
+									;
+								});
+						$("#downVote-" + v.id).click(
+								function() {
+									if (curId) {
+										createMarkForVersus(false, curId, $(
+												this).attr("name"));
+									} else {
+										alert("U MUST BE LOGGED IN TO VOTE!");
+									}
+									;
+								});
+						$("#c-button-" + v.id)
+								.click(
+										function() {
+											if (curId) {
+												var versus = $(this).attr(
+														"name");
+												createComment(
+														$(
+																"#user-comment-"
+																		+ versus)
+																.val(), curId,
+														versus);
+												// createMarkForVersus(false,
+												// curId, $(this).attr("name"));
+												// createComment($(this).attr("name"));
+											} else {
+												alert("U MUST BE LOGGED IN TO LEAVE A COMMENT!");
+											}
+											;
+										});
+						if (curId) {
+							if (notVoted(v.id, marks)) {
 
-			} else {
-				$("#upVote-" + v.id).hide();
-				$("#downVote-" + v.id).hide();
-			}
-		}
-		appendComments(v.comments, v.id);
-	});
+							} else {
+								$("#upVote-" + v.id).hide();
+								$("#downVote-" + v.id).hide();
+							}
+						}
+						appendComments(v.comments, v.id);
+					});
 
 	$("#versus-list").append(html);
+	$("#lastDate").val(v.createdAt);
 
 }
-function appendComments(c, id){
-	for(var i=0; i<c.length; i++){
+function appendComments(c, id) {
+	for (var i = 0; i < c.length; i++) {
 		var createDate = moment(c[i].createdAt).format("HH:mm:ss DD/MM/YYYY")
 		var html = '<div class="row mt-3 d-flex flex-column"><div class="d-flex"><div class="col-3 col-sm-3 col-md-2 col-lg-1 col-xl-1 d-flex justify-content-end pr-0">';
 		html += '	<div class="d-flex justify-content-center align-items-center border rounded" style="height: 60px; width: 60px;">image</div>	</div><div	class="col-9 col-sm-9 col-md-10 col-lg-11 col-xl-11 d-flex flex-column">';
-		html += '	<div class="d-flex justify-content-between flex-column flex-sm-row"><h6>'+c[i].author.nickName+'</h6><span>'+createDate+'</span></div>';
-		html += '	<div class="d-flex"><p class="text-justify">'+c[i].text+'</p></div></div></div><div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
-		$("#comment-container-"+id).append(html);
-	}	
+		html += '	<div class="d-flex justify-content-between flex-column flex-sm-row"><h6>'
+				+ c[i].author.nickName
+				+ '</h6><span>'
+				+ createDate
+				+ '</span></div>';
+		html += '	<div class="d-flex"><p class="text-justify">'
+				+ c[i].text
+				+ '</p></div></div></div><div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
+		$("#comment-container-" + id).append(html);
+	}
 };
 function getMark(marks) {
 	var counter = 0;
@@ -357,4 +381,21 @@ function notVoted(versusId, marks) {
 		}
 	}
 	return true;
+}
+
+function loadMore() {
+	var lastDate = $("#lastDate").val();
+
+	$.ajax({
+		url : $('#path').val() + '/api/versus/getMore/' + lastDate,
+		type : 'GET',
+		contentType : "application/json",
+		dataType : 'json'
+	}).done(function(data) {
+		console.log($("#lastDate").val());
+		console.log(data);
+		outputData(data);
+	}).fail(function(data) {
+		console.log(data.responseText);
+	});
 }

@@ -60,6 +60,12 @@ public class VersusControllerRest {
 
 	@GetMapping(value = "/getAll", produces = "application/json")
 	public List<Versus> getAll() {
-		return versusService.getAllOrderByDate();
+		return versusService.getAllOrderByDate(5);
 	}
+	
+	@GetMapping(value = "/getMore/{lastDate}", produces = "application/json")
+	public List<Versus> getMore(@PathVariable long lastDate) {
+		return versusService.getMore(lastDate, 5);
+	}
+	
 }
