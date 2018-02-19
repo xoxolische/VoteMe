@@ -46,6 +46,7 @@ public class Comment {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonIgnoreProperties(value = { "marks", "versuses", "role", "password", "email", "code", "lastEditedAt"  })
 	private User author;
 
 	@OneToMany(mappedBy = "comment", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

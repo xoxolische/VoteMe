@@ -17,7 +17,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -48,11 +47,12 @@ public class Versus {
 
 	@ManyToOne
 	@JoinColumn(name = "author_id")
-	@JsonIgnoreProperties(value = { "marks", "versuses", "role" })
+	@JsonIgnoreProperties(value = { "marks", "versuses", "role", "password", "email", "code", "lastEditedAt"  })
 	private User author;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = {"versus", "marks"})
 	private Set<Comment> comments;
 
 	public long getId() {
