@@ -169,10 +169,29 @@
 		<div class="row">
 			<div class="col-md-12">
 			<input type="hidden" id="lastDate" value="null">
-				<button class="btn btn-success col-md-4 offset-md-4" onclick="loadMore()">More...</button>
+				<button 
+				class="btn btn-success col-md-4 offset-md-4" 
+				onclick="loadMore()" 
+				id="more-button">
+					More...
+				</button>
 			</div>
 		</div>
 	</div>
+
+	<div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1">
+		<button class="btn p-0 edit-button">
+			<span>
+				<i class="fas fa-pen-square fa-2x"></i>
+			</span>
+		</button>
+		<button href="#" class="btn p-0 delete-button">
+			<span>
+				<i class="fas fa-trash-alt fa-2x"></i>
+			</span>
+		</button>
+	</div>
+
 
 	<div class="container">
 		<div class="alert alert-info empty-list-alert" role="alert">

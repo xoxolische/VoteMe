@@ -1,3 +1,5 @@
+jQuery('#more-button').hide();
+jQuery('.page-title').hide();
 jQuery(window).on('load', getAllVersus);
 
 function getAllVersus() {
@@ -122,12 +124,11 @@ function dataFinallyDone(data, curId, marks) {
 		//
 
 		appendData(data[i], curId, marks);
-		// $("#versus-list").append($row);
-		$("#preloader").hide();
-		jQuery('.page-title').css('display', 'block');
-
+		// $("#versus-list").append($row);		
 	}
-
+	$("#preloader").hide();
+	jQuery('.page-title').show();	
+	jQuery('#more-button').show();
 }
 
 // this is gavno code here!!!
@@ -148,16 +149,16 @@ function appendData(v, curId, marks) {
 
 	var html = '<div class="row bg-dark text-light flex-wrap flex-column list-item">';
 
-	html += '<div class="row" style="height: 100px;">';
+	html += '<div class="row" style="height: 95px;">';
 	html += '	<div ';
-	html += '		class="col-6 col-sm-6 col-md-1 col-lg-1 col-xl-1 ';
+	html += '		class="col-5 col-sm-5 col-md-1 col-lg-1 col-xl-1 ';
 	html += '		d-flex justify-content-center align-items-center rating-counter-wrap"> ';
 	html += '		<label class="rating-counter" id="rating' + v.id + '">' + vMark
 			+ '</label> ';
 	html += '	</div> ';
 
 	html += '	<div ';
-	html += '		class="col-6 col-sm-6 col-md-1 col-lg-1 col-xl-1 ';
+	html += '		class="col-5 col-sm-5 col-md-1 col-lg-1 col-xl-1 ';
 	html += '		d-flex align-items-center justify-content-center"> ';
 	html += '		<div class="arrow"> ';
 	html += '			<a id="upVote-' + v.id + '" name="' + v.id
@@ -169,17 +170,31 @@ function appendData(v, curId, marks) {
 	html += '		</div> ';
 	html += '	</div> ';
 
-	html += '	<div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10"> ';
+	html += '	<div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9"> ';
 	html += '		<div> ';
 	html += '			<h5 class="versus-title">' + v.title + '</h5> ';
 	html += '		</div> ';
 	html += '		<div class="versus-description">' + v.description + '</div> ';
 	html += '	</div> ';
+
+	html += '<div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1">'
+			+	'<button class="btn p-0 edit-button">'
+			+		'<span>'
+			+			'<i class="fas fa-pen-square fa-2x"></i>'
+			+		'</span>'
+			+	'</button>'
+			+	'<button href="#" class="btn p-0 delete-button">'
+			+		'<span>'
+			+			'<i class="fas fa-trash-alt fa-2x"></i>'
+			+		'</span>'
+			+	'</button>'
+			+'</div>';
+
 	html += '</div>';
 
 	html += '<div class="dropdown-divider"></div>';
 
-	html += '<div class="row" style="padding: 10px;">';
+	html += '<div class="row">';
 	html += '	<div class="col-6 d-flex justify-content-center">';
 
 	html += '		<button	class="btn btn-outline-light d-flex flex-column flex-sm-column flex-md-row ';
@@ -203,8 +218,11 @@ function appendData(v, curId, marks) {
 	html += '	</div> ';
 	html += '</div>';
 
-	html += '<div class="row collapse" id="comment-block' + v.id
-			+ '" style="padding: 15px;">';
+
+
+	html += '<div class="row collapse mt-2 comments-row" id="comment-block' + v.id + '">';
+
+	html += '<div class="comments-wrap rounded p-1">';
 
 	html += '	<div class="row"> ';
 
@@ -233,6 +251,8 @@ function appendData(v, curId, marks) {
 			+ vCommentsNumber + '</span>)</h6></div></div> ';
 
 	html += '	<div id="comment-container-' + v.id + '"></div>';
+
+	html += '</div>';
 
 	$(document)
 			.ready(
@@ -292,6 +312,8 @@ function appendData(v, curId, marks) {
 	$("#lastDate").val(v.createdAt);
 
 }
+
+
 function appendComments(c, id) {
 	for (var i = 0; i < c.length; i++) {
 		var createDate = moment(c[i].createdAt).format("HH:mm:ss DD/MM/YYYY")
@@ -308,6 +330,8 @@ function appendComments(c, id) {
 		$("#comment-container-" + id).append(html);
 	}
 };
+
+
 function getMark(marks) {
 	var counter = 0;
 	for (var i = 0; i < marks.length; i++) {
@@ -399,3 +423,5 @@ function loadMore() {
 		console.log(data.responseText);
 	});
 }
+
+
