@@ -26,6 +26,7 @@ function outputData(data) {
 	var p = $("#path").val();
 	var marks = null;
 	var curId = $("#currentId").val();
+	//console.log("curId = "+curId);
 	if (curId) {
 		marks = getUserMarks(curId);
 		$.when(marks).done(function() {
@@ -38,6 +39,7 @@ function outputData(data) {
 
 function dataFinallyDone(data, curId, marks) {
 	var p = $("#path").val();
+	//console.log("datafinally done loop beginning.");
 	for (var i = 0; i < data.length; i++) {
 		// var $row = $("<div>").attr("class", "row bg-dark text-light
 		// list-item");
@@ -122,6 +124,7 @@ function dataFinallyDone(data, curId, marks) {
 		//
 
 		appendData(data[i], curId, marks);
+		//console.log("datafinally done here!");
 		// $("#versus-list").append($row);
 		$("#preloader").hide();
 		jQuery('.page-title').css('display', 'block');
@@ -370,7 +373,7 @@ function createMarkForVersus(mark, userId, versusId) {
 		}
 
 	}).fail(function(data) {
-		console.log(data.responseText);
+		console.log(data);
 	});
 }
 
@@ -392,7 +395,7 @@ function loadMore() {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
-		console.log($("#lastDate").val());
+		//console.log($("#lastDate").val());
 		console.log(data);
 		outputData(data);
 	}).fail(function(data) {

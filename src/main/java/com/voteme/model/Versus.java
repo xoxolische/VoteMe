@@ -38,7 +38,7 @@ public class Versus {
 	private Timestamp createdAt;
 
 	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnoreProperties(value = { "versus", "marks" })
+	@JsonIgnoreProperties(value = { "versus" })
 	private Set<Opinion> opinions;
 
 	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
