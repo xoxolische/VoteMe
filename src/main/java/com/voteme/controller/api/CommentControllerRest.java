@@ -26,7 +26,7 @@ public class CommentControllerRest {
 	@PostMapping(value = "/create", produces = "application/json")
 	public Comment create(@RequestBody Comment c, BindingResult result, HttpServletRequest request) {
 		commentService.create(c);
-		return c;
+		return commentService.get(c.getId());
 	}
 
 	@PostMapping(value = "/update", produces = "application/json")

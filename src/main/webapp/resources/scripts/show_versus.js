@@ -94,15 +94,18 @@ function createMark(n) {
 			contentType : "application/json",
 			dataType : 'json'
 		}).done(function(data) {
-			$("#upVoteOp-1").hide();
-			$("#upVoteOp-2").hide();
-			if (n == 1) {
-				var m = +($("#op1-mark").text());
-				$("#op1-mark").text(m++);
-			} else {
-				var m = +($("#op2-mark").text());
-				$("#op2-mark").text(m++);
-			}
+			$(document).ready(function() {
+				console.log("here! (update interface for marks need fix)");
+				$("#upVoteOp-1").hide();
+				$("#upVoteOp-2").hide();
+				if (n == 1) {
+					var m = +($("#op1-mark").text());
+					$("#op1-mark").val(m++);
+				} else {
+					var m = +($("#op2-mark").text());
+					$("#op2-mark").text(m++);
+				}
+			});
 
 		}).fail(function(data) {
 			console.log(data.responseText);
