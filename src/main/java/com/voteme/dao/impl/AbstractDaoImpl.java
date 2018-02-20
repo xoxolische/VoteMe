@@ -2,8 +2,12 @@ package com.voteme.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import com.voteme.dao.CrudDao;
 import com.voteme.hibernate.HibernateUtil;
@@ -80,15 +84,17 @@ public abstract class AbstractDaoImpl<E, K> implements CrudDao<E> {
 		}
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<E> getAll() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			Criteria criteria = session.createCriteria(entityClass);
-			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-			List<E> l = (List<E>) criteria.list();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<E> query = builder.createQuery(entityClass);
+			Root<E> root = query.from(entityClass);
+			query.select(root);
+			Query<E> q = session.createQuery(query);
+			List<E> l = q.getResultList();
 			session.getTransaction().commit();
 			return l;
 		} catch (Exception e) {

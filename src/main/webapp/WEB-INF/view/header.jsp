@@ -52,10 +52,11 @@
 
 	<ul class="navbar-nav">
 		<security:authorize access="isAnonymous()">
-			<li class="nav-item"><a data-toggle="modal"
-				data-target="#exampleModal3" class="nav-link"
-				style="cursor: pointer;"><i class="fas fa-sign-in-alt"
-					aria-hidden="false"></i> Login</a></li>
+			<li><a href="${contextPath}/register" class="nav-link"><i
+					class="fa fa-user-plus" aria-hidden="false"></i> Register</a></li>
+			<li><a href="${contextPath}/login" class="nav-link"><i
+					class="fa fa-sign-in-alt" aria-hidden="false"></i> Login</a></li>
+
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">
@@ -102,7 +103,8 @@
 								id="login-icon"> <i class="fas fa-at fa-1x"></i>
 							</span>
 						</div>
-						<input type="text" class="form-control" name="email" placeholder="Email">
+						<input type="text" class="form-control" name="email"
+							placeholder="Email">
 					</div>
 
 
@@ -112,7 +114,11 @@
 								id="password-icon"> <i class="fas fa-unlock-alt fa-1x"></i>
 							</span>
 						</div>
+
 						<input type="password" class="form-control" name="password" placeholder="Password">
+
+
+
 					</div>
 
 					<input type="hidden" name="${_csrf.parameterName}"
@@ -129,8 +135,8 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-secondary"
 					data-dismiss="modal">Close</button>
-				<button class="btn btn-outline-primary" value="Login" onclick="submitModalFrom()">Log
-					in</button>
+				<button class="btn btn-outline-primary" value="Login"
+					onclick="submitModalFrom()">Log in</button>
 			</div>
 		</div>
 	</div>

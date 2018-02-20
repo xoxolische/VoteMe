@@ -2,9 +2,12 @@ package com.voteme.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.voteme.dao.VersusMarkDao;
@@ -18,16 +21,17 @@ public class VersusMarkDaoImpl extends AbstractDaoImpl<VersusMark, Long> impleme
 		super(VersusMark.class);
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<VersusMark> getByUser(long id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			Criteria criteria = session.createCriteria(VersusMark.class).createAlias("user", "u")
-					.add(Restrictions.eq("u.id", id));
-			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-			List<VersusMark> l = (List<VersusMark>) criteria.list();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<VersusMark> query = builder.createQuery(VersusMark.class);
+			Root<VersusMark> root = query.from(VersusMark.class);
+			query.select(root).where(builder.equal(root.get("user").get("id"), id));
+			Query<VersusMark> q = session.createQuery(query);
+			List<VersusMark> l = q.getResultList();
 			session.getTransaction().commit();
 			return l;
 		} catch (Exception e) {
@@ -36,21 +40,22 @@ public class VersusMarkDaoImpl extends AbstractDaoImpl<VersusMark, Long> impleme
 		}
 	}
 
-	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public boolean userHasVote(long userId, long versusId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			Criteria criteria = session.createCriteria(VersusMark.class).createAlias("user", "u")
-					.createAlias("versus", "v").add(Restrictions.eq("u.id", userId))
-					.add(Restrictions.eq("v.id", versusId));
-			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-			List<VersusMark> l = (List<VersusMark>) criteria.list();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<VersusMark> query = builder.createQuery(VersusMark.class);
+			Root<VersusMark> root = query.from(VersusMark.class);
+			query.select(root).where(builder.and(builder.equal(root.get("versus").get("id"), versusId),
+					builder.equal(root.get("user").get("id"), userId)));
+			Query<VersusMark> q = session.createQuery(query);
+			List<VersusMark> l = q.getResultList();
 			session.getTransaction().commit();
-			if(l == null || l.size() == 0) {
+			if (l == null || l.size() == 0) {
 				return false;
-			}else {
+			} else {
 				return true;
 			}
 		} catch (Exception e) {

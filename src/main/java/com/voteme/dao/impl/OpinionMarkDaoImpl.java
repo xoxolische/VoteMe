@@ -2,11 +2,12 @@ package com.voteme.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.voteme.dao.OpinionMarkDao;
@@ -26,7 +27,7 @@ public class OpinionMarkDaoImpl extends AbstractDaoImpl<OpinionMark, Long> imple
 	public OpinionMark getCouple(long userId, long opinionId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Query q = session.createNativeQuery(COUPLE_MARK_EXISTS_QUERY, OpinionMark.class);
+		javax.persistence.Query q = session.createNativeQuery(COUPLE_MARK_EXISTS_QUERY, OpinionMark.class);
 		q.setParameter(1, userId);
 		q.setParameter(2, opinionId);
 		q.setParameter(3, opinionId);
@@ -40,31 +41,37 @@ public class OpinionMarkDaoImpl extends AbstractDaoImpl<OpinionMark, Long> imple
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public OpinionMark getBy(long userId, long opinionId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Criteria criteria = session.createCriteria(OpinionMark.class).createAlias("user", "u").createAlias("opinion",
-				"o");
-		OpinionMark opMark = (OpinionMark) criteria
-				.add(Restrictions.and(Restrictions.eq("u.id", userId), Restrictions.eq("o.id", opinionId)))
-				.uniqueResult();
-		session.getTransaction().commit();
-		return opMark;
+		try {
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<OpinionMark> query = builder.createQuery(OpinionMark.class);
+			Root<OpinionMark> root = query.from(OpinionMark.class);
+			query.select(root).where(builder.and(builder.equal(root.get("user").get("id"), userId),
+					builder.equal(root.get("opinion").get("id"), opinionId)));
+			Query<OpinionMark> q = session.createQuery(query);
+			OpinionMark opMark = q.getSingleResult();
+			session.getTransaction().commit();
+			return opMark;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return null;
+		}
 	}
 
-	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<OpinionMark> getByUser(long id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			Criteria criteria = session.createCriteria(OpinionMark.class);
-			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-			criteria.createAlias("user", "u");
-			criteria.add(Restrictions.eq("u.id", id));
-			List<OpinionMark> l = (List<OpinionMark>) criteria.list();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<OpinionMark> query = builder.createQuery(OpinionMark.class);
+			Root<OpinionMark> root = query.from(OpinionMark.class);
+			query.select(root).where(builder.equal(root.get("user").get("id"), id));
+			Query<OpinionMark> q = session.createQuery(query);
+			List<OpinionMark> l = q.getResultList();
 			session.getTransaction().commit();
 			return l;
 		} catch (Exception e) {

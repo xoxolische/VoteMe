@@ -16,37 +16,24 @@ import com.voteme.hibernate.HibernateUtil;
 import com.voteme.model.Versus;
 
 @Repository
-public class VersusDaoImpl extends AbstractDaoImpl<Versus, Long> implements VersusDao{
+public class VersusDaoImpl extends AbstractDaoImpl<Versus, Long> implements VersusDao {
 
 	public VersusDaoImpl() {
 		super(Versus.class);
 	}
-	
-	@SuppressWarnings({ "unchecked", "deprecation" })
+
 	@Override
-	public List<Versus> getAllOrderDate(int limit){
+	public List<Versus> getAllOrderDate(int limit) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-			
-			 CriteriaBuilder builder = session.getCriteriaBuilder();
-	         CriteriaQuery<Versus> query = builder.createQuery(Versus.class);
-	         Root<Versus> root = query.from(Versus.class);
-	         query.select(root).orderBy(builder.desc(root.get("createdAt")));
-	         Query<Versus> q=session.createQuery(query);
-	         q.setMaxResults(limit);
-	         List<Versus> l =q.getResultList();
-			
-//			Criteria criteria = session.createCriteria(Versus.class);
-//			criteria.addOrder(Order.desc("createdAt"));
-//			criteria.setFetchMode("opinions", FetchMode.SELECT);
-//			criteria.setFetchMode("marks", FetchMode.SELECT);
-//			criteria.setFetchMode("comments", FetchMode.SELECT);
-//			criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
-//			criteria.setMaxResults(limit);
-//			
-//			
-//			List<Versus> l = (List<Versus>) criteria.list();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Versus> query = builder.createQuery(Versus.class);
+			Root<Versus> root = query.from(Versus.class);
+			query.select(root).orderBy(builder.desc(root.get("createdAt")));
+			Query<Versus> q = session.createQuery(query);
+			q.setMaxResults(limit);
+			List<Versus> l = q.getResultList();
 			session.getTransaction().commit();
 			return l;
 		} catch (Exception e) {
@@ -61,26 +48,14 @@ public class VersusDaoImpl extends AbstractDaoImpl<Versus, Long> implements Vers
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		try {
-//			Date d = new Date(lastDate);
-//			Criteria criteria = session.createCriteria(Versus.class);
-//			criteria.addOrder(Order.desc("createdAt"));
-//			criteria.add(Restrictions.lt("createdAt", d));
-//			criteria.setFetchMode("opinions", FetchMode.SELECT);
-//			criteria.setFetchMode("marks", FetchMode.SELECT);
-//			criteria.setFetchMode("comments", FetchMode.SELECT);
-//			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-//			criteria.setMaxResults(limit);
-//			
-//			
-//			List<Versus> l = (List<Versus>) criteria.list();
-			
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-	         CriteriaQuery<Versus> query = builder.createQuery(Versus.class);
-	         Root<Versus> root = query.from(Versus.class);
-	         query.select(root).where(builder.lessThan(root.get("createdAt"), new Timestamp(lastDate))).orderBy(builder.desc(root.get("createdAt")));
-	         Query<Versus> q=session.createQuery(query);
-	         q.setMaxResults(limit);
-	         List<Versus> l =q.getResultList();
+			CriteriaQuery<Versus> query = builder.createQuery(Versus.class);
+			Root<Versus> root = query.from(Versus.class);
+			query.select(root).where(builder.lessThan(root.get("createdAt"), new Timestamp(lastDate)))
+					.orderBy(builder.desc(root.get("createdAt")));
+			Query<Versus> q = session.createQuery(query);
+			q.setMaxResults(limit);
+			List<Versus> l = q.getResultList();
 			session.getTransaction().commit();
 			return l;
 		} catch (Exception e) {

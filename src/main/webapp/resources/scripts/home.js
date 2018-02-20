@@ -28,6 +28,7 @@ function outputData(data) {
 	var p = $("#path").val();
 	var marks = null;
 	var curId = $("#currentId").val();
+	// console.log("curId = "+curId);
 	if (curId) {
 		marks = getUserMarks(curId);
 		$.when(marks).done(function() {
@@ -40,6 +41,7 @@ function outputData(data) {
 
 function dataFinallyDone(data, curId, marks) {
 	var p = $("#path").val();
+	// console.log("datafinally done loop beginning.");
 	for (var i = 0; i < data.length; i++) {
 		// var $row = $("<div>").attr("class", "row bg-dark text-light
 		// list-item");
@@ -124,7 +126,6 @@ function dataFinallyDone(data, curId, marks) {
 		//
 
 		appendData(data[i], curId, marks);
-		// $("#versus-list").append($row);		
 	}
 	$("#preloader").hide();
 	jQuery('.page-title').show();	
@@ -172,7 +173,7 @@ function appendData(v, curId, marks) {
 
 	html += '	<div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9"> ';
 	html += '		<div> ';
-	html += '			<h5 class="versus-title">' + v.title + '</h5> ';
+	html += '			<a target="_blank" href="'+p+"/versus/show/"+v.id+'"><h5 class="versus-title">' + v.title + '</h5></a>';
 	html += '		</div> ';
 	html += '		<div class="versus-description">' + v.description + '</div> ';
 	html += '	</div> ';
@@ -247,8 +248,8 @@ function appendData(v, curId, marks) {
 
 	html += '	<div class="dropdown-divider"></div> ';
 
-	html += '	<div class="row"><div class="col-12"><h6>Comments(<span>'
-			+ vCommentsNumber + '</span>)</h6></div></div> ';
+//	html += '	<div class="row"><div class="col-12"><h6>Comments(<span>'
+//			+ vCommentsNumber + '</span>)</h6></div></div> ';
 
 	html += '	<div id="comment-container-' + v.id + '"></div>';
 
@@ -332,6 +333,23 @@ function appendComments(c, id) {
 };
 
 
+function prependComment(c, id) {
+	var createDate = moment(c.createdAt).format("HH:mm:ss DD/MM/YYYY")
+	var html = '<div class="row mt-3 d-flex flex-column"><div class="d-flex"><div class="col-3 col-sm-3 col-md-2 col-lg-1 col-xl-1 d-flex justify-content-end pr-0">';
+	html += '	<div class="d-flex justify-content-center align-items-center border rounded" style="height: 60px; width: 60px;">image</div>	</div><div	class="col-9 col-sm-9 col-md-10 col-lg-11 col-xl-11 d-flex flex-column">';
+	html += '	<div class="d-flex justify-content-between flex-column flex-sm-row"><h6>'
+			+ c.author.nickName
+			+ '</h6><span>'
+			+ createDate
+			+ '</span></div>';
+	html += '	<div class="d-flex"><p class="text-justify">'
+			+ c.text
+			+ '</p></div></div></div><div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
+	$("#comment-container-" + id).prepend(html);
+
+};
+
+
 function getMark(marks) {
 	var counter = 0;
 	for (var i = 0; i < marks.length; i++) {
@@ -394,7 +412,7 @@ function createMarkForVersus(mark, userId, versusId) {
 		}
 
 	}).fail(function(data) {
-		console.log(data.responseText);
+		console.log(data);
 	});
 }
 
@@ -416,7 +434,7 @@ function loadMore() {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
-		console.log($("#lastDate").val());
+		// console.log($("#lastDate").val());
 		console.log(data);
 		outputData(data);
 	}).fail(function(data) {

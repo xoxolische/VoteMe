@@ -1,8 +1,11 @@
 package com.voteme.dao.impl;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.voteme.dao.UserDao;
@@ -17,14 +20,17 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao 
 		super(User.class);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public UserAuth getUserAuth(String email) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Criteria criteria = session.createCriteria(User.class);
 		try {
-			User u = (User) criteria.add(Restrictions.eq("email", email)).uniqueResult();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<User> query = builder.createQuery(User.class);
+			Root<User> root = query.from(User.class);
+			query.select(root).where(builder.equal(root.get("email"), email));
+			Query<User> q = session.createQuery(query);
+			User u = q.getSingleResult();
 			session.getTransaction().commit();
 			return new UserAuth(u);
 		} catch (Exception e) {
@@ -33,14 +39,17 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao 
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean userExists(String email) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Criteria criteria = session.createCriteria(User.class);
 		try {
-			User u = (User) criteria.add(Restrictions.eq("email", email)).uniqueResult();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<User> query = builder.createQuery(User.class);
+			Root<User> root = query.from(User.class);
+			query.select(root).where(builder.equal(root.get("email"), email));
+			Query<User> q = session.createQuery(query);
+			User u = q.getSingleResult();
 			session.getTransaction().commit();
 			if (u != null) {
 				return true;
@@ -53,15 +62,23 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao 
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public User getByCode(String token) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Criteria criteria = session.createCriteria(User.class);
-		User u = (User) criteria.add(Restrictions.eq("code", token)).uniqueResult();
-		session.getTransaction().commit();
-		return u;
+		try {
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<User> query = builder.createQuery(User.class);
+			Root<User> root = query.from(User.class);
+			query.select(root).where(builder.equal(root.get("code"), token));
+			Query<User> q = session.createQuery(query);
+			User u = q.getSingleResult();
+			session.getTransaction().commit();
+			return u;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return null;
+		}
 	}
 
 }
