@@ -141,3 +141,7 @@
 .collapsing > .comments-wrap{
 	visibility: hidden;
 }
+
+.edit-button, .delete-button {
+	cursor: pointer;
+}

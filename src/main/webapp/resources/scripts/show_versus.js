@@ -100,10 +100,10 @@ function createMark(n) {
 				$("#upVoteOp-2").hide();
 				if (n == 1) {
 					var m = +($("#op1-mark").text());
-					$("#op1-mark").val(m++);
+					$("#op1-mark").html(m++);
 				} else {
 					var m = +($("#op2-mark").text());
-					$("#op2-mark").text(m++);
+					$("#op2-mark").html(m++);
 				}
 			});
 

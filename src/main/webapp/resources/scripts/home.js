@@ -19,10 +19,6 @@ function getAllVersus() {
 	});
 }
 
-jQuery('.versus-title').on('click', function() {
-	var route = $('#path').val() + "/versus/show/" + this.id;
-	location.href = route;
-});
 
 function outputData(data) {
 	var p = $("#path").val();
@@ -136,6 +132,7 @@ function dataFinallyDone(data, curId, marks) {
 function appendData(v, curId, marks) {
 	// console.log(v);
 	var vDateTime = v.createdAt;
+	var vCreateDate = moment(vDateTime).format("HH:mm:ss DD/MM/YYYY")
 	var vAuthor = v.author;
 	var vMark = getMark(v.marks);
 	var vCommentsNumber = getComments(v.comments);
@@ -150,7 +147,7 @@ function appendData(v, curId, marks) {
 
 	var html = '<div class="row bg-dark text-light flex-wrap flex-column list-item">';
 
-	html += '<div class="row" style="height: 95px;">';
+	html += '<div class="row" style="height: 105px;">';
 	html += '	<div ';
 	html += '		class="col-5 col-sm-5 col-md-1 col-lg-1 col-xl-1 ';
 	html += '		d-flex justify-content-center align-items-center rating-counter-wrap"> ';
@@ -171,52 +168,57 @@ function appendData(v, curId, marks) {
 	html += '		</div> ';
 	html += '	</div> ';
 
-	html += '	<div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9"> ';
+	html += '	<div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9"> ';
 	html += '		<div> ';
 	html += '			<a target="_blank" href="'+p+"/versus/show/"+v.id+'"><h5 class="versus-title">' + v.title + '</h5></a>';
 	html += '		</div> ';
 	html += '		<div class="versus-description">' + v.description + '</div> ';
 	html += '	</div> ';
 
-	html += '<div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1">'
-			+	'<button class="btn p-0 edit-button">'
-			+		'<span>'
-			+			'<i class="fas fa-pen-square fa-2x"></i>'
-			+		'</span>'
-			+	'</button>'
-			+	'<button href="#" class="btn p-0 delete-button">'
-			+		'<span>'
-			+			'<i class="fas fa-trash-alt fa-2x"></i>'
-			+		'</span>'
-			+	'</button>'
+	html += '<div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1 d-flex flex-column">'
+			+	'<span class="d-flex mb-1 justify-content-end edit-button">'
+			+		'<i class="fas fa-pen-square fa-2x"></i>'
+			+	'</span>'
+
+			+	'<span class="d-flex justify-content-end">'
+			+		'<i class="fas fa-trash-alt fa-2x delete-button"></i>'
+			+	'</span>'
 			+'</div>';
 
 	html += '</div>';
 
 	html += '<div class="dropdown-divider"></div>';
 
-	html += '<div class="row">';
-	html += '	<div class="col-6 d-flex justify-content-center">';
+	html += '<div class="row d-flex">';
 
-	html += '		<button	class="btn btn-outline-light d-flex flex-column flex-sm-column flex-md-row ';
+	html += '	<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'
+	html += ' d-flex justify-content-center align-items-center versus-author-wrap"> ';
+	html += '		<div ';
+	html += '			class="d-flex flex-row versus-author"> ';
+	html += '			<p class="mb-0">Author:&nbsp</p> ';
+	html += '			<p class="author-nickname mb-0">' + v.author.nickName + '</p> ';
+	html += '		</div> ';
+	html += '	</div> ';
+
+	html += '	<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'
+	html += 		' d-flex justify-content-center align-items-center"> ';
+	
+	html += 		'<p class="d-flex mb-0 versus-date">' + vCreateDate + '</p> ';
+	html += '	</div> ';
+
+	html += '	<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-flex '
+	html += 			'justify-content-center mt-2 mt-sm-2 mt-md-0">';
+	html += '		<button	class="btn btn-outline-light d-flex flex-row ';
 	html += '			justify-content-center align-items-center" ';
 	html += '			type="button" data-toggle="collapse" data-target="#comment-block'
 			+ v.id + '" ';
 	html += '			aria-expanded="false" aria-controls="comment-block' + v.id
 			+ '"> ';
-	html += '			<i class="far fa-comments fa-2x"></i> <span class="ml-md-3">'
+	html += '			<i class="far fa-comments fa-2x"></i> <span class="ml-md-3">&nbsp'
 			+ vCommentsNumber + '</span> ';
 	html += '		</button> ';
 	html += '	</div> ';
 
-	html += '	<div class="col-6 d-flex justify-content-center versus-author-wrap"> ';
-	html += '		<div ';
-	html += '			class="d-flex flex-column flex-sm-column  ';
-	html += '			flex-md-row versus-author"> ';
-	html += '			<p>Author:&nbsp</p> ';
-	html += '			<p class="author-nickname">' + v.author.nickName + '</p> ';
-	html += '		</div> ';
-	html += '	</div> ';
 	html += '</div>';
 
 
@@ -442,4 +444,15 @@ function loadMore() {
 	});
 }
 
+jQuery('body').on('click', '.delete-button', function() {
+	var versus = jQuery(this).parent().parent().parent().parent();
+	deleteVersus(versus);
+});
 
+function deleteVersus(this_versus){
+	this_versus.hide();
+}
+
+function editVersus(versus_id){
+
+}

@@ -16,8 +16,8 @@
 		<div class="container" id="versus-container">
 
 			<div class="row">
-				<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-					<h4 id="versus-title"></h4>
+				<div class="col-12">
+					<h4 id="versus-title" class="text-justify"></h4>
 				</div>
 				<div class="col-0 col-sm-0 col-md-6 col-lg-6 col-xl-6"></div>
 			</div>
