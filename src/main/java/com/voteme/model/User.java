@@ -70,6 +70,12 @@ public class User {
 
 	@Column(name = "code")
 	private String code;
+	
+	@Column(name = "reset_code")
+	private String resetCode;
+	
+	@Column(name = "reset_code_date")
+	private Timestamp resetCodeDate;
 
 	public User() {
 		this.is_verified = false;
@@ -162,6 +168,30 @@ public class User {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public String getResetCode() {
+		return resetCode;
+	}
+
+	public void setResetCode(String resetCode) {
+		this.resetCode = resetCode;
+	}
+
+	public Timestamp getResetCodeDate() {
+		return resetCodeDate;
+	}
+
+	public void setResetCodeDate(Timestamp resetCodeDate) {
+		this.resetCodeDate = resetCodeDate;
 	}
 
 	@Override

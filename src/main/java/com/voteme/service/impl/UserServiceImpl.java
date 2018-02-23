@@ -54,4 +54,14 @@ public class UserServiceImpl implements UserService {
 		return userDao.getByCode(token);
 	}
 
+	@Override
+	public User getUserByEmail(String email) {
+		return userDao.getUserByEmail(email);
+	}
+
+	@Override
+	public User getByResetPasswordCode(String token) {
+		return userDao.getByResetPasswordCode(token);
+	}
+
 }

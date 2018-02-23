@@ -54,9 +54,10 @@
 		<security:authorize access="isAnonymous()">
 			<li><a href="${contextPath}/register" class="nav-link"><i
 					class="fa fa-user-plus" aria-hidden="false"></i> Register</a></li>
-			<li><a href="${contextPath}/login" class="nav-link"><i
-					class="fa fa-sign-in-alt" aria-hidden="false"></i> Login</a></li>
-
+			<li class="nav-item"><a data-toggle="modal"
+						data-target="#exampleModal3" class="nav-link"
+						style="cursor: pointer;"><i class="fas fa-sign-in-alt"
+							aria-hidden="false"></i> Login</a></li>
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">
@@ -115,7 +116,8 @@
 							</span>
 						</div>
 
-						<input type="password" class="form-control" name="password" placeholder="Password">
+						<input type="password" class="form-control" name="password"
+							placeholder="Password">
 
 
 

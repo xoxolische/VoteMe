@@ -20,6 +20,8 @@ public class UserAuth implements UserDetails {
 
 	private Role role;
 
+	private boolean confirmed;
+
 	public UserAuth(long id, String username, String password, boolean isActive, Role role) {
 		this.id = id;
 		this.username = username;
@@ -35,7 +37,16 @@ public class UserAuth implements UserDetails {
 			this.password = u.getPassword();
 			this.isActive = true;
 			this.role = u.getRole();
+			this.confirmed = u.isIs_verified();
 		}
+	}
+
+	public boolean isConfirmed() {
+		return confirmed;
+	}
+
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
 	}
 
 	public long getId() {

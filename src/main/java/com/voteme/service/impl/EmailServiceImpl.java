@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import com.voteme.model.mail.ConfirmationMail;
+import com.voteme.model.mail.PasswordResetMail;
 import com.voteme.model.mail.SuccessActivationMail;
+import com.voteme.model.mail.SuccessResetMail;
 import com.voteme.service.EmailService;
 
 import freemarker.core.ParseException;
@@ -56,6 +58,40 @@ public class EmailServiceImpl implements EmailService {
 				StandardCharsets.UTF_8.name());
 
 		Template t = freemarkerConfig.getTemplate("success.ftl");
+		String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, mail.getModel());
+
+		helper.setTo(mail.getTo());
+		helper.setText(html, true);
+		helper.setSubject(mail.getSubject());
+		helper.setFrom(mail.getFrom());
+
+		emailSender.send(message);
+	}
+
+	public void send(PasswordResetMail mail) throws MessagingException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException, TemplateException {
+		MimeMessage message = emailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+				StandardCharsets.UTF_8.name());
+
+		Template t = freemarkerConfig.getTemplate("passwordReset.ftl");
+		String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, mail.getModel());
+
+		helper.setTo(mail.getTo());
+		helper.setText(html, true);
+		helper.setSubject(mail.getSubject());
+		helper.setFrom(mail.getFrom());
+
+		emailSender.send(message);
+	}
+
+	public void send(SuccessResetMail mail) throws MessagingException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException, TemplateException {
+		MimeMessage message = emailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+				StandardCharsets.UTF_8.name());
+
+		Template t = freemarkerConfig.getTemplate("successResetPassword.ftl");
 		String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, mail.getModel());
 
 		helper.setTo(mail.getTo());

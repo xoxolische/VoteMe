@@ -11,4 +11,8 @@ public interface UserDao extends CrudDao<User>{
 
 	boolean userExists(String email);
 
+	User getUserByEmail(String email);
+
+	User getByResetPasswordCode(String code);
+
 }

@@ -38,6 +38,25 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao 
 			return null;
 		}
 	}
+	
+	@Override
+	public User getUserByEmail(String email) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<User> query = builder.createQuery(User.class);
+			Root<User> root = query.from(User.class);
+			query.select(root).where(builder.equal(root.get("email"), email));
+			Query<User> q = session.createQuery(query);
+			User u = q.getSingleResult();
+			session.getTransaction().commit();
+			return u;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return null;
+		}
+	}
 
 	@Override
 	public boolean userExists(String email) {
@@ -71,6 +90,25 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Long> implements UserDao 
 			CriteriaQuery<User> query = builder.createQuery(User.class);
 			Root<User> root = query.from(User.class);
 			query.select(root).where(builder.equal(root.get("code"), token));
+			Query<User> q = session.createQuery(query);
+			User u = q.getSingleResult();
+			session.getTransaction().commit();
+			return u;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return null;
+		}
+	}
+
+	@Override
+	public User getByResetPasswordCode(String code) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<User> query = builder.createQuery(User.class);
+			Root<User> root = query.from(User.class);
+			query.select(root).where(builder.equal(root.get("resetCode"), code));
 			Query<User> q = session.createQuery(query);
 			User u = q.getSingleResult();
 			session.getTransaction().commit();

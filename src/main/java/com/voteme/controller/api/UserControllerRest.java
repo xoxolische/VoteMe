@@ -1,8 +1,10 @@
 package com.voteme.controller.api;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +15,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.User;
 import com.voteme.model.mail.ConfirmationMail;
+import com.voteme.model.mail.PasswordResetMail;
 import com.voteme.service.EmailService;
 import com.voteme.service.RoleService;
 import com.voteme.service.UserService;
@@ -38,8 +43,8 @@ public class UserControllerRest {
 	@Autowired
 	private EmailService emailService;
 
-//	@Autowired
-//	private RoleService roleService;
+	// @Autowired
+	// private RoleService roleService;
 
 	@Autowired
 	private RoleService roleService;
@@ -90,7 +95,7 @@ public class UserControllerRest {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 	}
-	
+
 	@PostMapping(value = "/update", produces = "application/json")
 	public void update(@RequestBody User user) {
 		userService.update(user);
@@ -109,6 +114,25 @@ public class UserControllerRest {
 	@PostMapping(value = "/getAll", produces = "application/json")
 	public List<User> getAll() {
 		return userService.getAll();
+	}
+
+	@GetMapping(value = "/resetPassword")
+	public void userResetPassword(@RequestParam(name = "email") String email) {
+		if (email != null && !email.equals("")) {
+			User u = userService.getUserByEmail(email);
+			if (u != null) {
+				u.setResetCode(UUID.randomUUID().toString());
+				u.setResetCodeDate(new Timestamp(System.currentTimeMillis()));
+				userService.update(u);
+				try {
+					emailService.send(new PasswordResetMail(u));
+				} catch (MessagingException | IOException | TemplateException e) {
+					e.printStackTrace();
+				}
+				
+			}
+
+		}
 	}
 
 }
