@@ -46,6 +46,9 @@
 							<div class="msg">${logout}</div>
 						</c:if>
 						<div class="form-group">
+							<a href="${contextPath}/passwordReset">Forgot password?</a>
+						</div>
+						<div class="form-group">
 							<button type="Submit" class="btn btn-outline-success col-12"
 								name="Submit" value="Login" type="Submit">Log in</button>
 						</div>

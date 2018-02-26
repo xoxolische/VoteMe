@@ -7,6 +7,8 @@ import java.util.UUID;
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -85,37 +87,39 @@ public class UserController {
 		return "home";
 	}
 
-	@GetMapping(value = "/passwrodReset")
-	public String resetPage() {
-		return "resetPassword";
-	}
-
 	@GetMapping(value = "/resetLink")
-	public String userResetLinkRequest(@RequestParam(name = "token") String token) {
+	public String userResetLinkRequest(@RequestParam(name = "token") String token, Model model) {
 		User u = userService.getByResetPasswordCode(token);
 		if (u != null) {
 			if (!u.isResetUsed()) {
 				StringRandomGen msr = new StringRandomGen();
 				String s = msr.generateRandomString();
-				System.out.println(s);
+				//System.out.println(s);
 				u.setPassword(new BCryptPasswordEncoder().encode(s));
 				u.setResetUsed(true);
 				userService.update(u);
 				try {
 					emailService.send(new SuccessResetMail(u, s));
+					model.addAttribute("success", "Your reset password request successfully done, check your email address, we have sent a new one. Log in and go profile setting if you want change it.");
 				} catch (MessagingException | IOException | TemplateException e) {
 					e.printStackTrace();
+					u.setResetUsed(false);
+					userService.update(u);
+					model.addAttribute("error", "We have failed letter sending via email. Please, try again later.");
 				}
 			} else {
-				System.out.println("Reset link already used!");
+				//System.out.println("Reset link already used!");
+				model.addAttribute("error", "Reset link already used! You can request a new one or use a password from letter we have sent you before.");
 			}
+		}else {
+			model.addAttribute("error", "Acess token is wrong!");
 		}
 
-		return "home";
+		return "resetPassword";
 	}
 
 	@GetMapping(value = "/resetPassword")
-	public String userResetPassword(@RequestParam(name = "email") String email) {
+	public ResponseEntity<?> userResetPassword(@RequestParam(name = "email") String email) {
 		if (email != null && !email.equals("")) {
 			User u = userService.getUserByEmail(email);
 			if (u != null) {
@@ -135,16 +139,20 @@ public class UserController {
 					userService.update(u);
 					try {
 						emailService.send(new PasswordResetMail(u));
+						return ResponseEntity.status(HttpStatus.OK).body("Ok, we have sent you a letter with reset link. Check your email address.");
 					} catch (MessagingException | IOException | TemplateException e) {
 						e.printStackTrace();
+						return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Something went wrong. error 500");
 					}
 				} else {
-					System.out.println("You can request password reset once per 24h!");
+					return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("You can request password reset once per 24h!");
+					//System.out.println("You can request password reset once per 24h!");
 				}
 			} else {
-				System.out.println("Wrong email!");
+				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("User with such email address does not exists!");
+				//System.out.println("Wrong email!");
 			}
 		}
-		return "home";
+		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Email can not be empty!");
 	}
 }

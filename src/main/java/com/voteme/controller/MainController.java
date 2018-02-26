@@ -39,5 +39,10 @@ public class MainController {
 	public String registerPage(Model model) {
 		return "registerUser";
 	}
+	
+	@GetMapping(value = "/passwordReset")
+	public String resetPage() {
+		return "resetPassword";
+	}
 
 }

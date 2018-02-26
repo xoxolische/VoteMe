@@ -55,9 +55,9 @@
 			<li><a href="${contextPath}/register" class="nav-link"><i
 					class="fa fa-user-plus" aria-hidden="false"></i> Register</a></li>
 			<li class="nav-item"><a data-toggle="modal"
-						data-target="#exampleModal3" class="nav-link"
-						style="cursor: pointer;"><i class="fas fa-sign-in-alt"
-							aria-hidden="false"></i> Login</a></li>
+				data-target="#exampleModal3" class="nav-link"
+				style="cursor: pointer;"><i class="fas fa-sign-in-alt"
+					aria-hidden="false"></i> Login</a></li>
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">
@@ -122,7 +122,9 @@
 
 
 					</div>
-
+					<div class="input-group mt-3">
+						<a href="${contextPath}/passwordReset">Forgot password?</a>
+					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<c:if test="${not empty error}">

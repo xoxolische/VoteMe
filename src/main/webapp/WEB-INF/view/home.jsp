@@ -194,7 +194,7 @@
 		src="<c:url value="/resources/scripts/home.js"/>"></script>
 
 
-	<script src="resources/scripts/jquery.parallax.js"></script>
+	<!--<script src="resources/scripts/jquery.parallax.js"></script>  -->
 
 	<script>
 		jQuery(document).ready(function() {

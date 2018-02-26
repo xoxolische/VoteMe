@@ -8,7 +8,7 @@ public class SuccessResetMail extends Mail {
 
 	public SuccessResetMail(User u, String password) {
 		super(u);
-		this.subject = "no-reply successful confirmation";
+		this.subject = "no-reply successful password reset";
 		this.getModel().put("newPassword", password);
 	}
 
