@@ -29,7 +29,7 @@
 
 		<!-- Confirmation -->
 		<intercept-url pattern="/users/confirmation**" access="isAuthenticated()" />
-		<intercept-url pattern="/users/resetLink**" access="isAnonymous()" />
+		<intercept-url pattern="/users/reset**" access="isAnonymous()" />
 		<intercept-url pattern="/users/**" access="hasAuthority('ADMIN')" />
 		<!-- <intercept-url pattern="/versus/**" access="hasAuthority('ADMIN') 
 			or hasAuthority('MODERATOR') or hasAuthority('USER')" /> -->

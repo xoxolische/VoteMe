@@ -2,6 +2,7 @@ package com.voteme.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 import javax.mail.MessagingException;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.voteme.model.User;
 import com.voteme.model.UserAuth;
+import com.voteme.model.mail.PasswordResetMail;
 import com.voteme.model.mail.SuccessActivationMail;
 import com.voteme.model.mail.SuccessResetMail;
 import com.voteme.service.EmailService;
@@ -83,27 +85,66 @@ public class UserController {
 		return "home";
 	}
 
+	@GetMapping(value = "/passwrodReset")
+	public String resetPage() {
+		return "resetPassword";
+	}
+
 	@GetMapping(value = "/resetLink")
-	public String userConfirmation(@RequestParam(name = "token") String token) {
+	public String userResetLinkRequest(@RequestParam(name = "token") String token) {
 		User u = userService.getByResetPasswordCode(token);
 		if (u != null) {
-			Timestamp current = new Timestamp(System.currentTimeMillis());
-			long delta = current.getTime() - u.getResetCodeDate().getTime();
-			// if less than 24h
-			if (delta < (1000 * 60 * 60 * 24)) {
+			if (!u.isResetUsed()) {
 				StringRandomGen msr = new StringRandomGen();
 				String s = msr.generateRandomString();
 				System.out.println(s);
 				u.setPassword(new BCryptPasswordEncoder().encode(s));
+				u.setResetUsed(true);
 				userService.update(u);
 				try {
 					emailService.send(new SuccessResetMail(u, s));
 				} catch (MessagingException | IOException | TemplateException e) {
 					e.printStackTrace();
 				}
+			} else {
+				System.out.println("Reset link already used!");
 			}
 		}
 
+		return "home";
+	}
+
+	@GetMapping(value = "/resetPassword")
+	public String userResetPassword(@RequestParam(name = "email") String email) {
+		if (email != null && !email.equals("")) {
+			User u = userService.getUserByEmail(email);
+			if (u != null) {
+				long delta = 0;
+				boolean nullable = false;
+				if (u.getResetCodeDate() != null) {
+					Timestamp current = new Timestamp(System.currentTimeMillis());
+					delta = current.getTime() - u.getResetCodeDate().getTime();
+				}else {
+					nullable = true;
+				}
+				// if less than 24h
+				if (nullable || delta > (1000 * 60 * 60 * 24)) {
+					u.setResetCode(UUID.randomUUID().toString());
+					u.setResetCodeDate(new Timestamp(System.currentTimeMillis()));
+					u.setResetUsed(false);
+					userService.update(u);
+					try {
+						emailService.send(new PasswordResetMail(u));
+					} catch (MessagingException | IOException | TemplateException e) {
+						e.printStackTrace();
+					}
+				} else {
+					System.out.println("You can request password reset once per 24h!");
+				}
+			} else {
+				System.out.println("Wrong email!");
+			}
+		}
 		return "home";
 	}
 }

@@ -60,7 +60,7 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = "user")
 	private Set<Mark> marks;
-	
+
 	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = "author")
 	private Set<Comment> comments;
@@ -70,12 +70,15 @@ public class User {
 
 	@Column(name = "code")
 	private String code;
-	
+
 	@Column(name = "reset_code")
 	private String resetCode;
-	
+
 	@Column(name = "reset_code_date")
 	private Timestamp resetCodeDate;
+
+	@Column(name = "reset_link_is_used", nullable = false)
+	private boolean resetUsed;
 
 	public User() {
 		this.is_verified = false;
@@ -192,6 +195,14 @@ public class User {
 
 	public void setResetCodeDate(Timestamp resetCodeDate) {
 		this.resetCodeDate = resetCodeDate;
+	}
+
+	public boolean isResetUsed() {
+		return resetUsed;
+	}
+
+	public void setResetUsed(boolean resetUsed) {
+		this.resetUsed = resetUsed;
 	}
 
 	@Override
