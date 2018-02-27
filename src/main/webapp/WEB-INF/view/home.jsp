@@ -168,13 +168,9 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-			<input type="hidden" id="lastDate" value="null">
-				<button 
-				class="btn btn-success col-md-4 offset-md-4" 
-				onclick="loadMore()" 
-				id="more-button">
-					More...
-				</button>
+				<input type="hidden" id="lastDate" value="null">
+				<button class="btn btn-success col-md-4 offset-md-4"
+					onclick="loadMore()" id="more-button">More...</button>
 			</div>
 		</div>
 	</div>
@@ -194,7 +190,7 @@
 		src="<c:url value="/resources/scripts/home.js"/>"></script>
 
 
-	<!--<script src="resources/scripts/jquery.parallax.js"></script>  -->
+	<!--<script src="resources/scripts/jquery.parallax.js"></script> 
 
 	<script>
 		jQuery(document).ready(function() {
@@ -203,6 +199,7 @@
 			});
 		});
 	</script>
+	 -->
 </body>
 </html>
 

@@ -1,11 +1,14 @@
 package com.voteme.model;
 
 import java.sql.Timestamp;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -80,9 +83,24 @@ public class User {
 	@Column(name = "reset_link_is_used", nullable = false)
 	private boolean resetUsed;
 
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "avatar")
+	private Avatar avatar;
+
 	public User() {
 		this.is_verified = false;
 		this.code = UUID.randomUUID().toString();
+		Random r = new Random();
+		int i = r.nextInt(Avatar.values().length);
+		this.avatar = Avatar.values()[i];
+	}
+	
+	public Avatar getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(Avatar avatar) {
+		this.avatar = avatar;
 	}
 
 	public long getId() {

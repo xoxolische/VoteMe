@@ -5,8 +5,6 @@
 <head>
 <%@include file="meta.jsp"%>
 <%@include file="header.jsp"%>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/css/create_user.css"/>">
 <title>500</title>
 </head>
 <body>
