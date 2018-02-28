@@ -2,6 +2,7 @@ package com.voteme.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +32,7 @@ public class Opinion {
 	@JoinColumn(name = "versus_id")
 	private Versus versus;
 
-	@OneToMany(mappedBy = "opinion", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "opinion", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties(value = { "opinion" })
 	private Set<OpinionMark> marks;
 

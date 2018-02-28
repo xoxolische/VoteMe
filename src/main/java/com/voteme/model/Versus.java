@@ -51,7 +51,7 @@ public class Versus {
 	private User author;
 
 	// @JsonIgnore
-	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties(value = { "versus", "marks" })
 	private Set<Comment> comments;
 

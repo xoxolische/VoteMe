@@ -182,7 +182,8 @@
 	</div>
 	<input type="hidden" id="currentId"
 		value="${sessionScope.currentUserId}" />
-
+	<input type="hidden" id="currentRole"
+		value="${sessionScope.currentUserRole}" />
 	<%@ include file="footer.jsp"%>
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/createComment.js"/>"></script>

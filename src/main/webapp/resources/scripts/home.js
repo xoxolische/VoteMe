@@ -19,7 +19,6 @@ function getAllVersus() {
 	});
 }
 
-
 function outputData(data) {
 	var p = $("#path").val();
 	var marks = null;
@@ -124,12 +123,13 @@ function dataFinallyDone(data, curId, marks) {
 		appendData(data[i], curId, marks);
 	}
 	$("#preloader").hide();
-	jQuery('.page-title').show();	
+	jQuery('.page-title').show();
 	jQuery('#more-button').show();
 }
 
 // this is gavno code here!!!
 function appendData(v, curId, marks) {
+	var roleName = $("#currentRole").val();
 	// console.log(v);
 	var vDateTime = v.createdAt;
 	var vCreateDate = moment(vDateTime).format("HH:mm:ss DD/MM/YYYY")
@@ -145,7 +145,8 @@ function appendData(v, curId, marks) {
 	var up = p + "/resources/images/arrow_up.png";
 	var down = p + "/resources/images/arrow_down.png";
 
-	var html = '<div class="row bg-dark text-light flex-wrap flex-column list-item">';
+	var html = '<div class="row bg-dark text-light flex-wrap flex-column list-item" id="'
+			+ v.id + '">';
 
 	html += '<div class="row" style="height: 105px;">';
 	html += '	<div ';
@@ -170,21 +171,23 @@ function appendData(v, curId, marks) {
 
 	html += '	<div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9"> ';
 	html += '		<div> ';
-	html += '			<a target="_blank" href="'+p+"/versus/show/"+v.id+'"><h5 class="versus-title">' + v.title + '</h5></a>';
+	html += '			<a target="_blank" href="' + p + "/versus/show/" + v.id
+			+ '"><h5 class="versus-title">' + v.title + '</h5></a>';
 	html += '		</div> ';
 	html += '		<div class="versus-description">' + v.description + '</div> ';
 	html += '	</div> ';
+	//here
+	if (roleName == "ADMIN") {
+		html += '<div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1 d-flex flex-column">'
+				+ '<span class="d-flex mb-1 justify-content-end edit-button">'
+				+ '<i class="fas fa-pen-square fa-2x"></i>'
+				+ '</span>'
 
-	html += '<div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1 d-flex flex-column">'
-			+	'<span class="d-flex mb-1 justify-content-end edit-button">'
-			+		'<i class="fas fa-pen-square fa-2x"></i>'
-			+	'</span>'
-
-			+	'<span class="d-flex justify-content-end">'
-			+		'<i class="fas fa-trash-alt fa-2x delete-button"></i>'
-			+	'</span>'
-			+'</div>';
-
+				+ '<span class="d-flex justify-content-end">'
+				+ '<i class="fas fa-trash-alt fa-2x delete-button"></i>'
+				+ '</span>' + '</div>';
+	}
+	;
 	html += '</div>';
 
 	html += '<div class="dropdown-divider"></div>';
@@ -201,13 +204,13 @@ function appendData(v, curId, marks) {
 	html += '	</div> ';
 
 	html += '	<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'
-	html += 		' d-flex justify-content-center align-items-center"> ';
-	
-	html += 		'<p class="d-flex mb-0 versus-date">' + vCreateDate + '</p> ';
+	html += ' d-flex justify-content-center align-items-center"> ';
+
+	html += '<p class="d-flex mb-0 versus-date">' + vCreateDate + '</p> ';
 	html += '	</div> ';
 
 	html += '	<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-flex '
-	html += 			'justify-content-center mt-2 mt-sm-2 mt-md-0">';
+	html += 'justify-content-center mt-2 mt-sm-2 mt-md-0">';
 	html += '		<button	class="btn btn-outline-light d-flex flex-row ';
 	html += '			justify-content-center align-items-center" ';
 	html += '			type="button" data-toggle="collapse" data-target="#comment-block'
@@ -221,9 +224,8 @@ function appendData(v, curId, marks) {
 
 	html += '</div>';
 
-
-
-	html += '<div class="row collapse mt-2 comments-row" id="comment-block' + v.id + '">';
+	html += '<div class="row collapse mt-2 comments-row" id="comment-block'
+			+ v.id + '">';
 
 	html += '<div class="comments-wrap rounded p-1">';
 
@@ -250,8 +252,8 @@ function appendData(v, curId, marks) {
 
 	html += '	<div class="dropdown-divider"></div> ';
 
-//	html += '	<div class="row"><div class="col-12"><h6>Comments(<span>'
-//			+ vCommentsNumber + '</span>)</h6></div></div> ';
+	// html += ' <div class="row"><div class="col-12"><h6>Comments(<span>'
+	// + vCommentsNumber + '</span>)</h6></div></div> ';
 
 	html += '	<div id="comment-container-' + v.id + '"></div>';
 
@@ -316,7 +318,6 @@ function appendData(v, curId, marks) {
 
 }
 
-
 function appendComments(c, id) {
 	var p = $("#path").val();
 	var p0 = p;
@@ -324,7 +325,9 @@ function appendComments(c, id) {
 		p += "/resources/avatars/" + c[i].author.avatar + ".jpg";
 		var createDate = moment(c[i].createdAt).format("HH:mm:ss DD/MM/YYYY")
 		var html = '<div class="row mt-3 d-flex flex-column"><div class="d-flex"><div class="col-3 col-sm-3 col-md-2 col-lg-1 col-xl-1 d-flex justify-content-end pr-0">';
-		html += '	<div class="d-flex justify-content-center align-items-center border rounded" style="height: 60px; width: 60px;"><img style="height: 60px; width: 60px;" src="'+p+'" alt="no photo"></div>	</div><div	class="col-9 col-sm-9 col-md-10 col-lg-11 col-xl-11 d-flex flex-column">';
+		html += '	<div class="d-flex justify-content-center align-items-center border rounded" style="height: 60px; width: 60px;"><img style="height: 60px; width: 60px;" src="'
+				+ p
+				+ '" alt="no photo"></div>	</div><div	class="col-9 col-sm-9 col-md-10 col-lg-11 col-xl-11 d-flex flex-column">';
 		html += '	<div class="d-flex justify-content-between flex-column flex-sm-row"><h6>'
 				+ c[i].author.nickName
 				+ '</h6><span>'
@@ -338,23 +341,18 @@ function appendComments(c, id) {
 	}
 };
 
-
 function prependComment(c, id) {
 	var createDate = moment(c.createdAt).format("HH:mm:ss DD/MM/YYYY")
 	var html = '<div class="row mt-3 d-flex flex-column"><div class="d-flex"><div class="col-3 col-sm-3 col-md-2 col-lg-1 col-xl-1 d-flex justify-content-end pr-0">';
 	html += '	<div class="d-flex justify-content-center align-items-center border rounded" style="height: 60px; width: 60px;">image</div>	</div><div	class="col-9 col-sm-9 col-md-10 col-lg-11 col-xl-11 d-flex flex-column">';
 	html += '	<div class="d-flex justify-content-between flex-column flex-sm-row"><h6>'
-			+ c.author.nickName
-			+ '</h6><span>'
-			+ createDate
-			+ '</span></div>';
+			+ c.author.nickName + '</h6><span>' + createDate + '</span></div>';
 	html += '	<div class="d-flex"><p class="text-justify">'
 			+ c.text
 			+ '</p></div></div></div><div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 	$("#comment-container-" + id).prepend(html);
 
 };
-
 
 function getMark(marks) {
 	var counter = 0;
@@ -450,13 +448,20 @@ function loadMore() {
 
 jQuery('body').on('click', '.delete-button', function() {
 	var versus = jQuery(this).parent().parent().parent().parent();
-	deleteVersus(versus);
+	var vId = $(versus).attr("id");
+	$.when(deleteVersus(vId)).done(function(data) {
+		versus.hide();
+		alert("Versus deleted!");
+	});
 });
 
-function deleteVersus(this_versus){
-	this_versus.hide();
+function deleteVersus(versusId) {
+	return $.ajax({
+		url : $('#path').val() + '/api/versus/delete/' + versusId,
+		type : 'DELETE'
+	});
 }
 
-function editVersus(versus_id){
+function editVersus(versus_id) {
 
 }
