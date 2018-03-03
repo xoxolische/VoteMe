@@ -145,3 +145,7 @@
 .edit-button, .delete-button {
 	cursor: pointer;
 }
+
+.rate-comment-up, .rate-comment-down {
+	cursor: pointer;
+}
