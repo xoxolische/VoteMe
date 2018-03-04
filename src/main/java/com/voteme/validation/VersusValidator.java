@@ -9,6 +9,7 @@ import org.springframework.validation.Validator;
 import com.voteme.model.Opinion;
 import com.voteme.model.Versus;
 import com.voteme.service.UserService;
+import com.voteme.utils.CurrentUser;
 
 @Component
 public class VersusValidator implements Validator {
@@ -42,9 +43,9 @@ public class VersusValidator implements Validator {
 			if (v.getOpinions() == null || v.getOpinions().size() != 2) {
 				errors.rejectValue("opinions", "Versus must have 2 opinions!");
 			}
-			if (userService.get(v.getAuthor().getId()) == null) {
-				errors.rejectValue("user", "User with such id does not exists!");
-			}
+//			if (userService.get(v.getAuthor().getId()) == null) {
+//				errors.rejectValue("user", "User with such id does not exists!");
+//			}
 
 			int i = 0;
 			for (Opinion o : v.getOpinions()) {

@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.voteme.model.User;
 import com.voteme.model.UserAuth;
 import com.voteme.model.Versus;
 import com.voteme.service.VersusService;
+import com.voteme.utils.CurrentUser;
 import com.voteme.validation.VersusValidator;
 
 @RestController
@@ -33,7 +33,12 @@ public class VersusControllerRest {
 	private VersusValidator versusValidator;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public ResponseEntity<?> create(@RequestBody Versus versus, BindingResult result) {
+	public ResponseEntity<?> create(@RequestBody Versus versus, BindingResult result, Authentication a) {
+		if (versus.getAuthor() != null) {
+			if (CurrentUser.isCurrentUser(versus.getAuthor().getId(), a)) {
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
+			}
+		}
 		versusValidator.validate(versus, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();

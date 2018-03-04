@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.Comment;
 import com.voteme.service.CommentService;
+import com.voteme.utils.CurrentUser;
 import com.voteme.validation.CommentValidator;
 
 @RestController
@@ -30,7 +32,12 @@ public class CommentControllerRest {
 	private CommentValidator commentValidator;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public ResponseEntity<?> create(@RequestBody Comment c, BindingResult result) {
+	public ResponseEntity<?> create(@RequestBody Comment c, BindingResult result, Authentication a) {
+		if (c.getAuthor() != null) {			
+			if(CurrentUser.isCurrentUser(c.getAuthor().getId(), a)) {
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
+			}
+		}
 		commentValidator.validate(c, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();

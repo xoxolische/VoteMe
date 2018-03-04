@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +25,7 @@ import com.voteme.model.mail.ConfirmationMail;
 import com.voteme.service.EmailService;
 import com.voteme.service.RoleService;
 import com.voteme.service.UserService;
+import com.voteme.utils.CurrentUser;
 import com.voteme.validation.UserValidator;
 
 import freemarker.template.TemplateException;
@@ -48,7 +50,10 @@ public class UserControllerRest {
 	private UserValidator userValidator;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public ResponseEntity<?> create(@RequestBody User user, BindingResult result, HttpServletRequest request) {
+	public ResponseEntity<?> create(@RequestBody User user, BindingResult result, HttpServletRequest request, Authentication a) {
+		if(!CurrentUser.isAdmin(a)) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
+		}
 		userValidator.validate(user, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();

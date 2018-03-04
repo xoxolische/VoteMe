@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.OpinionMark;
 import com.voteme.service.OpinionMarkService;
+import com.voteme.utils.CurrentUser;
 import com.voteme.validation.OpinionMarkValidator;
 
 @RestController
@@ -28,7 +30,12 @@ public class OpinionMarkControllerRest {
 	private OpinionMarkValidator opinionMarkValidator;
 
 	@PostMapping(value = "/create", produces = "application/json")
-	public ResponseEntity<?> create(@RequestBody OpinionMark op, BindingResult result) {
+	public ResponseEntity<?> create(@RequestBody OpinionMark op, BindingResult result, Authentication a) {
+		if (op.getUser() != null) {			
+			if(CurrentUser.isCurrentUser(op.getUser().getId(), a)) {
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
+			}
+		}
 		opinionMarkValidator.validate(op, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();
