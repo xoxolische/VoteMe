@@ -335,7 +335,15 @@ function appendComments(c, id) {
 				+ '</span></div>';
 		html += '	<div class="d-flex"><p class="text-justify">'
 				+ c[i].text
-				+ '</p></div></div></div><div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
+				+ '</p></div></div></div>'
+				+ '<div class="row d-flex justify-content-center">'
+				+ 	'<div class="d-flex flex-row">'	
+				+		'<span class="rate-comment-down d-flex align-items-center"><i class="fas fa-thumbs-down"></i></span>'
+				+		'<label class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">999</label>'
+				+		'<span class="rate-comment-up d-flex align-items-center"><i class="fas fa-thumbs-up"></i></span>'
+				+	'</div>'
+				+ '</div>'
+				+'<div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 		$("#comment-container-" + id).append(html);
 		p = p0;
 	}
@@ -349,7 +357,15 @@ function prependComment(c, id) {
 			+ c.author.nickName + '</h6><span>' + createDate + '</span></div>';
 	html += '	<div class="d-flex"><p class="text-justify">'
 			+ c.text
-			+ '</p></div></div></div><div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
+			+ '</p></div></div></div>'
+			+ '<div class="row d-flex justify-content-center">'
+			+ 	'<div class="d-flex flex-row">'	
+			+		'<span class="rate-comment-down"><i class="fas fa-thumbs-down"></i></span>'
+			+		'<label class="comment-rating">999</label>'
+			+		'<span class="rate-comment-up"><i class="fas fa-thumbs-up"></i></span>'
+			+	'</div>'
+			+ '</div>'
+			+'<div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 	$("#comment-container-" + id).prepend(html);
 
 };
