@@ -95,15 +95,15 @@ function createMark(n) {
 			dataType : 'json'
 		}).done(function(data) {
 			$(document).ready(function() {
-				console.log("here! (update interface for marks need fix)");
+				//console.log("here! (update interface for marks need fix)");
 				$("#upVoteOp-1").hide();
 				$("#upVoteOp-2").hide();
 				if (n == 1) {
 					var m = +($("#op1-mark").text());
-					$("#op1-mark").html(m++);
+					$("#op1-mark").html(++m);
 				} else {
 					var m = +($("#op2-mark").text());
-					$("#op2-mark").html(m++);
+					$("#op2-mark").html(++m);
 				}
 			});
 

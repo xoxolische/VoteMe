@@ -35,7 +35,7 @@ public class VersusControllerRest {
 	@PostMapping(value = "/create", produces = "application/json")
 	public ResponseEntity<?> create(@RequestBody Versus versus, BindingResult result, Authentication a) {
 		if (versus.getAuthor() != null) {
-			if (CurrentUser.isCurrentUser(versus.getAuthor().getId(), a)) {
+			if (!CurrentUser.isCurrentUser(versus.getAuthor().getId(), a)) {
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
 			}
 		}

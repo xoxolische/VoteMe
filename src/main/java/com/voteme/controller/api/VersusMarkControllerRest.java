@@ -34,11 +34,11 @@ public class VersusMarkControllerRest {
 
 	@PostMapping(value = "/create", produces = "application/json")
 	public ResponseEntity<?> create(@RequestBody VersusMark mark, BindingResult result, Authentication a) {
-		if (mark.getUser() != null) {			
-			if(CurrentUser.isCurrentUser(mark.getUser().getId(), a)) {
-				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
-			}
-		}
+//		if (mark.getUser() != null) {			
+//			if(CurrentUser.isCurrentUser(mark.getUser().getId(), a)) {
+//				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
+//			}
+//		}
 		versusMarkValidator.validate(mark, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();

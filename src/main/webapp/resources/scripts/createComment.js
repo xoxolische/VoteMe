@@ -19,6 +19,7 @@ function createComment(text, curId, vId) {
 	}).done(function(data) {
 		//console.log(data);	
 		$("#user-comment-" + vId).val("");
+		console.log(data);
 		prependComment(data, vId);
 		// alert("Your comment has been added!")
 	}).fail(function(data) {

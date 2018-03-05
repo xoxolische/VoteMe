@@ -31,11 +31,11 @@ public class OpinionMarkControllerRest {
 
 	@PostMapping(value = "/create", produces = "application/json")
 	public ResponseEntity<?> create(@RequestBody OpinionMark op, BindingResult result, Authentication a) {
-		if (op.getUser() != null) {			
-			if(CurrentUser.isCurrentUser(op.getUser().getId(), a)) {
-				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
-			}
-		}
+//		if (op.getUser() != null) {			
+//			if(CurrentUser.isCurrentUser(op.getUser().getId(), a)) {
+//				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
+//			}
+//		}
 		opinionMarkValidator.validate(op, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();

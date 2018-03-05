@@ -13,7 +13,8 @@ public class CurrentUser {
 	public static boolean isCurrentUser(long id, Authentication auth) {
 		if(auth != null) {
 			UserAuth u = (UserAuth) auth.getPrincipal();
-			return id == u.getId();
+			if (id == u.getId())
+				return true;
 		}
 		return false;
 	}

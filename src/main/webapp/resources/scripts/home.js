@@ -176,7 +176,7 @@ function appendData(v, curId, marks) {
 	html += '		</div> ';
 	html += '		<div class="versus-description">' + v.description + '</div> ';
 	html += '	</div> ';
-	//here
+	// here
 	if (roleName == "ADMIN") {
 		html += '<div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1 d-flex flex-column">'
 				+ '<span class="d-flex mb-1 justify-content-end edit-button">'
@@ -337,35 +337,39 @@ function appendComments(c, id) {
 				+ c[i].text
 				+ '</p></div></div></div>'
 				+ '<div class="row d-flex justify-content-center">'
-				+ 	'<div class="d-flex flex-row">'	
-				+		'<span class="rate-comment-down d-flex align-items-center"><i class="fas fa-thumbs-down"></i></span>'
-				+		'<label class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">999</label>'
-				+		'<span class="rate-comment-up d-flex align-items-center"><i class="fas fa-thumbs-up"></i></span>'
-				+	'</div>'
+				+ '<div class="d-flex flex-row">'
+				+ '<span class="rate-comment-down d-flex align-items-center"><i class="fas fa-thumbs-down"></i></span>'
+				+ '<label class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">999</label>'
+				+ '<span class="rate-comment-up d-flex align-items-center"><i class="fas fa-thumbs-up"></i></span>'
 				+ '</div>'
-				+'<div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
+				+ '</div>'
+				+ '<div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 		$("#comment-container-" + id).append(html);
 		p = p0;
 	}
 };
 
 function prependComment(c, id) {
+	var p = $("#path").val();
+	p += "/resources/avatars/" + c.author.avatar + ".jpg";
 	var createDate = moment(c.createdAt).format("HH:mm:ss DD/MM/YYYY")
 	var html = '<div class="row mt-3 d-flex flex-column"><div class="d-flex"><div class="col-3 col-sm-3 col-md-2 col-lg-1 col-xl-1 d-flex justify-content-end pr-0">';
-	html += '	<div class="d-flex justify-content-center align-items-center border rounded" style="height: 60px; width: 60px;">image</div>	</div><div	class="col-9 col-sm-9 col-md-10 col-lg-11 col-xl-11 d-flex flex-column">';
+	html += '	<div class="d-flex justify-content-center align-items-center border rounded" style="height: 60px; width: 60px;"><img style="height: 60px; width: 60px;" src="'
+			+ p
+			+ '" alt="no photo"></div>	</div><div	class="col-9 col-sm-9 col-md-10 col-lg-11 col-xl-11 d-flex flex-column">';
 	html += '	<div class="d-flex justify-content-between flex-column flex-sm-row"><h6>'
 			+ c.author.nickName + '</h6><span>' + createDate + '</span></div>';
 	html += '	<div class="d-flex"><p class="text-justify">'
 			+ c.text
 			+ '</p></div></div></div>'
 			+ '<div class="row d-flex justify-content-center">'
-			+ 	'<div class="d-flex flex-row">'	
-			+		'<span class="rate-comment-down"><i class="fas fa-thumbs-down"></i></span>'
-			+		'<label class="comment-rating">999</label>'
-			+		'<span class="rate-comment-up"><i class="fas fa-thumbs-up"></i></span>'
-			+	'</div>'
+			+ '<div class="d-flex flex-row">'
+			+ '<span class="rate-comment-down"><i class="fas fa-thumbs-down"></i></span>'
+			+ '<label class="comment-rating">999</label>'
+			+ '<span class="rate-comment-up"><i class="fas fa-thumbs-up"></i></span>'
 			+ '</div>'
-			+'<div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
+			+ '</div>'
+			+ '<div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 	$("#comment-container-" + id).prepend(html);
 
 };
@@ -432,7 +436,7 @@ function createMarkForVersus(mark, userId, versusId) {
 		}
 
 	}).fail(function(data) {
-		console.log(data);
+		console.log(data.responseText);
 	});
 }
 

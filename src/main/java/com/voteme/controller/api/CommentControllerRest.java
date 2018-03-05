@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.Comment;
 import com.voteme.service.CommentService;
+import com.voteme.service.UserService;
 import com.voteme.utils.CurrentUser;
 import com.voteme.validation.CommentValidator;
 
@@ -30,11 +31,15 @@ public class CommentControllerRest {
 	
 	@Autowired
 	private CommentValidator commentValidator;
+	
+	@Autowired
+	private UserService userService;
+	
 
 	@PostMapping(value = "/create", produces = "application/json")
 	public ResponseEntity<?> create(@RequestBody Comment c, BindingResult result, Authentication a) {
 		if (c.getAuthor() != null) {			
-			if(CurrentUser.isCurrentUser(c.getAuthor().getId(), a)) {
+			if(!CurrentUser.isCurrentUser(c.getAuthor().getId(), a)) {
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
 			}
 		}
@@ -47,6 +52,7 @@ public class CommentControllerRest {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorList);
 		} else {
 			commentService.create(c);
+			c = commentService.get(c.getId());
 			return new ResponseEntity<Comment>(c, HttpStatus.OK);
 		}
 	}
