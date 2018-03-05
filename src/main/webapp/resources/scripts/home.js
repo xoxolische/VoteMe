@@ -318,6 +318,22 @@ function appendData(v, curId, marks) {
 
 }
 
+function getCommentMark(c) {
+	if (c.marks != null && c.marks.length != 0) {
+		var mark = 0;
+		for (var i = 0; i < c.marks.length; i++) {
+			if (c.marks[i].mark == 1) {
+				mark += 1;
+			} else {
+				mark -= 1;
+			}
+		}
+		return mark;
+	} else {
+		return 0;
+	}
+}
+
 function appendComments(c, id) {
 	var p = $("#path").val();
 	var p0 = p;
@@ -338,17 +354,34 @@ function appendComments(c, id) {
 				+ '</p></div></div></div>'
 				+ '<div class="row d-flex justify-content-center">'
 				+ '<div class="d-flex flex-row">'
-				+ '<span class="rate-comment-down d-flex align-items-center"><i class="fas fa-thumbs-down"></i></span>'
-				+ '<label class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">999</label>'
-				+ '<span class="rate-comment-up d-flex align-items-center"><i class="fas fa-thumbs-up"></i></span>'
+				+ '<span class="rate-comment-down d-flex align-items-center"><i id="up-vote-comment-'
+				+ c[i].id
+				+ '" class="fas fa-thumbs-up"></i></span>'
+				+ '<label class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">'
+				+ getCommentMark(c)
+				+ '</label>'
+				+ '<span class="rate-comment-up d-flex align-items-center"><i id="down-vote-comment-'
+				+ c[i].id
+				+ '" class="fas fa-thumbs-down"></i></span>'
 				+ '</div>'
 				+ '</div>'
-				+ '<div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
+				+ '<div class="d-flex dropdown-divider" style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 		$("#comment-container-" + id).append(html);
 		p = p0;
+		s(c[i].id);
 	}
 };
-
+//watafaq
+function s(id){
+	$(document).ready(function() {
+		$("#down-vote-comment-"+id).click(function() {
+			
+		});
+		$("#up-vote-comment-"+id).click(function() {
+			
+		})
+	});
+}
 function prependComment(c, id) {
 	var p = $("#path").val();
 	p += "/resources/avatars/" + c.author.avatar + ".jpg";
@@ -480,6 +513,42 @@ function deleteVersus(versusId) {
 		url : $('#path').val() + '/api/versus/delete/' + versusId,
 		type : 'DELETE'
 	});
+}
+
+function voteComment(userId, commentId, mark){
+	var item = {
+			"mark" : mark,
+			"user" : {
+				"id" : userId
+			},
+			"versus" : {
+				"id" : versusId
+			}
+		};
+
+		$.ajax({
+			url : $('#path').val() + '/api/versusMark/create',
+			type : 'POST',
+			data : JSON.stringify(item),
+			contentType : "application/json",
+			dataType : 'json'
+		}).done(function(data) {
+			var id = "#rating" + versusId;
+			if (mark) {
+				var m = +($(id).text());
+				$(id).text(m + 1);
+				$("#downVote-" + versusId).hide();
+				$("#upVote-" + versusId).hide();
+			} else {
+				var m = +($(id).text());
+				$(id).text(m - 1);
+				$("#downVote-" + versusId).hide();
+				$("#upVote-" + versusId).hide();
+			}
+
+		}).fail(function(data) {
+			console.log(data.responseText);
+		});
 }
 
 function editVersus(versus_id) {

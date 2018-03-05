@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.Comment;
+import com.voteme.model.CommentMark;
+import com.voteme.service.CommentMarkService;
 import com.voteme.service.CommentService;
-import com.voteme.service.UserService;
 import com.voteme.utils.CurrentUser;
+import com.voteme.validation.CommentMarkValidator;
 import com.voteme.validation.CommentValidator;
 
 @RestController
@@ -30,10 +32,16 @@ public class CommentControllerRest {
 	private CommentService commentService;
 	
 	@Autowired
+	private CommentMarkService commentMarkService;
+	
+	@Autowired
 	private CommentValidator commentValidator;
 	
 	@Autowired
-	private UserService userService;
+	private CommentMarkValidator commentMarkValidator;
+	
+//	@Autowired
+//	private UserService userService;
 	
 
 	@PostMapping(value = "/create", produces = "application/json")
@@ -54,6 +62,26 @@ public class CommentControllerRest {
 			commentService.create(c);
 			c = commentService.get(c.getId());
 			return new ResponseEntity<Comment>(c, HttpStatus.OK);
+		}
+	}
+	
+	@PostMapping(value = "/vote", produces = "application/json")
+	public ResponseEntity<?> vote(@RequestBody CommentMark c, BindingResult result, Authentication a) {
+		if (c.getUser() != null) {			
+			if(!CurrentUser.isCurrentUser(c.getUser().getId(), a)) {
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
+			}
+		}
+		commentMarkValidator.validate(c, result);
+		if (result.hasErrors()) {
+			List<String> errorList = new LinkedList<>();
+			for (ObjectError e : result.getAllErrors()) {
+				errorList.add(e.getCode());
+			}
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorList);
+		} else {
+			commentMarkService.create(c);
+			return new ResponseEntity<CommentMark>(c, HttpStatus.OK);
 		}
 	}
 
