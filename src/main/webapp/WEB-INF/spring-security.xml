@@ -13,45 +13,40 @@
 	<context:component-scan base-package="com.voteme.security" />
 	<http auto-config="true" use-expressions="true">
 
-		<!-- <intercept-url pattern="/users/create" access="hasAuthority('ADMIN')" 
-			/> -->
+		<intercept-url pattern="/api/bugs/create" access="permitAll" />
+		<intercept-url pattern="/api/bugs/**" access="hasAuthority('ADMIN')" />
 
-		<intercept-url pattern="/register" access="isAnonymous()" />
+		<intercept-url pattern="/api/comment/**" access="isAuthenticated()" />
+
 		<intercept-url pattern="/api/opinionMark/**" access="isAuthenticated()" />
-		<intercept-url pattern="/api/user/register" access="isAnonymous()" />
-		
 
+
+		<intercept-url pattern="/api/user/register" access="permitAll" />
+		<intercept-url pattern="/api/user/**" access="hasAuthority('ADMIN')" />
+
+		<intercept-url pattern="/api/versus/getAll" access="permitAll" />
+		<intercept-url pattern="/api/versus/getMore/**" access="permitAll" />
+		<intercept-url pattern="/api/versus/get/**" access="permitAll" />
+		<intercept-url pattern="/api/versus/delete" access="hasAuthority('ADMIN')" />
 		<intercept-url pattern="/api/versus/create" access="isAuthenticated()" />
-		<intercept-url pattern="/api/versusMark/create" access="isAuthenticated()" />
-		<intercept-url pattern="/api/versusMark/get**" access="isAuthenticated()" />
+		<intercept-url pattern="/api/versus/**" access="isAuthenticated()" />
 
 
 
-		<!-- Confirmation -->
-		<intercept-url pattern="/users/confirmation**" access="isAuthenticated()" />
-		<intercept-url pattern="/users/reset**" access="isAnonymous()" />
+		<intercept-url pattern="/home" access="permitAll" />
+		<intercept-url pattern="/login" access="isAnonymous()" />
+		<intercept-url pattern="/register" access="isAnonymous()" />
+		<intercept-url pattern="/passwordReset" access="isAnonymous()" />
+
+
+
+		<intercept-url pattern="/users/confirmation" access="isAuthenticated()" />
+		<intercept-url pattern="/users/resetLink" access="isAnonymous()" />
+		<intercept-url pattern="/users/resetPassword" access="isAnonymous()" />
 		<intercept-url pattern="/users/**" access="hasAuthority('ADMIN')" />
-		<!-- <intercept-url pattern="/versus/**" access="hasAuthority('ADMIN') 
-			or hasAuthority('MODERATOR') or hasAuthority('USER')" /> -->
 
-
-		<!-- Versus API <intercept-url pattern="/api/versus/create" access="hasAuthority('ADMIN') 
-			or hasAuthority('MODERATOR') or hasAuthority('USER')" /> <intercept-url pattern="/api/versus/delete/**" 
-			access="hasAuthority('ADMIN') or hasAuthority('MODERATOR')" /> <intercept-url 
-			pattern="/api/versus/update/**" access="hasAuthority('ADMIN') or hasAuthority('MODERATOR')" 
-			/> <intercept-url pattern="/api/versus/**" access="hasAuthority('ADMIN') 
-			or hasAuthority('MODERATOR') or hasAuthority('USER')" /> -->
-		<!-- User API <intercept-url pattern="/api/user/register" access="isAnonymous()" 
-			/> <intercept-url pattern="/api/user/get/**" access="isAnonymous()" /> <intercept-url 
-			pattern="/api/user/getAll" access="isAnonymous()" /> <intercept-url pattern="/api/user/**" 
-			access="hasAuthority('ADMIN')" /> -->
-
-		<!-- OpinionMark API <intercept-url pattern="/api/opinionMark/**" access="hasAuthority('ADMIN')" 
-			/> -->
-
-		<!-- VersusMark API <intercept-url pattern="/api/versusMark/create" access="isAuthenticated()" 
-			/> <intercept-url pattern="/api/versusMark/**" access="hasAuthority('ADMIN')" 
-			/> -->
+		<intercept-url pattern="/versus/create" access="isAuthenticated()" />
+		<intercept-url pattern="/versus/**" access="permitAll" />
 
 		<form-login login-page='/login' login-processing-url="/j_spring_security_check"
 			default-target-url="/" always-use-default-target="false"
