@@ -7,5 +7,7 @@ import com.voteme.model.CommentMark;
 public interface CommentMarkService extends CrudInterface<CommentMark>{
 
 	List<CommentMark> getByUser(long userId);
+	
+	boolean userHasVote(long userId, long commentId);
 
 }

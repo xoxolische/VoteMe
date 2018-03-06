@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.voteme.model.Mark;
 import com.voteme.model.VersusMark;
 import com.voteme.service.VersusMarkService;
-import com.voteme.utils.CurrentUser;
 import com.voteme.validation.VersusMarkValidator;
 
 @RestController

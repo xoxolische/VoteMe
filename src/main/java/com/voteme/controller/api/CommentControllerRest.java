@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.Comment;
 import com.voteme.model.CommentMark;
-import com.voteme.model.VersusMark;
 import com.voteme.service.CommentMarkService;
 import com.voteme.service.CommentService;
 import com.voteme.utils.CurrentUser;
@@ -74,7 +73,7 @@ public class CommentControllerRest {
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
 			}
 		}
-		//commentMarkValidator.validate(c, result);
+		commentMarkValidator.validate(c, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();
 			for (ObjectError e : result.getAllErrors()) {

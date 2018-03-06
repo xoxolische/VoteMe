@@ -22,6 +22,30 @@ public class CommentMarkDaoImpl extends AbstractDaoImpl<CommentMark, Long> imple
 	}
 
 	@Override
+	public boolean userHasVote(long userId, long commentId) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<CommentMark> query = builder.createQuery(CommentMark.class);
+			Root<CommentMark> root = query.from(CommentMark.class);
+			query.select(root).where(builder.and(builder.equal(root.get("comment").get("id"), commentId),
+					builder.equal(root.get("user").get("id"), userId)));
+			Query<CommentMark> q = session.createQuery(query);
+			List<CommentMark> l = q.getResultList();
+			session.getTransaction().commit();
+			if (l == null || l.size() == 0) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return true;
+		}
+	}
+	
+	@Override
 	public List<CommentMark> getByUser(long id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();

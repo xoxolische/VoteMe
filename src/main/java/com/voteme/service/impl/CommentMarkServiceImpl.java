@@ -52,4 +52,9 @@ public class CommentMarkServiceImpl implements CommentMarkService {
 		return markDao.getByUser(userId);
 	}
 
+	@Override
+	public boolean userHasVote(long userId, long commentId) {
+		return markDao.userHasVote(userId, commentId);
+	}
+
 }

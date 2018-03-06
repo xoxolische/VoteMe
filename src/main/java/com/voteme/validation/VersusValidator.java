@@ -1,6 +1,5 @@
 package com.voteme.validation;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -8,14 +7,12 @@ import org.springframework.validation.Validator;
 
 import com.voteme.model.Opinion;
 import com.voteme.model.Versus;
-import com.voteme.service.UserService;
-import com.voteme.utils.CurrentUser;
 
 @Component
 public class VersusValidator implements Validator {
 
-	@Autowired
-	private UserService userService;
+//	@Autowired
+//	private UserService userService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {

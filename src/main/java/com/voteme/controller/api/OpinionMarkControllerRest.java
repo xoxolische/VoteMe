@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.OpinionMark;
 import com.voteme.service.OpinionMarkService;
-import com.voteme.utils.CurrentUser;
 import com.voteme.validation.OpinionMarkValidator;
 
 @RestController
