@@ -10,6 +10,14 @@ function errorHtml(content, title) {
 	$("#modal-message").modal();
 }
 
+function alertAreYouSure(content) {
+	hideAll();
+	$("#messageModalTitle").text("Are you sure?");
+	$("#modalAlertMessage").removeClass("d-none");
+	$("#modalAlertMessage").html(content);
+	$("#modal-message").modal();
+}
+
 function error(content, title) {
 	hideAll();
 	$("#messageModalTitle").text(title);
@@ -44,4 +52,15 @@ function notLoggedIn() {
 			+ $("#path").val()
 			+ '/register">Registration</a>	and get access to all service features!	</p></div>';
 	errorHtml(html, "You must be logged in!");
+}
+
+function deleteVersusContent() {
+	var html = '';
+
+	html += '<div class="container row">';
+	html += '<h4>You are trying to delete versus...</h4>';
+	html += '<button type="button" class="col-6 btn btn-primary" data-dismiss="modal">cancel</button>';
+	html += '<button type="button" class="col-6 btn btn-danger confirm" data-dismiss="modal">delete</button></div>';
+
+	alertAreYouSure(html);
 }

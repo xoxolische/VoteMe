@@ -9,11 +9,11 @@ function getAllVersus() {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
-		//console.log(data);
+		// console.log(data);
 		outputData(data);
-//		if (data.length == 0) {
-//			jQuery('.empty-list-alert').css('display', 'block');
-//		}
+		// if (data.length == 0) {
+		// jQuery('.empty-list-alert').css('display', 'block');
+		// }
 	}).fail(function(data) {
 		console.log(data.statusText + " -> " + data.status);
 	});
@@ -168,7 +168,7 @@ function appendData(v, curId, marks, cMarks) {
 	html += '			</div> ';
 
 	html += '			<button id="c-button-' + v.id + '" name="' + v.id
-			+ '" class="btn btn-outline-primary btn-block mt-2">Send</button> ';
+			+ '" class="btn btn-primary btn-block mt-2 commentSend">Send</button> ';
 	html += '		</div> ';
 	html += '	</div> ';
 
@@ -181,62 +181,54 @@ function appendData(v, curId, marks, cMarks) {
 
 	html += '</div>';
 
-	$(document)
-			.ready(
-					function() {
-						$("#upVote-" + v.id).click(
-								function() {
-									if (curId) {
-										createMarkForVersus(true, curId,
-												$(this).attr("name"));
-									} else {
-										//alert("U MUST BE LOGGED IN TO VOTE!");
-										notLoggedIn();
-									}
-									;
-								});
-						$("#downVote-" + v.id).click(
-								function() {
-									if (curId) {
-										createMarkForVersus(false, curId, $(
-												this).attr("name"));
-									} else {
-										//alert("U MUST BE LOGGED IN TO VOTE!");
-										notLoggedIn();
-									}
-									;
-								});
-						$("#c-button-" + v.id)
-								.click(
-										function() {
-											if (curId) {
-												var versus = $(this).attr(
-														"name");
-												createComment(
-														$(
-																"#user-comment-"
-																		+ versus)
-																.val(), curId,
-														versus);
-												// createMarkForVersus(false,
-												// curId, $(this).attr("name"));
-												// createComment($(this).attr("name"));
-											} else {
-												//alert("U MUST BE LOGGED IN TO LEAVE A COMMENT!");
-												notLoggedIn();
-											}
-											;
-										});
-						if (curId) {
-							if (notVoted(v.id, marks)) {
-
+	$(document).ready(
+			function() {
+				$("#upVote-" + v.id).click(function() {
+					if (curId) {
+						createMarkForVersus(true, curId, $(this).attr("name"));
+					} else {
+						// alert("U MUST BE LOGGED IN TO VOTE!");
+						notLoggedIn();
+					}
+					;
+				});
+				$("#downVote-" + v.id).click(
+						function() {
+							if (curId) {
+								createMarkForVersus(false, curId, $(this).attr(
+										"name"));
 							} else {
-								$("#upVote-" + v.id).hide();
-								$("#downVote-" + v.id).hide();
+								// alert("U MUST BE LOGGED IN TO VOTE!");
+								notLoggedIn();
 							}
-						}
-						appendComments(v.comments, v.id, cMarks);
-					});
+							;
+						});
+				$("#c-button-" + v.id).click(
+						function() {
+							if (curId) {
+								var versus = $(this).attr("name");
+								createComment($("#user-comment-" + versus)
+										.val(), curId, versus);
+								// createMarkForVersus(false,
+								// curId, $(this).attr("name"));
+								// createComment($(this).attr("name"));
+							} else {
+								// alert("U MUST BE LOGGED IN TO LEAVE A
+								// COMMENT!");
+								notLoggedIn();
+							}
+							;
+						});
+				if (curId) {
+					if (notVoted(v.id, marks)) {
+
+					} else {
+						$("#upVote-" + v.id).hide();
+						$("#downVote-" + v.id).hide();
+					}
+				}
+				appendComments(v.comments, v.id, cMarks);
+			});
 
 	$("#versus-list").append(html);
 	$("#lastDate").val(v.createdAt);
@@ -281,7 +273,7 @@ function appendComments(c, id, cMarks) {
 				+ '<div class="d-flex flex-row">'
 				+ '<span class="rate-comment-down d-flex align-items-center"><i id="up-vote-comment-'
 				+ c[i].id
-				+ '" class="fas fa-thumbs-up d-none"></i></span>'
+				+ '" class="fas fa-thumbs-up" name="'+c[i].id+'"></i></span>'
 				+ '<label id="comment-rating-'
 				+ c[i].id
 				+ '" class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">'
@@ -289,27 +281,30 @@ function appendComments(c, id, cMarks) {
 				+ '</label>'
 				+ '<span class="rate-comment-up d-flex align-items-center"><i id="down-vote-comment-'
 				+ c[i].id
-				+ '" class="fas fa-thumbs-down d-none"></i></span>'
+				+ '" class="fas fa-thumbs-down" name="'+c[i].id+'"></i></span>'
 				+ '</div>'
 				+ '</div>'
 				+ '<div class="d-flex dropdown-divider" style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 		$("#comment-container-" + id).append(html);
 		p = p0;
-		if (notVotedForComment(c[i].id, cMarks)) {
-			//console.log("not voted " + c[i].id);
-			s(c[i].id);
-			$("#down-vote-comment-" + c[i].id).removeClass("d-none");
-			$("#up-vote-comment-" + c[i].id).removeClass("d-none");
-//
-//			var curId = $("#currentId").val();
-//			$("#down-vote-comment-" + c[i].id).click(function() {
-//				voteComment(curId, c[i].id, false);
-//			});
-//
-//			$("#up-vote-comment-" + c[i].id).on("click", function() {
-//				voteComment(curId, c[i].id, true);
-//			});
+		if (cMarks != null) {
+			if (!notVotedForComment(c[i].id, cMarks)) {
+				// console.log("not voted " + c[i].id);
+				//s(c[i].id);
+				$("#down-vote-comment-" + c[i].id).addClass("d-none");
+				$("#up-vote-comment-" + c[i].id).addClass("d-none");
+				//
+				// var curId = $("#currentId").val();
+				// $("#down-vote-comment-" + c[i].id).click(function() {
+				// voteComment(curId, c[i].id, false);
+				// });
+				//
+				// $("#up-vote-comment-" + c[i].id).on("click", function() {
+				// voteComment(curId, c[i].id, true);
+				// });
+			}
 		}
+
 	}
 };
 function notVotedForComment(commentId, marks) {
@@ -324,23 +319,40 @@ function notVotedForComment(commentId, marks) {
 	return true;
 }
 // watafaq
-function s(id) {
+//function s(id) {
+//
+//	var curId = $("#currentId").val();
+//	$(document).ready(function() {
+//		$("#down-vote-comment-" + id).on("click", function() {
+//			voteComment(curId, id, false);
+//		});
+//	});
+//
+//	$(document).ready(function() {
+//		$("#up-vote-comment-" + id).on("click", function() {
+//			voteComment(curId, id, true);
+//		});
+//	});
+//
+//}
 
+jQuery('body').on('click', '.fa-thumbs-down', function() {
 	var curId = $("#currentId").val();
-	$(document).ready(function() {		
-		$("#down-vote-comment-" + id).on("click", function() {
-			voteComment(curId, id, false);
-		});
-	});
-	
-	$(document).ready(function() {	
-				$("#up-vote-comment-" + id).on("click", function() {
-			voteComment(curId, id, true);
-		});
-	});
-	
+	if(curId){
+		voteComment(curId, $(this).attr("name"), false);
+	}else{
+		notLoggedIn();
+	}
+});
 
-}
+jQuery('body').on('click', '.fa-thumbs-up', function() {
+	var curId = $("#currentId").val();
+	if(curId){
+		voteComment(curId, $(this).attr("name"), true);
+	}else{
+		notLoggedIn();
+	}
+});
 function prependComment(c, id) {
 	var p = $("#path").val();
 	p += "/resources/avatars/" + c.author.avatar + ".jpg";
@@ -356,12 +368,20 @@ function prependComment(c, id) {
 			+ '</p></div></div></div>'
 			+ '<div class="row d-flex justify-content-center">'
 			+ '<div class="d-flex flex-row">'
-			+ '<span class="rate-comment-down"><i class="fas fa-thumbs-down"></i></span>'
-			+ '<label class="comment-rating">999</label>'
-			+ '<span class="rate-comment-up"><i class="fas fa-thumbs-up"></i></span>'
+			+ '<span class="rate-comment-down d-flex align-items-center"><i id="up-vote-comment-'
+			+ c.id
+			+ '" class="fas fa-thumbs-up" name="'+c.id+'"></i></span>'
+			+ '<label id="comment-rating-'
+			+ c.id
+			+ '" class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">'
+			+ 0
+			+ '</label>'
+			+ '<span class="rate-comment-up d-flex align-items-center"><i id="down-vote-comment-'
+			+ c.id
+			+ '" class="fas fa-thumbs-down" name="'+c.id+'"></i></span>'
 			+ '</div>'
 			+ '</div>'
-			+ '<div class="d-flex dropdown-divider "	style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
+			+ '<div class="d-flex dropdown-divider" style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 	$("#comment-container-" + id).prepend(html);
 
 };
@@ -470,10 +490,18 @@ function loadMore() {
 jQuery('body').on('click', '.delete-button', function() {
 	var versus = jQuery(this).parent().parent().parent().parent();
 	var vId = $(versus).attr("id");
-	$.when(deleteVersus(vId)).done(function(data) {
-		versus.hide();
-		alert("Versus deleted!");
+	deleteVersusContent();
+	$(function() {
+		$('.confirm').click(function() {
+			$.when(deleteVersus(vId)).done(function(data) {
+				versus.hide();
+				// alert("Versus deleted!");
+			}).fail(function(data) {
+				error("Failed to delete versus!", "Oops, error.");
+			});
+		});
 	});
+
 });
 
 function deleteVersus(versusId) {
