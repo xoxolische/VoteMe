@@ -10,8 +10,13 @@
 <title>Login</title>
 </head>
 <body>
+
 	<div class="container-fluid main-wrap">
 		<div class="row">
+			<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+			<div class="alert alert-danger col col-8 offset-md-2" role="alert">Your last attempt of login was unsuccessful : ${SPRING_SECURITY_LAST_EXCEPTION.message}</div>
+			</c:if>
+			
 			<div class="card col col-8 offset-md-2">
 				<div class="card-body">
 					<form name='login' action="j_spring_security_check" method='POST'>
@@ -39,12 +44,6 @@
 						</div>
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" />
-						<c:if test="${not empty error}">
-							<div class="error">${error}</div>
-						</c:if>
-						<c:if test="${not empty logout}">
-							<div class="msg">${logout}</div>
-						</c:if>
 						<div class="form-group">
 							<a href="${contextPath}/passwordReset">Forgot password?</a>
 						</div>

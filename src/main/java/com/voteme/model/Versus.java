@@ -53,7 +53,7 @@ public class Versus {
 
 	// @JsonIgnore
 	@OneToMany(mappedBy = "versus", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnoreProperties(value = { "versus", "marks" })
+	@JsonIgnoreProperties(value = { "versus" })
 	@OrderBy("createdAt DESC")
 	private Set<Comment> comments;
 

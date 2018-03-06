@@ -19,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		UserAuth userAuth = userDao.getUserAuth(login);
 		//userAuth.setPassword(new BCryptPasswordEncoder().encode(userAuth.getPassword()));
-		if (userAuth.getUsername() == null || userAuth.getPassword() == null) {
+		if (userAuth == null || userAuth.getUsername() == null || userAuth.getPassword() == null) {
 			//System.out.println(userAuth.getPassword());
 			throw new UsernameNotFoundException("No user with login " + login);
 		}

@@ -73,7 +73,8 @@ function getMark(marks) {
 
 function createMark(n) {
 	if (!$("#currentId").val()) {
-		alert("You need to be logged in to vote!");
+		//alert("You need to be logged in to vote!");
+		notLoggedIn();
 	} else {
 		var opId = $("#upVoteOp-" + n).attr("name");
 

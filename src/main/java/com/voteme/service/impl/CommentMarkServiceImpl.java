@@ -47,4 +47,9 @@ public class CommentMarkServiceImpl implements CommentMarkService {
 		markDao.delete(entity);
 	}
 
+	@Override
+	public List<CommentMark> getByUser(long userId) {
+		return markDao.getByUser(userId);
+	}
+
 }

@@ -99,7 +99,8 @@
 			}).done(function(data) {
 				window.location.href = $('#path').val() + "/login";
 			}).fail(function(data) {
-				console.log(data.responseText);
+				console.log(data.responseJSON);
+				errorList(data.responseJSON, "Oops, seems like we got some errors");
 			});
 		}
 	</script>

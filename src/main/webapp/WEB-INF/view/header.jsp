@@ -145,3 +145,28 @@
 		</div>
 	</div>
 </div>
+
+
+<!-- Modal message-->
+<div class="modal fade" id="modal-message" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="messageModalTitle"></h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-primary d-none" role="alert" id="modalAlertMessage">This
+					is a primary alert—check it out!</div>
+				<div class="alert alert-success d-none" role="alert" id="modalAlertSuccess">This
+					is a success alert—check it out!</div>
+				<div class="alert alert-danger d-none" role="alert" id="modalAlertError">This
+					is a danger alert—check it out!</div>
+			</div>
+		</div>
+	</div>
+</div>

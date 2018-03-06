@@ -31,7 +31,7 @@ public class Mark {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-	@JsonIgnoreProperties(value = {"opinions", "marks", "versuses"})
+	@JsonIgnoreProperties(value = {"opinions", "marks", "versuses", "email", "password", "registeredAt", "lastEditedAt", "code", "resetCode", "resetCodeDate", "comments", "is_verified", "resetUsed", "role"})
 	private User user;
 
 	public long getId() {

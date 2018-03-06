@@ -9,11 +9,11 @@ function getAllVersus() {
 		contentType : "application/json",
 		dataType : 'json'
 	}).done(function(data) {
-		console.log(data);
+		//console.log(data);
 		outputData(data);
-		if (data.length == 0) {
-			jQuery('.empty-list-alert').css('display', 'block');
-		}
+//		if (data.length == 0) {
+//			jQuery('.empty-list-alert').css('display', 'block');
+//		}
 	}).fail(function(data) {
 		console.log(data.statusText + " -> " + data.status);
 	});
@@ -22,105 +22,27 @@ function getAllVersus() {
 function outputData(data) {
 	var p = $("#path").val();
 	var marks = null;
+	var cMarks = null;
 	var curId = $("#currentId").val();
 	// console.log("curId = "+curId);
 	if (curId) {
 		marks = getUserMarks(curId);
-		$.when(marks).done(function() {
-			dataFinallyDone(data, curId, marks.responseJSON);
-		})
+		cMarks = getUserMarksForComment(curId);
+		$.when(marks, cMarks).done(
+				function() {
+					dataFinallyDone(data, curId, marks.responseJSON,
+							cMarks.responseJSON);
+				})
 	} else {
 		dataFinallyDone(data, null, null);
 	}
 }
 
-function dataFinallyDone(data, curId, marks) {
+function dataFinallyDone(data, curId, marks, cMarks) {
 	var p = $("#path").val();
 	// console.log("datafinally done loop beginning.");
 	for (var i = 0; i < data.length; i++) {
-		// var $row = $("<div>").attr("class", "row bg-dark text-light
-		// list-item");
-		// var $ratingWrapper = $("<div>")
-		// .attr("class",
-		// "col-1 d-flex justify-content-end align-items-center
-		// rating-counter-wrap");
-		// var $ratingLabel = $("<label>").attr("id", "rating" +
-		// data[i].id).attr(
-		// "class", "rating-counter").append(getMark(data[i].marks));
-		// var $voteContainer = $("<div>").attr("class",
-		// "col-1 d-flex align-items-center");
-		// var $arrows = $("<div>").attr("class", "arrow");
-		//
-		// var $aUp = $("<a>").attr("id", "upVote-" + data[i].id).attr("name",
-		// data[i].id).click(function() {
-		// if (curId) {
-		// createMarkForVersus(true, curId, $(this).attr("name"));
-		// } else {
-		// alert("U MUST BE LOGGED IN TO VOTE!");
-		// }
-		// ;
-		// });
-		// var $aDown = $("<a>").attr("id", "downVote-" +
-		// data[i].id).attr("name",
-		// data[i].id).click(function() {
-		// if (curId) {
-		// createMarkForVersus(false, curId, $(this).attr("name"));
-		// } else {
-		// alert("U MUST BE LOGGED IN TO VOTE!");
-		// }
-		// ;
-		// });
-		// if (curId) {
-		// if (notVoted(data[i].id, marks)) {
-		//
-		// } else {
-		// $($aUp).hide();
-		// $($aDown).hide();
-		// }
-		// }
-		// var $up = $("<img>").attr("class", "arrow-up").attr("src",
-		// p + "/resources/images/arrow_up.png");
-		// var $down = $("<img>").attr("class", "arrow-down").attr("src",
-		// p + "/resources/images/arrow_down.png");
-		//
-		// var $infoContainer = $("<div>").attr("class", "col-8");
-		// var $infoTitleRedirect = $("<a>").attr("href",
-		// p + "/versus/show/" + data[i].id);
-		// var $infoTitle = $("<div>").append(
-		// $("<h5>").attr("class", "versus-title").attr("id", data[i].id)
-		// .append(data[i].title));
-		// var $infoDescription = $("<div>").attr("class", "versus-description")
-		// .append(data[i].description);
-		//
-		// var $authorContainer = $("<div>").attr("class",
-		// "col-2 versus-author-wrap");
-		// var $author = $("<div>").attr("class", "versus-author").append(
-		// $("<h5>").append("Author"));
-		// var $authorText = $("<p>").attr("class", "author-nickname").append(
-		// data[i].author.nickName);
-		//
-		// $($ratingWrapper).append($ratingLabel);
-		//
-		// $($aUp).append($up);
-		// $($aDown).append($down);
-		// $($arrows).append($aUp).append($aDown);
-		// $($voteContainer).append($arrows);
-		//
-		// $($infoTitleRedirect).append($infoTitle);
-		//
-		// $($infoContainer).append($infoTitleRedirect);
-		// $($infoContainer).append($infoDescription);
-		//
-		// $($author).append($authorText);
-		// $($authorContainer).append($author);
-		//
-		// $($row).append($ratingWrapper);
-		// $($row).append($voteContainer);
-		// $($row).append($infoContainer);
-		// $($row).append($authorContainer);
-		//
-
-		appendData(data[i], curId, marks);
+		appendData(data[i], curId, marks, cMarks);
 	}
 	$("#preloader").hide();
 	jQuery('.page-title').show();
@@ -128,7 +50,7 @@ function dataFinallyDone(data, curId, marks) {
 }
 
 // this is gavno code here!!!
-function appendData(v, curId, marks) {
+function appendData(v, curId, marks, cMarks) {
 	var roleName = $("#currentRole").val();
 	// console.log(v);
 	var vDateTime = v.createdAt;
@@ -268,7 +190,8 @@ function appendData(v, curId, marks) {
 										createMarkForVersus(true, curId,
 												$(this).attr("name"));
 									} else {
-										alert("U MUST BE LOGGED IN TO VOTE!");
+										//alert("U MUST BE LOGGED IN TO VOTE!");
+										notLoggedIn();
 									}
 									;
 								});
@@ -278,7 +201,8 @@ function appendData(v, curId, marks) {
 										createMarkForVersus(false, curId, $(
 												this).attr("name"));
 									} else {
-										alert("U MUST BE LOGGED IN TO VOTE!");
+										//alert("U MUST BE LOGGED IN TO VOTE!");
+										notLoggedIn();
 									}
 									;
 								});
@@ -298,7 +222,8 @@ function appendData(v, curId, marks) {
 												// curId, $(this).attr("name"));
 												// createComment($(this).attr("name"));
 											} else {
-												alert("U MUST BE LOGGED IN TO LEAVE A COMMENT!");
+												//alert("U MUST BE LOGGED IN TO LEAVE A COMMENT!");
+												notLoggedIn();
 											}
 											;
 										});
@@ -310,7 +235,7 @@ function appendData(v, curId, marks) {
 								$("#downVote-" + v.id).hide();
 							}
 						}
-						appendComments(v.comments, v.id);
+						appendComments(v.comments, v.id, cMarks);
 					});
 
 	$("#versus-list").append(html);
@@ -322,7 +247,7 @@ function getCommentMark(c) {
 	if (c.marks != null && c.marks.length != 0) {
 		var mark = 0;
 		for (var i = 0; i < c.marks.length; i++) {
-			if (c.marks[i].mark == 1) {
+			if (c.marks[i].mark == true) {
 				mark += 1;
 			} else {
 				mark -= 1;
@@ -334,7 +259,7 @@ function getCommentMark(c) {
 	}
 }
 
-function appendComments(c, id) {
+function appendComments(c, id, cMarks) {
 	var p = $("#path").val();
 	var p0 = p;
 	for (var i = 0; i < c.length; i++) {
@@ -356,31 +281,65 @@ function appendComments(c, id) {
 				+ '<div class="d-flex flex-row">'
 				+ '<span class="rate-comment-down d-flex align-items-center"><i id="up-vote-comment-'
 				+ c[i].id
-				+ '" class="fas fa-thumbs-up"></i></span>'
-				+ '<label class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">'
-				+ getCommentMark(c)
+				+ '" class="fas fa-thumbs-up d-none"></i></span>'
+				+ '<label id="comment-rating-'
+				+ c[i].id
+				+ '" class="comment-rating mb-0 ml-4 mr-4 d-flex align-self-center">'
+				+ getCommentMark(c[i])
 				+ '</label>'
 				+ '<span class="rate-comment-up d-flex align-items-center"><i id="down-vote-comment-'
 				+ c[i].id
-				+ '" class="fas fa-thumbs-down"></i></span>'
+				+ '" class="fas fa-thumbs-down d-none"></i></span>'
 				+ '</div>'
 				+ '</div>'
 				+ '<div class="d-flex dropdown-divider" style="margin-left: 15px; margin-right: 15px;"></div></div> </div></div>';
 		$("#comment-container-" + id).append(html);
 		p = p0;
-		s(c[i].id);
+		if (notVotedForComment(c[i].id, cMarks)) {
+			//console.log("not voted " + c[i].id);
+			s(c[i].id);
+			$("#down-vote-comment-" + c[i].id).removeClass("d-none");
+			$("#up-vote-comment-" + c[i].id).removeClass("d-none");
+//
+//			var curId = $("#currentId").val();
+//			$("#down-vote-comment-" + c[i].id).click(function() {
+//				voteComment(curId, c[i].id, false);
+//			});
+//
+//			$("#up-vote-comment-" + c[i].id).on("click", function() {
+//				voteComment(curId, c[i].id, true);
+//			});
+		}
 	}
 };
-//watafaq
-function s(id){
-	$(document).ready(function() {
-		$("#down-vote-comment-"+id).click(function() {
-			
+function notVotedForComment(commentId, marks) {
+	// console.log(marks);
+	// console.log(commentId);
+	for (var i = 0; i < marks.length; i++) {
+		if (marks[i].comment.id == commentId) {
+			// console.log("voted for "+commentId);
+			return false;
+		}
+	}
+	return true;
+}
+// watafaq
+function s(id) {
+
+	var curId = $("#currentId").val();
+	$(document).ready(function() {		
+		$("#down-vote-comment-" + id).on("click", function() {
+			voteComment(curId, id, false);
 		});
-		$("#up-vote-comment-"+id).click(function() {
-			
-		})
 	});
+	
+	$(document).ready(function() {	
+				$("#up-vote-comment-" + id).on("click", function() {
+			voteComment(curId, id, true);
+		});
+	});
+	
+
 }
 function prependComment(c, id) {
 	var p = $("#path").val();
@@ -437,6 +396,14 @@ function getUserMarks(id) {
 	});
 }
 
+function getUserMarksForComment(id) {
+	return $.ajax({
+		url : $('#path').val() + '/api/comment/marks/getByUser/' + id,
+		type : 'GET',
+		dataType : 'json'
+	});
+}
+
 function createMarkForVersus(mark, userId, versusId) {
 	var item = {
 		"mark" : mark,
@@ -474,6 +441,7 @@ function createMarkForVersus(mark, userId, versusId) {
 }
 
 function notVoted(versusId, marks) {
+	// console.log(marks);
 	for (var i = 0; i < marks.length; i++) {
 		if (marks[i].versus.id == versusId) {
 			return false;
@@ -515,40 +483,39 @@ function deleteVersus(versusId) {
 	});
 }
 
-function voteComment(userId, commentId, mark){
+function voteComment(userId, commentId, mark) {
 	var item = {
-			"mark" : mark,
-			"user" : {
-				"id" : userId
-			},
-			"versus" : {
-				"id" : versusId
-			}
-		};
+		"mark" : mark,
+		"user" : {
+			"id" : userId
+		},
+		"comment" : {
+			"id" : commentId
+		}
+	};
+	console.log(item);
+	$.ajax({
+		url : $('#path').val() + '/api/comment/vote',
+		type : 'POST',
+		data : JSON.stringify(item),
+		contentType : "application/json",
+		dataType : 'json'
+	}).done(function(data) {
+		var id = "#comment-rating-" + commentId;
+		$("#up-vote-comment-" + commentId).hide();
+		$("#down-vote-comment-" + commentId).hide();
+		if (mark) {
+			var m = +($(id).text());
+			$(id).text(m + 1);
+		} else {
+			var m = +($(id).text());
+			$(id).text(m - 1);
+		}
 
-		$.ajax({
-			url : $('#path').val() + '/api/versusMark/create',
-			type : 'POST',
-			data : JSON.stringify(item),
-			contentType : "application/json",
-			dataType : 'json'
-		}).done(function(data) {
-			var id = "#rating" + versusId;
-			if (mark) {
-				var m = +($(id).text());
-				$(id).text(m + 1);
-				$("#downVote-" + versusId).hide();
-				$("#upVote-" + versusId).hide();
-			} else {
-				var m = +($(id).text());
-				$(id).text(m - 1);
-				$("#downVote-" + versusId).hide();
-				$("#upVote-" + versusId).hide();
-			}
-
-		}).fail(function(data) {
-			console.log(data.responseText);
-		});
+		// console.log(data);
+	}).fail(function(data) {
+		console.log(data.responseText);
+	});
 }
 
 function editVersus(versus_id) {

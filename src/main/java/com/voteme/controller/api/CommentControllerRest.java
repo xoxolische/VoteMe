@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.voteme.model.Comment;
 import com.voteme.model.CommentMark;
+import com.voteme.model.VersusMark;
 import com.voteme.service.CommentMarkService;
 import com.voteme.service.CommentService;
 import com.voteme.utils.CurrentUser;
@@ -72,7 +74,7 @@ public class CommentControllerRest {
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Be careful, son!");
 			}
 		}
-		commentMarkValidator.validate(c, result);
+		//commentMarkValidator.validate(c, result);
 		if (result.hasErrors()) {
 			List<String> errorList = new LinkedList<>();
 			for (ObjectError e : result.getAllErrors()) {
@@ -85,6 +87,11 @@ public class CommentControllerRest {
 		}
 	}
 
+	@GetMapping(value = "/marks/getByUser/{userId}", produces = "application/json")
+	public List<CommentMark> getByUser(@PathVariable long userId) {
+		return commentMarkService.getByUser(userId);
+	}
+	
 	@PostMapping(value = "/update", produces = "application/json")
 	public void update(@RequestBody Comment c) {
 		commentService.update(c);

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class VersusMark extends Mark {
 	@ManyToOne
 	@JoinColumn(name = "versus_id")
-	@JsonIgnoreProperties(value = "marks")
+	@JsonIgnoreProperties(value = {"marks", "opinions", "title", "description", "createdAt", "author", "comments"})
 	private Versus versus;
 
 	public Versus getVersus() {
