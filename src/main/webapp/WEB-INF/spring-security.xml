@@ -19,6 +19,7 @@
 		<intercept-url pattern="/api/comment/**" access="isAuthenticated()" />
 
 		<intercept-url pattern="/api/opinionMark/**" access="isAuthenticated()" />
+		
 
 
 		<intercept-url pattern="/api/user/register" access="permitAll" />
