@@ -62,6 +62,22 @@
 		src="<c:url value="/resources/scripts/createComment.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/scripts/home.js"/>"></script>
+		
+		
+	<c:if test="${not empty error}">
+		<script type="text/javascript">
+			$(document).ready(function() {
+				error('${error}', 'Error');
+			});
+		</script>
+	</c:if>
+	<c:if test="${not empty success}">
+		<script type="text/javascript">
+			$(document).ready(function() {
+				successM('${success}', 'Success!');
+			});
+		</script>
+	</c:if>
 </body>
 </html>
 

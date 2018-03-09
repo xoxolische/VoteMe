@@ -26,6 +26,14 @@ function error(content, title) {
 	$("#modal-message").modal();
 }
 
+function successM(content, title) {
+	hideAll();
+	$("#messageModalTitle").text(title);
+	$("#modalAlertSuccess").removeClass("d-none");
+	$("#modalAlertSuccess").text(content);
+	$("#modal-message").modal();
+}
+
 function errorList(content, title) {
 	hideAll();
 	$("#messageModalTitle").text(title);

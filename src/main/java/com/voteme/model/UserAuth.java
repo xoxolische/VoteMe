@@ -97,12 +97,17 @@ public class UserAuth implements UserDetails {
 	}
 
 	@Override
+	public String toString() {
+		return "UserAuth [id=" + id + ", username=" + username + ", password=" + password + ", isActive=" + isActive
+				+ ", role=" + role + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -123,23 +128,12 @@ public class UserAuth implements UserDetails {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
-			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "UserAuth [id=" + id + ", username=" + username + ", password=" + password + ", isActive=" + isActive
-				+ ", role=" + role + "]";
 	}
 
 }

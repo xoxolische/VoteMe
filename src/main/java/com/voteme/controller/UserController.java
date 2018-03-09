@@ -26,6 +26,7 @@ import com.voteme.model.mail.SuccessResetMail;
 import com.voteme.service.EmailService;
 import com.voteme.service.RoleService;
 import com.voteme.service.UserService;
+import com.voteme.utils.CurrentUser;
 import com.voteme.utils.StringRandomGen;
 
 import freemarker.template.TemplateException;
@@ -70,18 +71,26 @@ public class UserController {
 	@GetMapping(value = "/confirmation")
 	public String userConfirmation(Model model, @RequestParam(name = "token") String token,
 			Authentication authentication) {
+
 		UserAuth currentUser = (UserAuth) authentication.getPrincipal();
 		User u = userService.getByCode(token);
 		UserAuth originUser = new UserAuth(u);
 
-		if (originUser != null && originUser.equals(currentUser) && !originUser.isEnabled()) {
-			u.setIs_verified(true);
-			userService.update(u);
-			try {
-				emailService.send(new SuccessActivationMail(u));
-			} catch (MessagingException | IOException | TemplateException e) {
-				e.printStackTrace();
+		if (originUser != null && currentUser != null && originUser.equals(currentUser) && originUser.isEnabled()) {
+			if (originUser.isConfirmed()) {
+				model.addAttribute("error", "Your account already confirmed!");
+			} else {
+				u.setIs_verified(true);
+				userService.update(u);
+				try {
+					emailService.send(new SuccessActivationMail(u));
+					model.addAttribute("success", "Your account successfuly confirmed!");
+				} catch (MessagingException | IOException | TemplateException e) {
+					e.printStackTrace();
+				}
 			}
+		}else {
+			model.addAttribute("error", "Confirmation failed! Token is wrong!");
 		}
 
 		return "home";
@@ -94,13 +103,14 @@ public class UserController {
 			if (!u.isResetUsed()) {
 				StringRandomGen msr = new StringRandomGen();
 				String s = msr.generateRandomString();
-				//System.out.println(s);
+				// System.out.println(s);
 				u.setPassword(new BCryptPasswordEncoder().encode(s));
 				u.setResetUsed(true);
 				userService.update(u);
 				try {
 					emailService.send(new SuccessResetMail(u, s));
-					model.addAttribute("success", "Your reset password request successfully done, check your email address, we have sent a new one. Log in and go profile setting if you want change it.");
+					model.addAttribute("success",
+							"Your reset password request successfully done, check your email address, we have sent a new one. Log in and go profile setting if you want change it.");
 				} catch (MessagingException | IOException | TemplateException e) {
 					e.printStackTrace();
 					u.setResetUsed(false);
@@ -108,10 +118,11 @@ public class UserController {
 					model.addAttribute("error", "We have failed letter sending via email. Please, try again later.");
 				}
 			} else {
-				//System.out.println("Reset link already used!");
-				model.addAttribute("error", "Reset link already used! You can request a new one or use a password from letter we have sent you before.");
+				// System.out.println("Reset link already used!");
+				model.addAttribute("error",
+						"Reset link already used! You can request a new one or use a password from letter we have sent you before.");
 			}
-		}else {
+		} else {
 			model.addAttribute("error", "Acess token is wrong!");
 		}
 
@@ -128,7 +139,7 @@ public class UserController {
 				if (u.getResetCodeDate() != null) {
 					Timestamp current = new Timestamp(System.currentTimeMillis());
 					delta = current.getTime() - u.getResetCodeDate().getTime();
-				}else {
+				} else {
 					nullable = true;
 				}
 				// if less than 24h
@@ -139,18 +150,22 @@ public class UserController {
 					userService.update(u);
 					try {
 						emailService.send(new PasswordResetMail(u));
-						return ResponseEntity.status(HttpStatus.OK).body("Ok, we have sent you a letter with reset link. Check your email address.");
+						return ResponseEntity.status(HttpStatus.OK)
+								.body("Ok, we have sent you a letter with reset link. Check your email address.");
 					} catch (MessagingException | IOException | TemplateException e) {
 						e.printStackTrace();
-						return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Something went wrong. error 500");
+						return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+								.body("Something went wrong. error 500");
 					}
 				} else {
-					return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("You can request password reset once per 24h!");
-					//System.out.println("You can request password reset once per 24h!");
+					return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+							.body("You can request password reset once per 24h!");
+					// System.out.println("You can request password reset once per 24h!");
 				}
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("User with such email address does not exists!");
-				//System.out.println("Wrong email!");
+				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+						.body("User with such email address does not exists!");
+				// System.out.println("Wrong email!");
 			}
 		}
 		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Email can not be empty!");
