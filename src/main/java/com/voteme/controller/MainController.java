@@ -44,5 +44,9 @@ public class MainController {
 	public String resetPage() {
 		return "resetPassword";
 	}
+	@GetMapping(value = "/about")
+	public String aboutPage() {
+		return "about";
+	}
 
 }

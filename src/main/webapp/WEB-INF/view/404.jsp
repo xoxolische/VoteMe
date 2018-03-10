@@ -8,7 +8,7 @@
 <title>404</title>
 </head>
 <body>
-	<div class="container-fluid main-wrap">
+	<div class="container-fluid main-wrap mt-5">
 		<div class="row">
 		<div class="col col-md-6 offset-md-3">
 			<div class="card">
