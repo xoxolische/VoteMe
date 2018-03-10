@@ -97,7 +97,8 @@
 									Ukraine, Odessa<br>Phone: +380997521536<br>Email:
 									shar1997@ukr.net
 								</p>
-								
+								<a href="https://www.linkedin.com/in/oleg-sharychev-49583015b/" target="blank" class="btn btn-outline-primary"><i
+									class="fab fa-linkedin-in fa-2x"></i></a>								
 							</div>
 						</div>
 					</div>
