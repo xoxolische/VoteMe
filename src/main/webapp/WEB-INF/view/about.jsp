@@ -85,7 +85,7 @@
 
 
 						<div class="card d-flex mt-2" style="width: 300px">
-							<img class="card-img-top"
+							<img class="card-img-top" style="height: 45vh"
 								src="https://www.w3schools.com/bootstrap4/img_avatar1.png"
 								alt="Card image">
 							<div class="card-body">

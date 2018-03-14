@@ -7,22 +7,27 @@
 <%@include file="header.jsp"%>
 
 <title>VoteMe</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/userInfoPage.css"/>">
 
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="container">
+		<div class="container d-flex justify-content-center">
+
+			<!--
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 
 					mt-3 d-flex justify-content-center">
 					<div class="d-flex flex-column">
 						<div class="border rounded" style="height: 100px; width: 100px;"></div>
 						<div>
-							<a 
+							<button 
+								class="btn btn-link" 
 								data-toggle="modal"
 								data-target="#changeAvatarModal"
 								class="">
-							Change avatar</a>
+							Change avatar</button>
 						</div>
 					</div>
 				</div>
@@ -60,6 +65,50 @@
 					</div>
 				</div>
 			</div>
+			-->
+
+			<div class="col-1"></div>
+			<div class="card-group mt-5 col-10">
+				<div class="card">
+					<div class="card-img-top d-flex justify-content-center">
+						<img class="user-avatar" src="<c:url value="/resources/avatars/PIKA.jpg"/>">
+					</div>
+					<div class="card-body d-flex justify-content-center">
+						<button class="btn btn-link">Change avatar</button>
+					</div>
+				</div>
+
+				<div class="card">
+				<div class="card-body">		
+					<h4 class="card-title d-flex justify-content-center">Nickname</h4>
+					<div class="d-flex ">
+						<label class="font-weight-bold">E-mail: </label>
+						<label id="user-email">soooka@voteme.com</label>
+					</div>
+					<div>
+						<label class="font-weight-bold">Registered at: </label>
+						<label id="registration-date">010101</label>
+					</div>
+					<div>
+						<label class="font-weight-bold">Password: </label>
+						<input id="user-password" type="password" readonly value="allah" size="auto">
+						<span id="show-password-button"><i class="fas fa-eye"></i></span>
+					</div>
+					<div class="d-flex justify-content-center">
+						<a href="#">Change password</a>
+					</div>
+					<div>
+						<label class="font-weight-bold">Status: </label>
+						<label id="user-status">unverified</label>
+					</div>
+					<div class="d-flex justify-content-center">
+						<button class="btn btn-primary" id="verify-button" style="display: none;">Verify</button>
+					</div>
+					
+				</div>
+			</div>
+			</div>
+			<div class="col-1"></div>
 		</div>
 	</div>
 
@@ -74,18 +123,11 @@
 						<span aria-hidden="true" class="text-light">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<form id="modal-form" action="j_spring_security_check" method='POST'>
-
-						
-
-					</form>
-				</div>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline-secondary"
 						data-dismiss="modal">Close</button>
-					<button class="btn btn-outline-primary" value="Login"
-						onclick="submitModalFrom()">Submit</button>
+					<button class="btn btn-outline-primary">Submit</button>
 				</div>
 			</div>
 		</div>
