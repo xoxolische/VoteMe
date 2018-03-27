@@ -69,61 +69,71 @@
 
 			<div class="col-1"></div>
 			<div class="card-group mt-5 col-10">
-				<div class="card">
-					<div class="card-img-top d-flex justify-content-center">
-						<img class="user-avatar" src="<c:url value="/resources/avatars/PIKA.jpg"/>">
+				<div class="card col-md-3">
+					<div class="card-img-top mt-1 d-flex justify-content-center">
+						<span class="border border-dark"> <img
+							class="user-avatar card-img-top"
+							src="<c:url value="/resources/avatars/PIKA.jpg"/>">
+						</span>
 					</div>
 					<div class="card-body d-flex justify-content-center">
-						<button class="btn btn-link">Change avatar</button>
+					<button class="btn btn-block btn-outline-primary">Change
+							Avatar</button>
+						
 					</div>
 				</div>
 
 				<div class="card">
-				<div class="card-body">		
-					<h4 class="card-title d-flex justify-content-center">Nickname</h4>
-					<div class="d-flex ">
-						<label class="font-weight-bold">E-mail: </label>
-						<label id="user-email">soooka@voteme.com</label>
+					<div class="card-body">
+						<h5 class="card-title d-flex justify-content-center">Nickname</h5>
+						<div class="d-flex ">
+							<label class="font-weight-bold">E-mail: </label> <label
+								id="user-email">soooka@voteme.com</label>
+						</div>
+						<div>
+							<label class="font-weight-bold">Registered at: </label> <label
+								id="registration-date">010101</label>
+						</div>
+						<div>
+							<label class="font-weight-bold">Password: </label> <input
+								id="user-password" type="password" readonly value="allah"
+								size="auto"> <span id="show-password-button"><i
+								class="fas fa-eye"></i></span>
+						</div>
+						<div class="d-flex justify-content-center">
+							<button class="btn btn-outline-primary col-md-12">Change
+								Password</button>
+						</div>
+						<div>
+							<label class="font-weight-bold">Status: </label> <label
+								id="user-status">unverified</label>
+						</div>
+						<div class="d-flex justify-content-center">
+							<button class="btn btn-outline-primary col-md-12"
+								id="verify-button" style="display: none;">Verify</button>
+						</div>
+
 					</div>
-					<div>
-						<label class="font-weight-bold">Registered at: </label>
-						<label id="registration-date">010101</label>
-					</div>
-					<div>
-						<label class="font-weight-bold">Password: </label>
-						<input id="user-password" type="password" readonly value="allah" size="auto">
-						<span id="show-password-button"><i class="fas fa-eye"></i></span>
-					</div>
-					<div class="d-flex justify-content-center">
-						<a href="#">Change password</a>
-					</div>
-					<div>
-						<label class="font-weight-bold">Status: </label>
-						<label id="user-status">unverified</label>
-					</div>
-					<div class="d-flex justify-content-center">
-						<button class="btn btn-primary" id="verify-button" style="display: none;">Verify</button>
-					</div>
-					
 				</div>
-			</div>
 			</div>
 			<div class="col-1"></div>
 		</div>
 	</div>
 
-	<div class="modal fade" id="changeAvatarModal" tabindex="-1" role="dialog"
-	aria-labelledby="changeAvatarModalLabel" aria-hidden="true">
+	<div class="modal fade" id="changeAvatarModal" tabindex="-1"
+		role="dialog" aria-labelledby="changeAvatarModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-dark">
-					<h5 class="modal-title text-light" id="exampleModal3Label">Change avatar</h5>
+					<h5 class="modal-title text-light" id="exampleModal3Label">Change
+						avatar</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true" class="text-light">&times;</span>
 					</button>
 				</div>
-				
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline-secondary"
 						data-dismiss="modal">Close</button>
